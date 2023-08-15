@@ -1,5 +1,4 @@
 import 'package:ecosan/app/modules/auth/login/views/login_view.dart';
-import 'package:ecosan/app/modules/auth/register/views/register_view.dart';
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
