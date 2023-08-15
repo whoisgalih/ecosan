@@ -55,15 +55,8 @@ class EcoSanButton extends StatelessWidget {
   Container button() {
     return Container(
         decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(borderRadius),
-            boxShadow: [
-              BoxShadow(
-                color: Color(0x1400519B),
-                blurRadius: 15,
-                offset: Offset(0, 1),
-                spreadRadius: 0,
-              )
-            ]),
+          borderRadius: BorderRadius.circular(borderRadius),
+        ),
         width: width,
         padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
         child: Center(
