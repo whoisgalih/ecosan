@@ -65,8 +65,9 @@ class RegisterView extends GetView<RegisterController> {
               child: Column(
                 children: [
                   EcoSanButton(
-                    isDisabled: true,
-                    onTap: () {},
+                    onTap: () {
+                      Get.offAllNamed("/auth/register/welcome");
+                    },
                     child: Text(
                       "Daftar",
                       style: TextStyles.normal.bold(color: Colors.white),
@@ -79,7 +80,6 @@ class RegisterView extends GetView<RegisterController> {
                   ),
                   const SizedBox(height: 16),
                   EcoSanButton(
-                    isDisabled: false,
                     color: Colors.white,
                     onTap: () {},
                     boxShadows: const [
@@ -118,7 +118,9 @@ class RegisterView extends GetView<RegisterController> {
                       ),
                       ButtonText(
                         text: "Masuk",
-                        onTap: () {},
+                        onTap: () {
+                          Get.offAllNamed("/auth/login");
+                        },
                         textStyle:
                             TextStyles.small.bold(color: EcoSanColors.primary),
                       ),

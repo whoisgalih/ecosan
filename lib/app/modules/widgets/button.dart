@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 
 class EcoSanButton extends StatelessWidget {
   // create disabled state
-  final bool isDisabled;
+  final bool isEnabled;
 
   // enambled color
   final Color? color;
@@ -20,7 +20,7 @@ class EcoSanButton extends StatelessWidget {
 
   const EcoSanButton({
     super.key,
-    required this.isDisabled,
+    this.isEnabled = true,
     this.color,
     this.disabledColor,
     required this.onTap,
@@ -38,16 +38,16 @@ class EcoSanButton extends StatelessWidget {
     return Container(
       decoration: BoxDecoration(boxShadow: boxShadows),
       child: Material(
-        color: isDisabled ? _disabledColor : _color,
+        color: isEnabled ? _color : _disabledColor,
         borderRadius: BorderRadius.circular(10),
-        child: isDisabled
-            ? button()
-            : InkWell(
+        child: isEnabled
+            ? InkWell(
                 onTap: onTap,
                 customBorder: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(borderRadius)),
                 child: button(),
-              ),
+              )
+            : button(),
       ),
     );
   }

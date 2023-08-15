@@ -11,7 +11,7 @@ class AuthView extends GetView<AuthController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: RegisterView(),
+      body: LoginView(),
     );
   }
 }

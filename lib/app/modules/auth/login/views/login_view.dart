@@ -61,7 +61,7 @@ class LoginView extends GetView<LoginController> {
               child: Column(
                 children: [
                   EcoSanButton(
-                    isDisabled: true,
+                    isEnabled: true,
                     onTap: () {},
                     child: Text(
                       "Masuk",
@@ -75,7 +75,6 @@ class LoginView extends GetView<LoginController> {
                   ),
                   const SizedBox(height: 16),
                   EcoSanButton(
-                    isDisabled: false,
                     color: Colors.white,
                     onTap: () {},
                     boxShadows: const [
@@ -114,7 +113,9 @@ class LoginView extends GetView<LoginController> {
                       ),
                       ButtonText(
                         text: "Daftar",
-                        onTap: () {},
+                        onTap: () {
+                          Get.offAllNamed("/auth/register");
+                        },
                         textStyle:
                             TextStyles.small.bold(color: EcoSanColors.primary),
                       ),
