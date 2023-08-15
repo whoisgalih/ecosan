@@ -1,9 +1,9 @@
 import 'package:get/get.dart';
 
-class AuthController extends GetxController {
-  //TODO: Implement AuthController
+class RegisterController extends GetxController {
+  //TODO: Implement RegisterController
 
-  var user = null.obs;
+  final count = 0.obs;
   @override
   void onInit() {
     super.onInit();
@@ -18,4 +18,6 @@ class AuthController extends GetxController {
   void onClose() {
     super.onClose();
   }
+
+  void increment() => count.value++;
 }
