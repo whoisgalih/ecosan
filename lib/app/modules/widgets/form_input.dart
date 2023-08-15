@@ -6,6 +6,8 @@ class FormInput extends StatelessWidget {
   final String hint;
   final IconData? icon;
   final TextInputType keyboardType;
+  final TextEditingController controller;
+  final String? Function(String?)? validator;
 
   const FormInput({
     super.key,
@@ -13,6 +15,8 @@ class FormInput extends StatelessWidget {
     required this.hint,
     this.icon,
     required this.keyboardType,
+    required this.controller,
+    this.validator,
   });
 
   @override
@@ -25,17 +29,22 @@ class FormInput extends StatelessWidget {
           style: TextStyles.tiny.bold(),
         ),
         const SizedBox(height: 4),
-        TextField(
-            keyboardType: keyboardType,
-            style: TextStyles.tiny,
-            decoration: InputDecoration(
-                prefixIcon: icon == null
-                    ? null
-                    : Icon(
-                        icon,
-                        size: 24,
-                      ),
-                hintText: hint)),
+        TextFormField(
+          controller: controller,
+          validator: validator,
+          keyboardType: keyboardType,
+          obscureText: keyboardType == TextInputType.visiblePassword,
+          style: TextStyles.tiny,
+          decoration: InputDecoration(
+            prefixIcon: icon == null
+                ? null
+                : Icon(
+                    icon,
+                    size: 24,
+                  ),
+            hintText: hint,
+          ),
+        ),
       ],
     );
   }

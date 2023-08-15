@@ -1,11 +1,19 @@
+import 'package:ecosan/app/modules/auth/controllers/auth_controller.dart';
 import 'package:ecosan/app/modules/themes/fonts.dart';
 import 'package:ecosan/app/routes/app_pages.dart';
 import 'package:ecosan/app/modules/themes/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'firebase_options.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
+  Get.put(AuthController());
   runApp(const MyApp());
 }
 
@@ -42,6 +50,14 @@ class MyApp extends StatelessWidget {
           ),
           focusedBorder: OutlineInputBorder(
             borderSide: BorderSide(width: 2, color: EcoSanColors.primary[300]!),
+            borderRadius: BorderRadius.all(Radius.circular(10)),
+          ),
+          errorBorder: OutlineInputBorder(
+            borderSide: BorderSide(width: 1, color: EcoSanColors.error[300]!),
+            borderRadius: BorderRadius.all(Radius.circular(10)),
+          ),
+          focusedErrorBorder: OutlineInputBorder(
+            borderSide: BorderSide(width: 2, color: EcoSanColors.error[300]!),
             borderRadius: BorderRadius.all(Radius.circular(10)),
           ),
           contentPadding: EdgeInsets.all(12),
