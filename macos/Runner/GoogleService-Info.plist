@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>185090618714-rb66di8o05ksca9uvalcvrgoj44455k5.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.185090618714-rb66di8o05ksca9uvalcvrgoj44455k5</string>
+	<key>API_KEY</key>
+	<string>AIzaSyBxQhXtuamw3D7q1sE5b5uX6z9NZYtnYy0</string>
+	<key>GCM_SENDER_ID</key>
+	<string>185090618714</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.example.ecosan.RunnerTests</string>
+	<key>PROJECT_ID</key>
+	<string>ecosan-fe259</string>
+	<key>STORAGE_BUCKET</key>
+	<string>ecosan-fe259.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:185090618714:ios:23afe1dfede3d108522f63</string>
+</dict>
+</plist>

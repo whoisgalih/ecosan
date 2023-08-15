@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "185090618714",
+    "project_id": "ecosan-fe259",
+    "storage_bucket": "ecosan-fe259.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:185090618714:android:ff2ccc3193e92ea3522f63",
+        "android_client_info": {
+          "package_name": "com.example.ecosan"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "185090618714-2u6792f0cnfprpl1rhiikdgh104cg3r9.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCLUIvdkOXRf1GWQ3DVVro-fFPe0kujt_I"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "185090618714-2u6792f0cnfprpl1rhiikdgh104cg3r9.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

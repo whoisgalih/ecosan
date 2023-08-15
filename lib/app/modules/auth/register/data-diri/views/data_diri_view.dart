@@ -37,29 +37,29 @@ class DataDiriView extends GetView<DataDiriController> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.end,
                 children: [
-                  FormInput(
-                      hint: "Masukan nama lengkap",
-                      icon: Icons.person,
-                      label: "Nama Lengkap",
-                      keyboardType: TextInputType.name),
-                  SizedBox(height: 16),
-                  FormInput(
-                      label: "Nomor Telepon",
-                      hint: "Masukan nomor telepon",
-                      keyboardType: TextInputType.phone,
-                      icon: Icons.phone),
-                  SizedBox(height: 16),
-                  FormInput(
-                      label: "Tanggal Lahir",
-                      hint: "Pilih tanggal lahir",
-                      keyboardType: TextInputType.datetime,
-                      icon: Icons.calendar_today),
-                  SizedBox(height: 16),
-                  FormInput(
-                      label: "Asal Kota",
-                      hint: "Pilih asal kota",
-                      keyboardType: TextInputType.text,
-                      icon: Icons.location_city),
+                  // FormInput(
+                  //     hint: "Masukan nama lengkap",
+                  //     icon: Icons.person,
+                  //     label: "Nama Lengkap",
+                  //     keyboardType: TextInputType.name),
+                  // SizedBox(height: 16),
+                  // FormInput(
+                  //     label: "Nomor Telepon",
+                  //     hint: "Masukan nomor telepon",
+                  //     keyboardType: TextInputType.phone,
+                  //     icon: Icons.phone),
+                  // SizedBox(height: 16),
+                  // FormInput(
+                  //     label: "Tanggal Lahir",
+                  //     hint: "Pilih tanggal lahir",
+                  //     keyboardType: TextInputType.datetime,
+                  //     icon: Icons.calendar_today),
+                  // SizedBox(height: 16),
+                  // FormInput(
+                  //     label: "Asal Kota",
+                  //     hint: "Pilih asal kota",
+                  //     keyboardType: TextInputType.text,
+                  //     icon: Icons.location_city),
                 ],
               ),
             ),

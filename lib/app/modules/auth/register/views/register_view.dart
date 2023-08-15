@@ -34,46 +34,59 @@ class RegisterView extends GetView<RegisterController> {
                 ],
               ),
             ),
-            const Padding(
+            Padding(
               padding: EdgeInsets.symmetric(horizontal: 16),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.end,
-                children: [
-                  FormInput(
+              child: Form(
+                key: controller.registerFormKey,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.end,
+                  children: [
+                    FormInput(
+                      controller: controller.emailController,
                       hint: "Masukan email",
                       icon: Icons.mail,
                       label: "Email",
-                      keyboardType: TextInputType.emailAddress),
-                  SizedBox(height: 16),
-                  FormInput(
+                      keyboardType: TextInputType.emailAddress,
+                      validator: controller.emailValidator,
+                    ),
+                    SizedBox(height: 16),
+                    FormInput(
+                      controller: controller.passwordController,
                       label: "Password",
                       hint: "Masukan password",
                       keyboardType: TextInputType.visiblePassword,
-                      icon: Icons.lock),
-                  SizedBox(height: 16),
-                  FormInput(
+                      icon: Icons.lock,
+                      validator: controller.passwordValidator,
+                    ),
+                    SizedBox(height: 16),
+                    FormInput(
+                      controller: controller.confirmPasswordController,
                       label: "Konfirmasi Password",
                       hint: "Konfirmasi password",
                       keyboardType: TextInputType.visiblePassword,
-                      icon: Icons.lock),
-                ],
+                      icon: Icons.lock,
+                      validator: controller.confirmPasswordValidator,
+                    ),
+                    SizedBox(height: 64),
+                    EcoSanButton(
+                      onTap: () {
+                        controller.register();
+                        // Get.offAllNamed("/auth/register/welcome");
+                      },
+                      child: Text(
+                        "Daftar",
+                        style: TextStyles.normal.bold(color: Colors.white),
+                      ),
+                    ),
+                  ],
+                ),
               ),
             ),
-            SizedBox(height: 64),
+            const SizedBox(height: 40),
             Padding(
               padding: EdgeInsets.symmetric(horizontal: 16),
               child: Column(
                 children: [
-                  EcoSanButton(
-                    onTap: () {
-                      Get.offAllNamed("/auth/register/welcome");
-                    },
-                    child: Text(
-                      "Daftar",
-                      style: TextStyles.normal.bold(color: Colors.white),
-                    ),
-                  ),
-                  const SizedBox(height: 40),
                   Divider(
                     height: 1,
                     color: EcoSanColors.primary[50],

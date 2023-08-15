@@ -39,17 +39,17 @@ class LoginView extends GetView<LoginController> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.end,
                 children: [
-                  const FormInput(
-                      hint: "Masukan email",
-                      icon: Icons.mail,
-                      label: "Email",
-                      keyboardType: TextInputType.emailAddress),
-                  const SizedBox(height: 16),
-                  const FormInput(
-                      label: "Password",
-                      hint: "Masukan password",
-                      keyboardType: TextInputType.visiblePassword,
-                      icon: Icons.lock),
+                  // const FormInput(
+                  //     hint: "Masukan email",
+                  //     icon: Icons.mail,
+                  //     label: "Email",
+                  //     keyboardType: TextInputType.emailAddress),
+                  // const SizedBox(height: 16),
+                  // const FormInput(
+                  //     label: "Password",
+                  //     hint: "Masukan password",
+                  //     keyboardType: TextInputType.visiblePassword,
+                  //     icon: Icons.lock),
                   const SizedBox(height: 4),
                   ButtonText(text: "Lupa password?", onTap: () {}),
                 ],
