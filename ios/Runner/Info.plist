@@ -47,5 +47,21 @@
 	<true/>
 	<key>UIApplicationSupportsIndirectInputEvents</key>
 	<true/>
+	<key>NSAppTransportSecurity</key>
+	<dict>
+		<key>NSAllowsLocalNetworking</key>
+		<true/>
+	</dict>
+	<key>GIDClientID</key>
+	<string>185090618714-hj9p2dghrknjvbc8i7gfkg3jh50rejic.apps.googleusercontent.com</string>
+	<key>CFBundleURLTypes</key>
+	<array>
+	<dict>
+		<key>CFBundleURLSchemes</key>
+		<array>
+		<string>com.googleusercontent.apps.185090618714-hj9p2dghrknjvbc8i7gfkg3jh50rejic</string>
+		</array>
+	</dict>
+	</array>
 </dict>
 </plist>
