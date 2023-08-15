@@ -61,4 +61,8 @@ class RegisterController extends GetxController {
       authController.register(emailController.text, passwordController.text);
     }
   }
+
+  void googleSignIn() async {
+    authController.googleSignIn();
+  }
 }

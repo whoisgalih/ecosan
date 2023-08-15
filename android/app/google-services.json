@@ -14,7 +14,7 @@
       },
       "oauth_client": [
         {
-          "client_id": "185090618714-2u6792f0cnfprpl1rhiikdgh104cg3r9.apps.googleusercontent.com",
+          "client_id": "185090618714-5p01d3db596hh2td2ga19jh14kbac79m.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
@@ -29,6 +29,13 @@
             {
               "client_id": "185090618714-2u6792f0cnfprpl1rhiikdgh104cg3r9.apps.googleusercontent.com",
               "client_type": 3
+            },
+            {
+              "client_id": "185090618714-hj9p2dghrknjvbc8i7gfkg3jh50rejic.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.ecosan"
+              }
             }
           ]
         }

@@ -94,7 +94,9 @@ class RegisterView extends GetView<RegisterController> {
                   const SizedBox(height: 16),
                   EcoSanButton(
                     color: Colors.white,
-                    onTap: () {},
+                    onTap: () {
+                      controller.googleSignIn();
+                    },
                     boxShadows: const [
                       BoxShadow(
                         color: Color(0x1400519B),

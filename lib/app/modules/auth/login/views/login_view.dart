@@ -36,39 +36,50 @@ class LoginView extends GetView<LoginController> {
             ),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 16),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.end,
-                children: [
-                  // const FormInput(
-                  //     hint: "Masukan email",
-                  //     icon: Icons.mail,
-                  //     label: "Email",
-                  //     keyboardType: TextInputType.emailAddress),
-                  // const SizedBox(height: 16),
-                  // const FormInput(
-                  //     label: "Password",
-                  //     hint: "Masukan password",
-                  //     keyboardType: TextInputType.visiblePassword,
-                  //     icon: Icons.lock),
-                  const SizedBox(height: 4),
-                  ButtonText(text: "Lupa password?", onTap: () {}),
-                ],
+              child: Form(
+                key: controller.loginFormKey,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.end,
+                  children: [
+                    FormInput(
+                      controller: controller.emailController,
+                      hint: "Masukan email",
+                      icon: Icons.mail,
+                      label: "Email",
+                      keyboardType: TextInputType.emailAddress,
+                      validator: controller.emailValidator,
+                    ),
+                    const SizedBox(height: 16),
+                    FormInput(
+                      controller: controller.passwordController,
+                      label: "Password",
+                      hint: "Masukan password",
+                      keyboardType: TextInputType.visiblePassword,
+                      icon: Icons.lock,
+                      validator: controller.passwordValidator,
+                    ),
+                    const SizedBox(height: 4),
+                    ButtonText(text: "Lupa password?", onTap: () {}),
+                    SizedBox(height: 88),
+                    EcoSanButton(
+                      isEnabled: true,
+                      onTap: () {
+                        controller.login();
+                      },
+                      child: Text(
+                        "Masuk",
+                        style: TextStyles.normal.bold(color: Colors.white),
+                      ),
+                    ),
+                  ],
+                ),
               ),
             ),
-            SizedBox(height: 88),
+            const SizedBox(height: 40),
             Padding(
               padding: EdgeInsets.symmetric(horizontal: 16),
               child: Column(
                 children: [
-                  EcoSanButton(
-                    isEnabled: true,
-                    onTap: () {},
-                    child: Text(
-                      "Masuk",
-                      style: TextStyles.normal.bold(color: Colors.white),
-                    ),
-                  ),
-                  const SizedBox(height: 40),
                   Divider(
                     height: 1,
                     color: EcoSanColors.primary[50],
@@ -76,7 +87,9 @@ class LoginView extends GetView<LoginController> {
                   const SizedBox(height: 16),
                   EcoSanButton(
                     color: Colors.white,
-                    onTap: () {},
+                    onTap: () {
+                      controller.googleSignIn();
+                    },
                     boxShadows: const [
                       BoxShadow(
                         color: Color(0x1400519B),

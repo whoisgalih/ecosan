@@ -52,6 +52,14 @@ class MyApp extends StatelessWidget {
             borderSide: BorderSide(width: 2, color: EcoSanColors.primary[300]!),
             borderRadius: BorderRadius.all(Radius.circular(10)),
           ),
+          errorBorder: OutlineInputBorder(
+            borderSide: BorderSide(width: 1, color: EcoSanColors.error[300]!),
+            borderRadius: BorderRadius.all(Radius.circular(10)),
+          ),
+          focusedErrorBorder: OutlineInputBorder(
+            borderSide: BorderSide(width: 2, color: EcoSanColors.error[300]!),
+            borderRadius: BorderRadius.all(Radius.circular(10)),
+          ),
           contentPadding: EdgeInsets.all(12),
           prefixIconColor: EcoSanColors.primary,
           hintStyle: TextStyles.tiny,
