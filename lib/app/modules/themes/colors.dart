@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-// create color extensions
+// create color class
 abstract final class EcoSanColors {
   // primary color
   static const MaterialColor primary = MaterialColor(

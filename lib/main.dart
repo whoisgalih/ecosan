@@ -1,6 +1,8 @@
-import 'package:ecosan/theme/colors.dart';
-import 'package:ecosan/theme/fonts.dart';
+import 'package:ecosan/app/modules/themes/fonts.dart';
+import 'package:ecosan/app/routes/app_pages.dart';
+import 'package:ecosan/app/modules/themes/colors.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 void main() {
@@ -12,66 +14,40 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Flutter Demo',
+    return GetMaterialApp(
+      getPages: AppPages.routes,
+      initialRoute: AppPages.INITIAL,
+      title: 'EcoSan',
       theme: ThemeData(
         useMaterial3: true,
         fontFamily: GoogleFonts.plusJakartaSans().fontFamily,
+        scaffoldBackgroundColor: Colors.white,
         colorScheme: ColorScheme.fromSwatch(
           primarySwatch: EcoSanColors.primary,
           accentColor: EcoSanColors.secondary,
           errorColor: EcoSanColors.error,
         ),
-      ),
-      home: const MyHomePage(title: 'Flutter Demo Home Page'),
-    );
-  }
-}
-
-class MyHomePage extends StatefulWidget {
-  const MyHomePage({super.key, required this.title});
-  final String title;
-
-  @override
-  State<MyHomePage> createState() => _MyHomePageState();
-}
-
-class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
-
-  void _incrementCounter() {
-    setState(() {
-      _counter++;
-    });
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Theme.of(context).colorScheme.error,
-        title: Text(widget.title),
-      ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            Text(
-              'You have pushed the button this many times:',
-              style: TextStyles.small,
-            ),
-            Text(
-              '$_counter',
-              style: Theme.of(context).textTheme.headlineMedium,
-            ),
-          ],
+        textTheme: TextTheme(
+          titleLarge: TextStyles.header1.bold(),
+          titleMedium: TextStyles.header2.bold(),
+          titleSmall: TextStyles.header3.bold(),
+          bodyLarge: TextStyles.normal,
+          bodyMedium: TextStyles.small,
+          bodySmall: TextStyles.tiny,
         ),
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
-        child: const Icon(Icons.add),
-        backgroundColor: EcoSanColors.primary[500],
+        inputDecorationTheme: InputDecorationTheme(
+          enabledBorder: OutlineInputBorder(
+            borderSide: BorderSide(width: 1, color: EcoSanColors.primary[300]!),
+            borderRadius: BorderRadius.all(Radius.circular(10)),
+          ),
+          focusedBorder: OutlineInputBorder(
+            borderSide: BorderSide(width: 2, color: EcoSanColors.primary[300]!),
+            borderRadius: BorderRadius.all(Radius.circular(10)),
+          ),
+          contentPadding: EdgeInsets.all(12),
+          prefixIconColor: EcoSanColors.primary,
+          hintStyle: TextStyles.tiny,
+        ),
       ),
     );
   }

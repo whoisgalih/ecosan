@@ -1,3 +1,4 @@
+import 'package:ecosan/app/modules/themes/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -40,11 +41,11 @@ class TextStyles {
 }
 
 extension WeightModifier on TextStyle {
-  TextStyle semibold() {
-    return copyWith(fontWeight: FontWeight.w600);
+  TextStyle semibold({Color color = EcoSanColors.systemBlack}) {
+    return copyWith(fontWeight: FontWeight.w600, color: color);
   }
 
-  TextStyle bold() {
-    return copyWith(fontWeight: FontWeight.w700);
+  TextStyle bold({Color color = EcoSanColors.systemBlack}) {
+    return copyWith(fontWeight: FontWeight.w700, color: color);
   }
 }
