@@ -42,6 +42,7 @@ class AuthController extends GetxController {
   void register(String email, String password) async {
     try {
       // create user with email and password (register user)
+      
       final UserCredential userCredential =
           await auth.createUserWithEmailAndPassword(
         email: email,
@@ -135,6 +136,7 @@ class AuthController extends GetxController {
 
   void signOut() {
     try {
+      GoogleSignIn().signOut();
       auth.signOut();
     } catch (e) {
       print(e.toString());
