@@ -3,6 +3,7 @@ import 'package:ecosan/app/modules/home/widgets/airchip.dart';
 import 'package:ecosan/app/modules/themes/colors.dart';
 import 'package:ecosan/app/modules/themes/fonts.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:glassmorphism/glassmorphism.dart';
 import 'package:sizer/sizer.dart';
 
@@ -61,132 +62,182 @@ class Air extends StatelessWidget {
               SizedBox(
                 height: 21 / 800 * 100.h,
               ),
-              Stack(
-                children: [
-                  Container(
-                    width: 194 / 360 * 100.w,
-                    height: 194 / 360 * 100.w,
-                    decoration: BoxDecoration(
-                      shape: BoxShape.circle,
-                      color: EcoSanColors.primary.shade400,
-                    ),
-                  ),
-                  GlassmorphicContainer(
-                    width: 194 / 360 * 100.w,
-                    height: 194 / 360 * 100.w,
-                    borderRadius: 1000,
-                    linearGradient: LinearGradient(
-                      begin: Alignment.topLeft,
-                      end: Alignment.bottomRight,
-                      colors: [
-                        const Color(0xFFffffff).withOpacity(0.3),
-                        const Color(0xFFFFFFFF).withOpacity(0.3),
-                      ],
-                    ),
-                    borderGradient: LinearGradient(
-                      begin: Alignment.topLeft,
-                      end: Alignment.bottomRight,
-                      colors: [
-                        const Color(0xFFffffff).withOpacity(0.5),
-                        const Color((0xFFFFFFFF)).withOpacity(0.5),
-                      ],
-                    ),
-                    border: 0,
-                    blur: 60,
-                    child: Center(
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: [
-                          Text(
-                            '97',
-                            style: TextStyles.header1.bold().extraLarge(),
-                          ),
-                          Text(
-                            'Sangat Baik',
-                            style: TextStyles.header2.semibold(),
-                          )
-                        ],
-                      ),
-                    ),
-                  )
-                ],
+              Obx(
+                () => AirQuality(
+                  airQuality: controller.airQuality.value,
+                ),
               )
             ],
           ),
         ),
-        Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(
-              'Rincian Kualitas Air',
-              style: TextStyles.small.semibold(),
-            ),
-            SizedBox(
-              height: 1.5.h,
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                const Flexible(
-                    flex: 1,
-                    child: WaterQualityContainer(
-                      indicator: 'pH',
-                      value: '7.5',
-                      unit: '',
-                    )),
-                SizedBox(
-                  width: 33 / 360 * 100.w,
-                ),
-                const Flexible(
-                    flex: 1,
-                    child: WaterQualityContainer(
-                      indicator: 'ORP',
-                      value: '700',
-                      unit: 'mV',
-                    )),
-                SizedBox(
-                  width: 33 / 360 * 100.w,
-                ),
-                const Flexible(
-                    flex: 1,
-                    child: WaterQualityContainer(
-                      indicator: 'TDS',
-                      value: '500',
-                      unit: 'ppm',
-                    )),
-              ],
-            )
-          ],
+        Obx(
+          () => controller.airQuality.value != null
+              ? Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      'Rincian Kualitas Air',
+                      style: TextStyles.small.semibold(),
+                    ),
+                    SizedBox(
+                      height: 1.5.h,
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        const Flexible(
+                            flex: 1,
+                            child: WaterQualityContainer(
+                              indicator: 'pH',
+                              value: '7.5',
+                              unit: '',
+                            )),
+                        SizedBox(
+                          width: 33 / 360 * 100.w,
+                        ),
+                        const Flexible(
+                            flex: 1,
+                            child: WaterQualityContainer(
+                              indicator: 'ORP',
+                              value: '700',
+                              unit: 'mV',
+                            )),
+                        SizedBox(
+                          width: 33 / 360 * 100.w,
+                        ),
+                        const Flexible(
+                            flex: 1,
+                            child: WaterQualityContainer(
+                              indicator: 'TDS',
+                              value: '500',
+                              unit: 'ppm',
+                            )),
+                      ],
+                    )
+                  ],
+                )
+              : const Text(
+                  'Status air tidak dapat diketahui karena kamu belum memasang Sensor Air. Pasang Sensor Air sekarang!'),
         ),
         SizedBox(
           height: 2.5.h,
         ),
         SizedBox(
           width: double.infinity,
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                'Layanan Sanitasi Air',
-                style: TextStyles.small.semibold(),
-              ),
-              SizedBox(
-                height: 1.5.h,
-              ),
-              const LayananSanitasiListTile(
-                layananName: 'Pembersihan Filter',
-              ),
-              SizedBox(
-                height: 0.8.h,
-              ),
-              const LayananSanitasiListTile(
-                layananName: 'Pemasangan Alat',
-              )
-            ],
+          child: Obx(
+            () => Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                controller.airQuality.value != null
+                    ? Text(
+                        'Layanan Sanitasi Air',
+                        style: TextStyles.small.semibold(),
+                      )
+                    : const SizedBox(),
+                controller.airQuality.value != null
+                    ? SizedBox(
+                        height: 1.5.h,
+                      )
+                    : const SizedBox(),
+                const LayananSanitasiListTile(
+                  layananName: 'Pembersihan Filter',
+                ),
+                SizedBox(
+                  height: 0.8.h,
+                ),
+                const LayananSanitasiListTile(
+                  layananName: 'Pemasangan Alat',
+                )
+              ],
+            ),
           ),
         )
+      ],
+    );
+  }
+}
+
+class AirQuality extends StatelessWidget {
+  const AirQuality({super.key, this.airQuality});
+  final int? airQuality;
+  @override
+  Widget build(BuildContext context) {
+    return Stack(
+      children: [
+        Container(
+          width: 194 / 360 * 100.w,
+          height: 194 / 360 * 100.w,
+          decoration: BoxDecoration(
+            shape: BoxShape.circle,
+            color: airQuality != null
+                ? airQuality! >= 80
+                    ? EcoSanColors.primary.shade400
+                    : EcoSanColors.secondary.shade400
+                : EcoSanColors.systemGray[2],
+          ),
+        ),
+        GlassmorphicContainer(
+          width: 194 / 360 * 100.w,
+          height: 194 / 360 * 100.w,
+          borderRadius: 1000,
+          linearGradient: LinearGradient(
+            begin: Alignment.topLeft,
+            end: Alignment.bottomRight,
+            colors: [
+              const Color(0xFFffffff).withOpacity(0.3),
+              const Color(0xFFFFFFFF).withOpacity(0.3),
+            ],
+          ),
+          borderGradient: LinearGradient(
+            begin: Alignment.topLeft,
+            end: Alignment.bottomRight,
+            colors: [
+              const Color(0xFFffffff).withOpacity(0.5),
+              const Color((0xFFFFFFFF)).withOpacity(0.5),
+            ],
+          ),
+          border: 0,
+          blur: 60,
+          child: Center(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                Text(
+                  airQuality?.toString() ?? '-',
+                  style: TextStyles.header1.bold().extraLarge(),
+                ),
+                Text(
+                  airQuality == null
+                      ? 'Tidak Diketahuui'
+                      : airQuality! >= 80
+                          ? 'Sangat Baik'
+                          : 'Buruk',
+                  style: TextStyles.header2.semibold(),
+                )
+              ],
+            ),
+          ),
+        ),
+        airQuality == null || airQuality! < 80
+            ? Positioned(
+                top: 0,
+                right: 0,
+                child: Container(
+                  width: 60 / 360 * 100.w,
+                  height: 60 / 360 * 100.w,
+                  decoration: const BoxDecoration(
+                    color: EcoSanColors.primary,
+                    shape: BoxShape.circle,
+                  ),
+                  child: const Icon(
+                    Icons.warning,
+                    color: EcoSanColors.secondary,
+                    size: 25,
+                  ),
+                ))
+            : const SizedBox()
       ],
     );
   }

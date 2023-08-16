@@ -7,6 +7,7 @@ class HomeController extends GetxController {
   late Rx<User> user;
   RxInt index = 0.obs;
   final airIndex = 0.obs;
+  final Rx<int?> airQuality = 90.obs;
   @override
   void onInit() {
     super.onInit();
