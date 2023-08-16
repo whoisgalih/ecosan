@@ -1,4 +1,4 @@
-import 'package:ecosan/app/modules/home/segments/Air.dart';
+import 'package:ecosan/app/modules/home/segments/air.dart';
 import 'package:ecosan/app/modules/themes/colors.dart';
 import 'package:ecosan/app/modules/themes/fonts.dart';
 import 'package:flutter/material.dart';

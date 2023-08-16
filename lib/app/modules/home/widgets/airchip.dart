@@ -29,13 +29,16 @@ class AirChip extends StatelessWidget {
               color: controller.airIndex.value == chipAirIndex
                   ? Colors.white
                   : null),
-          child: Center(
-            child: Text(
-              chipContent,
-              style: TextStyles.tiny.copyWith(
-                  color: controller.airIndex.value == chipAirIndex
-                      ? Colors.black
-                      : Colors.white),
+          child: SizedBox(
+            width: 72 / 360 * 100.w,
+            child: Center(
+              child: Text(
+                chipContent,
+                style: TextStyles.tiny.copyWith(
+                    color: controller.airIndex.value == chipAirIndex
+                        ? Colors.black
+                        : Colors.white),
+              ),
             ),
           ),
         ),
