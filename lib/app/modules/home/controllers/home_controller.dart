@@ -1,4 +1,3 @@
-import 'package:ecosan/app/constants/firebase_constants.dart';
 import 'package:ecosan/app/models/user/user_model.dart';
 import 'package:ecosan/app/modules/auth/controllers/auth_controller.dart';
 import 'package:get/get.dart';
@@ -22,7 +21,6 @@ class HomeController extends GetxController {
   void onClose() {
     super.onClose();
   }
-
 
   void signOut() {
     authController.signOut();

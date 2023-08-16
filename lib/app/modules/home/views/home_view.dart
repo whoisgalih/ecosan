@@ -10,8 +10,22 @@ class HomeView extends GetView<HomeController> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('EcoSan'),
+        leading: Image.asset(
+          'assets/images/ecosan_horizontal_logo.png',
+        ),
         actions: [
+          Container(
+            padding: const EdgeInsets.all(5),
+            decoration: BoxDecoration(
+              shape: BoxShape.circle,
+              color: Colors.black,
+            ),
+            child: Image.asset(
+              'assets/images/ecosan_vertical_logo.png',
+              fit: BoxFit.contain,
+              scale: 0.5,
+            ),
+          ),
           IconButton(
             onPressed: () {
               controller.signOut();
@@ -20,7 +34,7 @@ class HomeView extends GetView<HomeController> {
           )
         ],
       ),
-      body: Center(),
+      body: const Center(),
       bottomNavigationBar: Obx(
         () => BottomNavigationBar(
           items: const [
