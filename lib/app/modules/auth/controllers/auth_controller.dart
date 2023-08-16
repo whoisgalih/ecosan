@@ -8,7 +8,7 @@ class AuthController extends GetxController {
   static AuthController authInstance = Get.find();
   late Rx<User?> firebaseUser;
 
-  var user = null.obs;
+  late Rx<user_model.User> user;
 
   @override
   void onInit() {
@@ -33,6 +33,7 @@ class AuthController extends GetxController {
       // user is logged in
       await firestore.collection("users").doc(user.uid).get().then((value) {
         if (value.exists) {
+          this.user = user_model.User.fromJson(value.data()!).obs;
           Get.offAllNamed("/home");
         } else {
           Get.offAllNamed("/auth/register/data-diri");
@@ -155,6 +156,7 @@ class AuthController extends GetxController {
         snackPosition: SnackPosition.BOTTOM,
       );
       Get.offAllNamed("/home");
+      this.user = user.obs;
     } on FirebaseAuthException catch (e) {
       print(e.message);
       Get.snackbar(
