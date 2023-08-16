@@ -42,8 +42,7 @@ class AuthController extends GetxController {
   void register(String email, String password) async {
     try {
       // create user with email and password (register user)
-      final UserCredential userCredential =
-          await auth.createUserWithEmailAndPassword(
+      await auth.createUserWithEmailAndPassword(
         email: email,
         password: password,
       );
@@ -71,6 +70,11 @@ class AuthController extends GetxController {
       // this is temporary. you can handle different kinds of activities
       //such as dialogue to indicate what's wrong
       print(e.toString());
+      Get.snackbar(
+        "Error",
+        e.toString(),
+        snackPosition: SnackPosition.BOTTOM,
+      );
     }
   }
 
@@ -92,6 +96,11 @@ class AuthController extends GetxController {
         snackPosition: SnackPosition.BOTTOM,
       );
     } catch (e) {
+      Get.snackbar(
+        "Error",
+        e.toString(),
+        snackPosition: SnackPosition.BOTTOM,
+      );
       print(e.toString());
     }
   }
@@ -133,10 +142,20 @@ class AuthController extends GetxController {
     }
   }
 
-  void signOut() {
+  Future<void> signOut() async {
     try {
-      auth.signOut();
+      await auth.signOut();
+      Get.snackbar(
+        "Success",
+        "Logged out successfully",
+        snackPosition: SnackPosition.BOTTOM,
+      );
     } catch (e) {
+      Get.snackbar(
+        "Error",
+        e.toString(),
+        snackPosition: SnackPosition.BOTTOM,
+      );
       print(e.toString());
     }
   }
