@@ -1,3 +1,4 @@
+import 'package:ecosan/app/modules/home/widgets/airchip.dart';
 import 'package:ecosan/app/modules/themes/colors.dart';
 import 'package:ecosan/app/modules/themes/fonts.dart';
 import 'package:flutter/material.dart';
@@ -13,11 +14,15 @@ class HomeView extends GetView<HomeController> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        leading: Container(
-          margin: EdgeInsets.only(left: 2.h),
-          child: Image.asset(
-            'assets/images/ecosan_horizontal_logo.png',
-          ),
+        leading: Obx(
+          () => controller.index.value == 0
+              ? Container(
+                  margin: EdgeInsets.only(left: 2.h),
+                  child: Image.asset(
+                    'assets/images/ecosan_horizontal_logo.png',
+                  ),
+                )
+              : const SizedBox(),
         ),
         leadingWidth: 101 / 800 * 100.h,
         actions: [
@@ -79,7 +84,43 @@ class HomeView extends GetView<HomeController> {
           )
         ],
       ),
-      body: const Center(),
+      body: Padding(
+        padding: EdgeInsets.symmetric(horizontal: 2.h),
+        child: Column(
+          children: [
+            Container(
+              width: double.infinity,
+              padding: EdgeInsets.symmetric(
+                  horizontal: 1.h, vertical: 5 / 800 * 100.h),
+              height: 45 / 800 * 100.h,
+              decoration: BoxDecoration(
+                color: EcoSanColors.primary,
+                borderRadius: BorderRadius.circular(30),
+              ),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  AirChip(
+                    controller: controller,
+                    chipAirIndex: 0,
+                    chipContent: 'Sensor Air',
+                  ),
+                  AirChip(
+                    controller: controller,
+                    chipAirIndex: 1,
+                    chipContent: 'Kamera',
+                  ),
+                  AirChip(
+                    controller: controller,
+                    chipAirIndex: 2,
+                    chipContent: 'History',
+                  )
+                ],
+              ),
+            )
+          ],
+        ),
+      ),
       bottomNavigationBar: Obx(
         () => BottomNavigationBar(
           items: const [

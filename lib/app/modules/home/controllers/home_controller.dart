@@ -6,6 +6,7 @@ class HomeController extends GetxController {
   final AuthController authController = AuthController.authInstance;
   late Rx<User> user;
   RxInt index = 0.obs;
+  final airIndex = 0.obs;
   @override
   void onInit() {
     super.onInit();
