@@ -32,44 +32,92 @@ class DataDiriView extends GetView<DataDiriController> {
                 ],
               ),
             ),
-            const Padding(
-              padding: EdgeInsets.symmetric(horizontal: 16),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.end,
-                children: [
-                  // FormInput(
-                  //     hint: "Masukan nama lengkap",
-                  //     icon: Icons.person,
-                  //     label: "Nama Lengkap",
-                  //     keyboardType: TextInputType.name),
-                  // SizedBox(height: 16),
-                  // FormInput(
-                  //     label: "Nomor Telepon",
-                  //     hint: "Masukan nomor telepon",
-                  //     keyboardType: TextInputType.phone,
-                  //     icon: Icons.phone),
-                  // SizedBox(height: 16),
-                  // FormInput(
-                  //     label: "Tanggal Lahir",
-                  //     hint: "Pilih tanggal lahir",
-                  //     keyboardType: TextInputType.datetime,
-                  //     icon: Icons.calendar_today),
-                  // SizedBox(height: 16),
-                  // FormInput(
-                  //     label: "Asal Kota",
-                  //     hint: "Pilih asal kota",
-                  //     keyboardType: TextInputType.text,
-                  //     icon: Icons.location_city),
-                ],
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 16),
+              child: Form(
+                key: controller.registerFormKey,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.end,
+                  children: [
+                    FormInput(
+                        hint: "Masukan nama lengkap",
+                        controller: controller.nameEditingController,
+                        icon: Icons.person,
+                        label: "Nama Lengkap",
+                        keyboardType: TextInputType.name),
+                    const SizedBox(height: 16),
+                    FormInput(
+                        label: "Nomor Telepon",
+                        hint: "Masukan nomor telepon",
+                        controller: controller.phoneEditingController,
+                        keyboardType: TextInputType.phone,
+                        icon: Icons.phone),
+                    const SizedBox(height: 16),
+                    FormInput(
+                        label: "Tanggal Lahir",
+                        controller: controller.dateEditingController,
+                        hint: "Pilih tanggal lahir",
+                        readOnly: true,
+                        keyboardType: TextInputType.datetime,
+                        onTap: () async {
+                          final pickedDate = await showDatePicker(
+                              context: context,
+                              initialDate: DateTime(2000),
+                              firstDate: DateTime(1945),
+                              lastDate: DateTime(2020));
+                          if (pickedDate != null) {
+                            controller.dateEditingController.text =
+                                "${pickedDate.day.toString().padLeft(2, '0')}/${pickedDate.month.toString().padLeft(2, '0')}/${pickedDate.year}";
+                          }
+                        },
+                        icon: Icons.calendar_today),
+                    const SizedBox(height: 16),
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          'Asal Kota',
+                          style: TextStyles.tiny.bold(),
+                        ),
+                        DropdownButtonFormField(
+                            dropdownColor: Colors.white,
+                            value: controller.cityValue.value,
+                            onChanged: (value) {
+                              controller.cityValue = value.obs;
+                            },
+                            decoration: const InputDecoration(
+                                prefixIcon: Icon(
+                              Icons.location_city,
+                              size: 24,
+                            )),
+                            style:
+                                TextStyles.tiny.copyWith(color: Colors.black),
+                            hint: const Text('Pilih Asal Kota'),
+                            items: controller.regencies
+                                .map((e) => DropdownMenuItem(
+                                      value: e,
+                                      child: Text(e),
+                                    ))
+                                .toList())
+                      ],
+                    )
+
+                    // FormInput(
+                    //     label: "Asal Kota",
+                    //     hint: "Pilih asal kota",
+                    //     keyboardType: TextInputType.text,
+                    //     icon: Icons.location_city),
+                  ],
+                ),
               ),
             ),
-            SizedBox(height: 88),
+            const SizedBox(height: 88),
             Padding(
-              padding: EdgeInsets.symmetric(horizontal: 16),
+              padding: const EdgeInsets.symmetric(horizontal: 16),
               child: Column(
                 children: [
                   EcoSanButton(
-                    onTap: () {},
+                    onTap: () => controller.register(),
                     child: Text(
                       "Simpan",
                       style: TextStyles.normal.bold(color: Colors.white),
