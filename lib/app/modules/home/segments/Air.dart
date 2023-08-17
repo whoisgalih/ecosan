@@ -72,33 +72,68 @@ class Air extends StatelessWidget {
                         bottom: 3.h,
                         left: 0,
                         right: 0,
-                        child: GestureDetector(
-                          onTap: () {
-                            sanitationController.takePicture();
-                          },
-                          child: Container(
-                            width: 60 / 360 * 100.w,
-                            height: 60 / 360 * 100.w,
-                            decoration: const BoxDecoration(
-                                color: Colors.white, shape: BoxShape.circle),
-                          ),
-                        ),
+                        child: sanitationController.image.value == null
+                            ? GestureDetector(
+                                onTap: () => sanitationController.takePicture(),
+                                child: Container(
+                                  width: 60 / 360 * 100.w,
+                                  height: 60 / 360 * 100.w,
+                                  decoration: const BoxDecoration(
+                                      color: Colors.white,
+                                      shape: BoxShape.circle),
+                                ),
+                              )
+                            : Padding(
+                                padding: EdgeInsets.symmetric(
+                                    horizontal: 40 / 360 * 100.w),
+                                child: ElevatedButton(
+                                    style: ElevatedButton.styleFrom(
+                                      backgroundColor: EcoSanColors.primary,
+                                      padding: EdgeInsets.symmetric(
+                                          vertical: 1.5.h, horizontal: 4.h),
+                                      shape: RoundedRectangleBorder(
+                                          borderRadius:
+                                              BorderRadius.circular(10)),
+                                    ),
+                                    onPressed: () {},
+                                    child: Text('Cek Kualitas Air',
+                                        style: TextStyles.normal
+                                            .bold()
+                                            .copyWith(color: Colors.white))),
+                              ),
                       ),
-                      Positioned(
-                        top: 2.5.h,
-                        child: Text('Pindai kualitas air',
-                            style: TextStyles.normal
-                                .copyWith(color: Colors.white)),
-                      ),
+                      sanitationController.image.value == null
+                          ? Positioned(
+                              top: 2.5.h,
+                              child: Text('Pindai kualitas air',
+                                  style: TextStyles.normal
+                                      .copyWith(color: Colors.white)),
+                            )
+                          : const SizedBox(),
                       Positioned(
                           top: 3.h,
                           right: 10,
                           child: GestureDetector(
-                            onTap: () {},
-                            child: const Icon(
-                              Icons.flash_off,
-                              color: Colors.white,
-                              size: 19,
+                            onTap: () {
+                              sanitationController.flashToggle();
+                            },
+                            child: GestureDetector(
+                              onTap: () {
+                                if (sanitationController.image.value == null) {
+                                  sanitationController.flashToggle();
+                                } else {
+                                  sanitationController.takePicture();
+                                }
+                              },
+                              child: Icon(
+                                sanitationController.image.value == null
+                                    ? sanitationController.isFlashOn.value
+                                        ? Icons.flash_on
+                                        : Icons.flash_off
+                                    : Icons.camera,
+                                color: Colors.white,
+                                size: 19,
+                              ),
                             ),
                           ))
                     ]),
