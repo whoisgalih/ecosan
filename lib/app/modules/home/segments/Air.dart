@@ -6,6 +6,7 @@ import 'package:ecosan/app/modules/home/controllers/sanitation_controller.dart';
 import 'package:ecosan/app/modules/home/widgets/airchip.dart';
 import 'package:ecosan/app/modules/themes/colors.dart';
 import 'package:ecosan/app/modules/themes/fonts.dart';
+import 'package:ecosan/app/modules/widgets/button.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:glassmorphism/glassmorphism.dart';
@@ -53,94 +54,228 @@ class Air extends StatelessWidget {
         ),
         Obx(() => sanitationController.airIndex.value == 0
             ? SensorAir(controller: sanitationController)
-            : Column(
-                children: [
-                  SizedBox(
-                    height: 2.h,
-                  ),
-                  SizedBox(
-                    height: 500 / 800 * 100.h,
-                    child: Stack(alignment: Alignment.center, children: [
-                      ClipRRect(
-                        borderRadius: BorderRadius.circular(16),
-                        child: sanitationController.image.value == null
-                            ? CameraPreview(sanitationController.controller!)
-                            : Image.file(
-                                File(sanitationController.image.value!.path)),
-                      ),
-                      Positioned(
-                        bottom: 3.h,
-                        left: 0,
-                        right: 0,
-                        child: sanitationController.image.value == null
-                            ? GestureDetector(
-                                onTap: () => sanitationController.takePicture(),
-                                child: Container(
-                                  width: 60 / 360 * 100.w,
-                                  height: 60 / 360 * 100.w,
-                                  decoration: const BoxDecoration(
-                                      color: Colors.white,
-                                      shape: BoxShape.circle),
-                                ),
-                              )
-                            : Padding(
-                                padding: EdgeInsets.symmetric(
-                                    horizontal: 40 / 360 * 100.w),
-                                child: ElevatedButton(
-                                    style: ElevatedButton.styleFrom(
-                                      backgroundColor: EcoSanColors.primary,
-                                      padding: EdgeInsets.symmetric(
-                                          vertical: 1.5.h, horizontal: 4.h),
-                                      shape: RoundedRectangleBorder(
-                                          borderRadius:
-                                              BorderRadius.circular(10)),
-                                    ),
-                                    onPressed: () {},
-                                    child: Text('Cek Kualitas Air',
-                                        style: TextStyles.normal
-                                            .bold()
-                                            .copyWith(color: Colors.white))),
-                              ),
-                      ),
-                      sanitationController.image.value == null
-                          ? Positioned(
-                              top: 2.5.h,
-                              child: Text('Pindai kualitas air',
-                                  style: TextStyles.normal
-                                      .copyWith(color: Colors.white)),
-                            )
-                          : const SizedBox(),
-                      Positioned(
-                          top: 3.h,
-                          right: 10,
-                          child: GestureDetector(
-                            onTap: () {
-                              sanitationController.flashToggle();
-                            },
-                            child: GestureDetector(
-                              onTap: () {
-                                if (sanitationController.image.value == null) {
-                                  sanitationController.flashToggle();
-                                } else {
-                                  sanitationController.takePicture();
-                                }
-                              },
-                              child: Icon(
-                                sanitationController.image.value == null
-                                    ? sanitationController.isFlashOn.value
-                                        ? Icons.flash_on
-                                        : Icons.flash_off
-                                    : Icons.camera,
-                                color: Colors.white,
-                                size: 19,
-                              ),
-                            ),
-                          ))
-                    ]),
-                  ),
-                ],
-              )),
+            : sanitationController.airIndex.value == 1
+                ? AirCamera(sanitationController: sanitationController)
+                : const SizedBox()),
       ],
+    );
+  }
+}
+
+class AirCamera extends StatelessWidget {
+  const AirCamera({
+    super.key,
+    required this.sanitationController,
+  });
+
+  final SanitationController sanitationController;
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: [
+        SizedBox(
+          height: 2.h,
+        ),
+        SizedBox(
+          height: 500 / 800 * 100.h,
+          child: Stack(alignment: Alignment.center, children: [
+            ClipRRect(
+              borderRadius: BorderRadius.circular(16),
+              child: sanitationController.image.value == null
+                  ? CameraPreview(sanitationController.controller!)
+                  : Image.file(File(sanitationController.image.value!.path)),
+            ),
+            Positioned(
+              bottom: 3.h,
+              left: 0,
+              right: 0,
+              child: sanitationController.image.value == null
+                  ? GestureDetector(
+                      onTap: () => sanitationController.takePicture(),
+                      child: Container(
+                        width: 60 / 360 * 100.w,
+                        height: 60 / 360 * 100.w,
+                        decoration: const BoxDecoration(
+                            color: Colors.white, shape: BoxShape.circle),
+                      ),
+                    )
+                  : Padding(
+                      padding:
+                          EdgeInsets.symmetric(horizontal: 40 / 360 * 100.w),
+                      child: ElevatedButton(
+                          style: ElevatedButton.styleFrom(
+                            backgroundColor: EcoSanColors.primary,
+                            padding: EdgeInsets.symmetric(
+                                vertical: 1.5.h, horizontal: 4.h),
+                            shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(10)),
+                          ),
+                          onPressed: () async {
+                            sanitationController.isProcessing.value = true;
+                            await Future.delayed(const Duration(seconds: 2));
+                            Get.bottomSheet(ScanAirBottomSheet());
+                            sanitationController.isProcessing.value = false;
+                          },
+                          child: Text('Cek Kualitas Air',
+                              style: TextStyles.normal
+                                  .bold()
+                                  .copyWith(color: Colors.white))),
+                    ),
+            ),
+            sanitationController.image.value == null
+                ? Positioned(
+                    top: 2.5.h,
+                    child: Text('Pindai kualitas air',
+                        style: TextStyles.normal.copyWith(color: Colors.white)),
+                  )
+                : const SizedBox(),
+            Positioned(
+                top: 3.h,
+                right: 10,
+                child: GestureDetector(
+                  onTap: () {
+                    sanitationController.flashToggle();
+                  },
+                  child: GestureDetector(
+                    onTap: () {
+                      if (sanitationController.image.value == null) {
+                        sanitationController.flashToggle();
+                      } else {
+                        sanitationController.takePicture();
+                      }
+                    },
+                    child: Icon(
+                      sanitationController.image.value == null
+                          ? sanitationController.isFlashOn.value
+                              ? Icons.flash_on
+                              : Icons.flash_off
+                          : Icons.camera,
+                      color: Colors.white,
+                      size: 19,
+                    ),
+                  ),
+                ))
+          ]),
+        ),
+      ],
+    );
+  }
+}
+
+class ScanAirBottomSheet extends StatelessWidget {
+  ScanAirBottomSheet({
+    super.key,
+  });
+  final SanitationController sanitationController = SanitationController.i;
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      padding: EdgeInsets.symmetric(vertical: 2.h, horizontal: 2.h),
+      width: double.infinity,
+      height: 532 / 800 * 100.h,
+      decoration: const BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.only(
+            topLeft: Radius.circular(30), topRight: Radius.circular(30)),
+      ),
+      child: Stack(
+        alignment: Alignment.center,
+        children: [
+          Positioned(
+            left: 2.h,
+            top: 10,
+            child: IconButton(
+                onPressed: () {
+                  Get.back();
+                  sanitationController.takePicture();
+                },
+                icon: const Icon(
+                  Icons.camera,
+                  color: Colors.black,
+                )),
+          ),
+          Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              Container(
+                width: 30 / 360 * 100.h,
+                height: 3,
+                color: EcoSanColors.systemGray,
+              ),
+              SizedBox(
+                height: 2.8.h,
+              ),
+              Text(
+                'Hasil Scan Kamera',
+                style:
+                    TextStyles.normal.semibold().copyWith(color: Colors.black),
+              ),
+              SizedBox(
+                height: 2.5.h,
+              ),
+              const AirQuality(
+                airQuality: 90,
+              ),
+              SizedBox(
+                height: 2.5.h,
+              ),
+              SizedBox(
+                width: 211 / 360 * 100.w,
+                child: Text(
+                  'Tidak ada kotoran didalam airmu. Kualitas air Sangat Baik!',
+                  style: TextStyles.tiny,
+                  textAlign: TextAlign.center,
+                ),
+              ),
+              SizedBox(
+                height: 3.h,
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Flexible(
+                    flex: 1,
+                    child: EcoSanButton(
+                        onTap: () {
+                          Get.back();
+                          HomeController.i.index.value = 0;
+                        },
+                        borderColor: EcoSanColors.primary,
+                        color: Colors.white,
+                        child: Text(
+                          'Home',
+                          style: TextStyles.normal
+                              .bold()
+                              .copyWith(color: EcoSanColors.primary),
+                        )),
+                  ),
+                  SizedBox(
+                    width: 2.5.h,
+                  ),
+                  Flexible(
+                    flex: 1,
+                    child: EcoSanButton(
+                        onTap: () {
+                          Get.back();
+                          sanitationController.airIndex.value = 2;
+                        },
+                        color: EcoSanColors.primary,
+                        child: Text(
+                          'Lihat History',
+                          style: TextStyles.normal
+                              .bold()
+                              .copyWith(color: Colors.white),
+                        )),
+                  )
+                ],
+              )
+            ],
+          )
+        ],
+      ),
     );
   }
 }
