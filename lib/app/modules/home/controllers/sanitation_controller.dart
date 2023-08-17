@@ -9,6 +9,7 @@ class SanitationController extends GetxController {
   final airIndex = 0.obs;
   final Rx<int?> airQuality = 90.obs;
   final isFlashOn = false.obs;
+  final isProcessing = false.obs;
   @override
   void onInit() async {
     // TODO: implement onInit
@@ -41,6 +42,7 @@ class SanitationController extends GetxController {
 
   Future<void> takePicture() async {
     if (image.value == null) {
+      controller!.setFlashMode(FlashMode.off);
       final xfile = await controller!.takePicture();
       image.value = xfile;
       print(image.value!.path);

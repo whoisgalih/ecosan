@@ -5,6 +5,7 @@ import 'package:get/get.dart';
 
 class HomeController extends GetxController {
   final AuthController authController = AuthController.authInstance;
+  static HomeController i = Get.find();
   final SanitationController? sanitationController = SanitationController.i;
   late Rx<User> user;
   RxInt index = 0.obs;
