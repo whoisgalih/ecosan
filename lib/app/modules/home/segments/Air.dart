@@ -1,4 +1,8 @@
+import 'dart:io';
+
+import 'package:camera/camera.dart';
 import 'package:ecosan/app/modules/home/controllers/home_controller.dart';
+import 'package:ecosan/app/modules/home/controllers/sanitation_controller.dart';
 import 'package:ecosan/app/modules/home/widgets/airchip.dart';
 import 'package:ecosan/app/modules/themes/colors.dart';
 import 'package:ecosan/app/modules/themes/fonts.dart';
@@ -10,13 +14,11 @@ import 'package:sizer/sizer.dart';
 class Air extends StatelessWidget {
   const Air({
     super.key,
-    required this.controller,
   });
-
-  final HomeController controller;
 
   @override
   Widget build(BuildContext context) {
+    final sanitationController = SanitationController.i;
     return Column(
       children: [
         Container(
@@ -32,23 +34,94 @@ class Air extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               AirChip(
-                controller: controller,
+                controller: sanitationController,
                 chipAirIndex: 0,
                 chipContent: 'Sensor Air',
               ),
               AirChip(
-                controller: controller,
+                controller: sanitationController,
                 chipAirIndex: 1,
                 chipContent: 'Kamera',
               ),
               AirChip(
-                controller: controller,
+                controller: sanitationController,
                 chipAirIndex: 2,
                 chipContent: 'Histori',
               )
             ],
           ),
         ),
+        Obx(() => sanitationController.airIndex.value == 0
+            ? SensorAir(controller: sanitationController)
+            : Column(
+                children: [
+                  SizedBox(
+                    height: 2.h,
+                  ),
+                  SizedBox(
+                    height: 500 / 800 * 100.h,
+                    child: Stack(alignment: Alignment.center, children: [
+                      ClipRRect(
+                        borderRadius: BorderRadius.circular(16),
+                        child: sanitationController.image.value == null
+                            ? CameraPreview(sanitationController.controller!)
+                            : Image.file(
+                                File(sanitationController.image.value!.path)),
+                      ),
+                      Positioned(
+                        bottom: 3.h,
+                        left: 0,
+                        right: 0,
+                        child: GestureDetector(
+                          onTap: () {
+                            sanitationController.takePicture();
+                          },
+                          child: Container(
+                            width: 60 / 360 * 100.w,
+                            height: 60 / 360 * 100.w,
+                            decoration: const BoxDecoration(
+                                color: Colors.white, shape: BoxShape.circle),
+                          ),
+                        ),
+                      ),
+                      Positioned(
+                        top: 2.5.h,
+                        child: Text('Pindai kualitas air',
+                            style: TextStyles.normal
+                                .copyWith(color: Colors.white)),
+                      ),
+                      Positioned(
+                          top: 3.h,
+                          right: 10,
+                          child: GestureDetector(
+                            onTap: () {},
+                            child: const Icon(
+                              Icons.flash_off,
+                              color: Colors.white,
+                              size: 19,
+                            ),
+                          ))
+                    ]),
+                  ),
+                ],
+              )),
+      ],
+    );
+  }
+}
+
+class SensorAir extends StatelessWidget {
+  const SensorAir({
+    super.key,
+    required this.controller,
+  });
+
+  final SanitationController controller;
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: [
         Container(
           margin: EdgeInsets.symmetric(vertical: 20 / 800 * 100.h),
           width: double.infinity,

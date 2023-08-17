@@ -90,9 +90,7 @@ class HomeView extends GetView<HomeController> {
           child: controller.index.value == 0
               ? const SizedBox()
               : controller.index.value == 1
-                  ? Air(
-                      controller: controller,
-                    )
+                  ? const Air()
                   : const SizedBox(),
         ),
       ),
@@ -108,6 +106,15 @@ class HomeView extends GetView<HomeController> {
           currentIndex: controller.index.value,
           onTap: (index) {
             controller.index.value = index;
+            try {
+              if (index != 1) {
+                controller.sanitationController!.onClose();
+              } else {
+                controller.sanitationController!.onInit();
+              }
+            } catch (e) {
+              print(e);
+            }
           },
         ),
       ),
