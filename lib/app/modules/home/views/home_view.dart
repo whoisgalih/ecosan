@@ -10,8 +10,7 @@ class HomeView extends GetView<HomeController> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('HomeView'),
-        centerTitle: true,
+        title: const Text('EcoSan'),
         actions: [
           IconButton(
             onPressed: () {
@@ -21,19 +20,21 @@ class HomeView extends GetView<HomeController> {
           )
         ],
       ),
-      body: Center(
-        child: Obx(
-          () => Text(
-            '${controller.count}',
-            style: TextStyle(fontSize: 20),
-          ),
+      body: Center(),
+      bottomNavigationBar: Obx(
+        () => BottomNavigationBar(
+          items: const [
+            BottomNavigationBarItem(icon: Icon(Icons.home), label: "Home"),
+            BottomNavigationBarItem(icon: Icon(Icons.water_drop), label: "Air"),
+            BottomNavigationBarItem(
+                icon: Icon(Icons.recycling), label: "Sampah"),
+            BottomNavigationBarItem(icon: Icon(Icons.person), label: "Profile"),
+          ],
+          currentIndex: controller.index.value,
+          onTap: (index) {
+            controller.index.value = index;
+          },
         ),
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          controller.count++;
-        },
-        child: const Icon(Icons.add),
       ),
     );
   }

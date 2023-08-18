@@ -1,4 +1,5 @@
 import 'package:ecosan/app/constants/firebase_constants.dart';
+import 'package:ecosan/app/models/user/user_model.dart' as user_model;
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:get/get.dart';
 import 'package:google_sign_in/google_sign_in.dart';
@@ -6,9 +7,8 @@ import 'package:google_sign_in/google_sign_in.dart';
 class AuthController extends GetxController {
   static AuthController authInstance = Get.find();
   late Rx<User?> firebaseUser;
-  late RxBool isNewuser;
 
-  var user = null.obs;
+  late Rx<user_model.User> user;
 
   @override
   void onInit() {
@@ -20,7 +20,6 @@ class AuthController extends GetxController {
     super.onReady();
     firebaseUser = Rx<User?>(auth.currentUser);
     firebaseUser.bindStream(auth.userChanges());
-
     ever(firebaseUser, _setInitialScreen);
   }
 
@@ -29,10 +28,17 @@ class AuthController extends GetxController {
     super.onClose();
   }
 
-  _setInitialScreen(User? user) {
+  _setInitialScreen(User? user) async {
     if (user != null) {
       // user is logged in
-      Get.offAllNamed("/home");
+      await firestore.collection("users").doc(user.uid).get().then((value) {
+        if (value.exists) {
+          this.user = user_model.User.fromJson(value.data()!).obs;
+          Get.offAllNamed("/home");
+        } else {
+          Get.offAllNamed("/auth/register/data-diri");
+        }
+      });
     } else {
       // user is null as in user is not available or not logged in
       Get.offAllNamed("/auth/login");
@@ -42,21 +48,19 @@ class AuthController extends GetxController {
   void register(String email, String password) async {
     try {
       // create user with email and password (register user)
-      final UserCredential userCredential =
-          await auth.createUserWithEmailAndPassword(
+      await auth.createUserWithEmailAndPassword(
         email: email,
         password: password,
       );
-
-      // show success snackbar
       Get.snackbar(
         "Success",
         "Account created successfully",
         snackPosition: SnackPosition.BOTTOM,
       );
 
+      // show success snackbar
+
       // set isNewuser to true
-      isNewuser = true.obs;
     } on FirebaseAuthException catch (e) {
       // this is solely for the Firebase Auth Exception
       // for example : password did not match
@@ -135,7 +139,31 @@ class AuthController extends GetxController {
 
   void signOut() {
     try {
+      GoogleSignIn().signOut();
       auth.signOut();
+    } catch (e) {
+      print(e.toString());
+    }
+  }
+
+  Future<void> addUserToFirestore(user_model.User user) async {
+    try {
+      final currentUserId = auth.currentUser!.uid;
+      await firestore.collection('users').doc(currentUserId).set(user.toJson());
+      Get.snackbar(
+        "Success",
+        "User added successfully",
+        snackPosition: SnackPosition.BOTTOM,
+      );
+      Get.offAllNamed("/home");
+      this.user = user.obs;
+    } on FirebaseAuthException catch (e) {
+      print(e.message);
+      Get.snackbar(
+        "Error",
+        e.message!,
+        snackPosition: SnackPosition.BOTTOM,
+      );
     } catch (e) {
       print(e.toString());
     }

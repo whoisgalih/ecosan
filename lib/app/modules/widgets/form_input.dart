@@ -8,14 +8,18 @@ class FormInput extends StatelessWidget {
   final TextInputType keyboardType;
   final TextEditingController controller;
   final String? Function(String?)? validator;
+  final Function()? onTap;
+  final bool? readOnly;
 
   const FormInput({
     super.key,
     required this.label,
     required this.hint,
+    this.readOnly,
     this.icon,
     required this.keyboardType,
     required this.controller,
+    this.onTap,
     this.validator,
   });
 
@@ -32,6 +36,7 @@ class FormInput extends StatelessWidget {
         TextFormField(
           controller: controller,
           validator: validator,
+          readOnly: readOnly ?? false,
           keyboardType: keyboardType,
           obscureText: keyboardType == TextInputType.visiblePassword,
           style: TextStyles.tiny,
@@ -44,6 +49,7 @@ class FormInput extends StatelessWidget {
                   ),
             hintText: hint,
           ),
+          onTap: onTap,
         ),
       ],
     );
