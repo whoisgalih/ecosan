@@ -254,7 +254,7 @@ class HomeView extends GetView<HomeController> {
           onTap != null
               ? ButtonText(
                   text: "Lihat semua",
-                  onTap: onTap!,
+                  onTap: onTap,
                   textStyle: TextStyles.tiny.copyWith(
                     color: EcoSanColors.primary,
                   ),
