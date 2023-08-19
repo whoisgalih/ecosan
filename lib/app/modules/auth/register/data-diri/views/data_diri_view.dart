@@ -40,37 +40,43 @@ class DataDiriView extends GetView<DataDiriController> {
                   crossAxisAlignment: CrossAxisAlignment.end,
                   children: [
                     FormInput(
-                        hint: "Masukan nama lengkap",
-                        controller: controller.nameEditingController,
-                        icon: Icons.person,
-                        label: "Nama Lengkap",
-                        keyboardType: TextInputType.name),
+                      hint: "Masukan nama lengkap",
+                      controller: controller.nameEditingController,
+                      icon: Icons.person,
+                      label: "Nama Lengkap",
+                      keyboardType: TextInputType.name,
+                      validator: controller.nameValidator,
+                    ),
                     const SizedBox(height: 16),
                     FormInput(
-                        label: "Nomor Telepon",
-                        hint: "Masukan nomor telepon",
-                        controller: controller.phoneEditingController,
-                        keyboardType: TextInputType.phone,
-                        icon: Icons.phone),
+                      label: "Nomor Telepon",
+                      hint: "Masukan nomor telepon",
+                      controller: controller.phoneEditingController,
+                      keyboardType: TextInputType.phone,
+                      icon: Icons.phone,
+                      validator: controller.phoneValidator,
+                    ),
                     const SizedBox(height: 16),
                     FormInput(
-                        label: "Tanggal Lahir",
-                        controller: controller.dateEditingController,
-                        hint: "Pilih tanggal lahir",
-                        readOnly: true,
-                        keyboardType: TextInputType.datetime,
-                        onTap: () async {
-                          final pickedDate = await showDatePicker(
-                              context: context,
-                              initialDate: DateTime(2000),
-                              firstDate: DateTime(1945),
-                              lastDate: DateTime(2020));
-                          if (pickedDate != null) {
-                            controller.dateEditingController.text =
-                                "${pickedDate.day.toString().padLeft(2, '0')}/${pickedDate.month.toString().padLeft(2, '0')}/${pickedDate.year}";
-                          }
-                        },
-                        icon: Icons.calendar_today),
+                      label: "Tanggal Lahir",
+                      controller: controller.dateEditingController,
+                      hint: "Pilih tanggal lahir",
+                      readOnly: true,
+                      keyboardType: TextInputType.datetime,
+                      onTap: () async {
+                        final pickedDate = await showDatePicker(
+                            context: context,
+                            initialDate: DateTime(2000),
+                            firstDate: DateTime(1945),
+                            lastDate: DateTime(2020));
+                        if (pickedDate != null) {
+                          controller.dateEditingController.text =
+                              "${pickedDate.day.toString().padLeft(2, '0')}/${pickedDate.month.toString().padLeft(2, '0')}/${pickedDate.year}";
+                        }
+                      },
+                      icon: Icons.calendar_today,
+                      validator: controller.dateValidator,
+                    ),
                     const SizedBox(height: 16),
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
@@ -79,52 +85,42 @@ class DataDiriView extends GetView<DataDiriController> {
                           'Asal Kota',
                           style: TextStyles.tiny.bold(),
                         ),
+                        SizedBox(height: 4),
                         DropdownButtonFormField(
-                            dropdownColor: Colors.white,
-                            value: controller.cityValue.value,
-                            onChanged: (value) {
-                              controller.cityValue = value.obs;
-                            },
-                            decoration: const InputDecoration(
-                                prefixIcon: Icon(
+                          validator: controller.cityValidator,
+                          dropdownColor: Colors.white,
+                          value: controller.cityValue.value,
+                          onChanged: (value) {
+                            controller.cityValue = value.obs;
+                          },
+                          decoration: const InputDecoration(
+                            prefixIcon: Icon(
                               Icons.location_city,
                               size: 24,
-                            )),
-                            style:
-                                TextStyles.tiny.copyWith(color: Colors.black),
-                            hint: const Text('Pilih Asal Kota'),
-                            items: controller.regencies
-                                .map((e) => DropdownMenuItem(
-                                      value: e,
-                                      child: Text(e),
-                                    ))
-                                .toList())
+                            ),
+                          ),
+                          style: TextStyles.tiny.copyWith(color: Colors.black),
+                          hint: const Text('Pilih Asal Kota'),
+                          items: controller.regencies.map((e) {
+                            return DropdownMenuItem(
+                              value: e,
+                              child: Text(e),
+                            );
+                          }).toList(),
+                        ),
                       ],
-                    )
-
-                    // FormInput(
-                    //     label: "Asal Kota",
-                    //     hint: "Pilih asal kota",
-                    //     keyboardType: TextInputType.text,
-                    //     icon: Icons.location_city),
+                    ),
+                    const SizedBox(height: 88),
+                    EcoSanButton(
+                      onTap: controller.register,
+                      child: Text(
+                        "Simpan",
+                        style: TextStyles.normal.bold(color: Colors.white),
+                      ),
+                    ),
+                    const SizedBox(height: 40),
                   ],
                 ),
-              ),
-            ),
-            const SizedBox(height: 88),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 16),
-              child: Column(
-                children: [
-                  EcoSanButton(
-                    onTap: () => controller.register(),
-                    child: Text(
-                      "Simpan",
-                      style: TextStyles.normal.bold(color: Colors.white),
-                    ),
-                  ),
-                  const SizedBox(height: 40),
-                ],
               ),
             ),
           ],

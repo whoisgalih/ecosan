@@ -64,6 +64,19 @@ class MyApp extends StatelessWidget {
           prefixIconColor: EcoSanColors.primary,
           hintStyle: TextStyles.tiny,
         ),
+        appBarTheme: AppBarTheme(
+          actionsIconTheme: const IconThemeData(
+            size: 24,
+            color: Colors.white,
+          ),
+          backgroundColor: EcoSanColors.primary,
+          titleTextStyle: TextStyles.header3.copyWith(
+            color: Colors.white,
+            fontWeight: FontWeight.bold,
+          ),
+          centerTitle: false,
+          elevation: 0,
+        ),
       ),
     );
   }
