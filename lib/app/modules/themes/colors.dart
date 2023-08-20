@@ -10,7 +10,7 @@ abstract final class EcoSanColors {
       100: Color(0xFFA7CAFF),
       200: Color(0xFF7BAFFF),
       300: Color(0xFF4F94FF),
-      400: Color(0xFF237AFF),
+      400: Color(0xFF7BAFFF),
       500: Color(_primaryPrimaryValue),
       600: Color(0xFF0051CD),
       700: Color(0xFF0041A4),
