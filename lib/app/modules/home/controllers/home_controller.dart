@@ -8,7 +8,7 @@ class HomeController extends GetxController {
   static HomeController i = Get.find();
   final SanitationController? sanitationController = SanitationController.i;
   late Rx<User> user;
-  RxInt index = 0.obs;
+  late Rx<int> index = 0.obs;
 
   @override
   void onInit() {
@@ -19,6 +19,14 @@ class HomeController extends GetxController {
   @override
   void onReady() {
     super.onReady();
+    index(0);
+    ever(index, (value) async {
+      if (value == 1 && sanitationController!.airIndex.value == 1) {
+        await sanitationController!.controller!.resumePreview();
+      } else {
+        await sanitationController!.controller!.pausePreview();
+      }
+    });
   }
 
   @override

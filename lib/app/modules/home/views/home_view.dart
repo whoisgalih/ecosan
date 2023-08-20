@@ -105,16 +105,7 @@ class HomeView extends GetView<HomeController> {
           ],
           currentIndex: controller.index.value,
           onTap: (index) {
-            controller.index.value = index;
-            try {
-              if (index != 1) {
-                controller.sanitationController!.onClose();
-              } else {
-                controller.sanitationController!.onInit();
-              }
-            } catch (e) {
-              print(e);
-            }
+            controller.index(index);
           },
         ),
       ),

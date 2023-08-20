@@ -1,13 +1,20 @@
 import 'dart:io';
+import 'dart:math';
 
+import 'package:ecosan/app/modules/home/controllers/home_controller.dart';
 import 'package:ecosan/app/modules/home/controllers/sanitation_controller.dart';
+import 'package:ecosan/app/modules/home/widgets/air_history.dart';
+import 'package:ecosan/app/modules/home/widgets/air_quality.dart';
 import 'package:ecosan/app/modules/home/widgets/aircamera.dart';
 import 'package:ecosan/app/modules/home/widgets/airchip.dart';
 import 'package:ecosan/app/modules/home/widgets/sensor_air.dart';
 import 'package:ecosan/app/modules/themes/colors.dart';
+import 'package:ecosan/app/modules/themes/fonts.dart';
+import 'package:ecosan/app/modules/widgets/button.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:sizer/sizer.dart';
+import 'package:syncfusion_flutter_charts/charts.dart';
 
 class Air extends StatelessWidget {
   const Air({
@@ -53,7 +60,7 @@ class Air extends StatelessWidget {
             ? SensorAir(controller: sanitationController)
             : sanitationController.airIndex.value == 1
                 ? AirCamera(sanitationController: sanitationController)
-                : const SizedBox()),
+                : AirHistory(sanitationController: sanitationController)),
       ],
     );
   }
