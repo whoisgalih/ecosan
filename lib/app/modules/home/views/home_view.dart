@@ -255,7 +255,7 @@ class HomeView extends GetView<HomeController> {
                                   color: EcoSanColors.primary,
                                 ),
                                 title: 'Daftar Riwayat',
-                                ontap: () {},
+                                ontap: () => Get.toNamed('home/daftar-riwayat'),
                               ),
                               ProfileListTile(
                                 leading: SvgPicture.asset('assets/svgs/faq.svg',
@@ -313,41 +313,43 @@ class ProfileListTile extends StatelessWidget {
   final Function() ontap;
   @override
   Widget build(BuildContext context) {
-    return Container(
-      margin: EdgeInsets.only(bottom: 2.h),
-      height: 40 / 800 * 100.h,
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          Row(
-            mainAxisAlignment: MainAxisAlignment.start,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              Container(
-                padding: EdgeInsets.all(1.h),
-                decoration: BoxDecoration(
-                  color: EcoSanColors.primary.shade600,
-                  borderRadius: BorderRadius.circular(10),
+    return GestureDetector(
+      onTap: ontap,
+      child: Container(
+        margin: EdgeInsets.only(bottom: 2.h),
+        height: 40 / 800 * 100.h,
+        color: Colors.transparent,
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            Row(
+              mainAxisAlignment: MainAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                Container(
+                  padding: EdgeInsets.all(1.h),
+                  decoration: BoxDecoration(
+                    color: EcoSanColors.primary.shade600,
+                    borderRadius: BorderRadius.circular(10),
+                  ),
+                  child: leading,
                 ),
-                child: leading,
-              ),
-              SizedBox(
-                width: 2.h,
-              ),
-              Text(
-                title,
-                style: TextStyles.small.bold().copyWith(color: Colors.black),
-              )
-            ],
-          ),
-          IconButton(
-              onPressed: ontap,
-              icon: const Icon(
-                Icons.arrow_forward_ios,
-                color: Colors.black,
-              ))
-        ],
+                SizedBox(
+                  width: 2.h,
+                ),
+                Text(
+                  title,
+                  style: TextStyles.small.bold().copyWith(color: Colors.black),
+                )
+              ],
+            ),
+            const Icon(
+              Icons.arrow_forward_ios,
+              color: Colors.black,
+            )
+          ],
+        ),
       ),
     );
   }

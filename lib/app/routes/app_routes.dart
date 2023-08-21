@@ -10,6 +10,7 @@ abstract class Routes {
   static const WELCOME = _Paths.AUTH + _Paths.REGISTER + _Paths.WELCOME;
   static const DATA_DIRI = _Paths.AUTH + _Paths.REGISTER + _Paths.DATA_DIRI;
   static const DAFTAR_RIWAYAT = _Paths.HOME + _Paths.DAFTAR_RIWAYAT;
+  static const POINKU = _Paths.HOME + _Paths.POINKU;
 }
 
 abstract class _Paths {
@@ -21,4 +22,5 @@ abstract class _Paths {
   static const WELCOME = '/welcome';
   static const DATA_DIRI = '/data-diri';
   static const DAFTAR_RIWAYAT = '/daftar-riwayat';
+  static const POINKU = '/poinku';
 }
