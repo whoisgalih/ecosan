@@ -11,6 +11,8 @@ import '../modules/auth/register/welcome/bindings/welcome_binding.dart';
 import '../modules/auth/register/welcome/views/welcome_view.dart';
 import '../modules/auth/views/auth_view.dart';
 import '../modules/home/bindings/home_binding.dart';
+import '../modules/home/daftar_riwayat/bindings/daftar_riwayat_binding.dart';
+import '../modules/home/daftar_riwayat/views/daftar_riwayat_view.dart';
 import '../modules/home/views/home_view.dart';
 
 part 'app_routes.dart';
@@ -25,6 +27,13 @@ class AppPages {
       name: _Paths.HOME,
       page: () => const HomeView(),
       binding: HomeBinding(),
+      children: [
+        GetPage(
+          name: _Paths.DAFTAR_RIWAYAT,
+          page: () => const DaftarRiwayatView(),
+          binding: DaftarRiwayatBinding(),
+        ),
+      ],
     ),
     GetPage(
       name: _Paths.AUTH,
