@@ -13,11 +13,15 @@ import '../modules/auth/views/auth_view.dart';
 import '../modules/home/bindings/home_binding.dart';
 import '../modules/home/daftar_riwayat/bindings/daftar_riwayat_binding.dart';
 import '../modules/home/daftar_riwayat/views/daftar_riwayat_view.dart';
+import '../modules/home/edit/bindings/edit_binding.dart';
+import '../modules/home/edit/views/edit_view.dart';
 import '../modules/home/poinku/bindings/poinku_binding.dart';
 import '../modules/home/poinku/views/poinku_view.dart';
 import '../modules/home/poinku/voucherexchange/bindings/voucherexchange_binding.dart';
 import '../modules/home/poinku/voucherexchange/views/voucherexchange_view.dart';
 import '../modules/home/views/home_view.dart';
+import '../modules/home/voucherku/bindings/voucherku_binding.dart';
+import '../modules/home/voucherku/views/voucherku_view.dart';
 
 part 'app_routes.dart';
 
@@ -48,6 +52,16 @@ class AppPages {
               binding: VoucherexchangeBinding(),
             ),
           ],
+        ),
+        GetPage(
+          name: _Paths.VOUCHERKU,
+          page: () => const VoucherkuView(),
+          binding: VoucherkuBinding(),
+        ),
+        GetPage(
+          name: _Paths.EDIT,
+          page: () => const EditView(),
+          binding: EditBinding(),
         ),
       ],
     ),

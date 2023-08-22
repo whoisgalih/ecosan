@@ -230,7 +230,7 @@ class HomeView extends GetView<HomeController> {
                                     title: 'Voucherku',
                                     value: 5,
                                     buttonStr: 'Detail',
-                                    onTap: () {},
+                                    onTap: () => Get.toNamed('home/voucherku'),
                                     leadingWidget: SizedBox(
                                         width: 32 / 360 * 100.w,
                                         height: 32 / 360 * 100.w,

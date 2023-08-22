@@ -13,6 +13,8 @@ abstract class Routes {
   static const POINKU = _Paths.HOME + _Paths.POINKU;
   static const VOUCHEREXCHANGE =
       _Paths.HOME + _Paths.POINKU + _Paths.VOUCHEREXCHANGE;
+  static const VOUCHERKU = _Paths.HOME + _Paths.VOUCHERKU;
+  static const EDIT = _Paths.HOME + _Paths.EDIT;
 }
 
 abstract class _Paths {
@@ -26,4 +28,6 @@ abstract class _Paths {
   static const DAFTAR_RIWAYAT = '/daftar-riwayat';
   static const POINKU = '/poinku';
   static const VOUCHEREXCHANGE = '/voucherexchange';
+  static const VOUCHERKU = '/voucherku';
+  static const EDIT = '/edit';
 }

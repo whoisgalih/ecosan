@@ -1,12 +1,12 @@
 import 'package:ecosan/app/models/user/voucher.dart';
 import 'package:get/get.dart';
 
-class PoinkuController extends GetxController {
+class VoucherkuController extends GetxController {
+  //TODO: Implement VoucherkuController
+  final index = 0.obs;
   final List<Voucher> vouchers = [
-    Voucher(title: 'Pizza Hut', price: 50),
-    Voucher(title: 'Gulaku', price: 50),
-    Voucher(title: 'Beras', price: 50),
-    Voucher(title: 'Sensor EcoSan', price: 50),
+    Voucher(price: 100, title: 'Pizza Hut'),
+    Voucher(price: 100, title: 'Gulaku')
   ];
   @override
   void onInit() {
