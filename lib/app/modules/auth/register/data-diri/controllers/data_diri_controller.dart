@@ -67,6 +67,8 @@ class DataDiriController extends GetxController {
       registerFormKey.currentState!.save();
       User user = User(
           name: nameEditingController.text,
+          uid: authController.firebaseUser.value!.uid,
+          photoUrl: authController.firebaseUser.value!.photoURL,
           phone: phoneEditingController.text,
           birthdate: dateEditingController.text,
           city: cityValue.value!);
