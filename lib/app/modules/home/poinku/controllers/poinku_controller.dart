@@ -1,9 +1,13 @@
+import 'package:ecosan/app/models/user/voucher.dart';
 import 'package:get/get.dart';
 
 class PoinkuController extends GetxController {
-  //TODO: Implement PoinkuController
-
-  final count = 0.obs;
+  final List<Voucher> vouchers = [
+    Voucher('Pizza Hut', 50),
+    Voucher('Gulaku', 50),
+    Voucher('Beras', 50),
+    Voucher('Sensor EcoSan', 50)
+  ];
   @override
   void onInit() {
     super.onInit();
@@ -18,6 +22,4 @@ class PoinkuController extends GetxController {
   void onClose() {
     super.onClose();
   }
-
-  void increment() => count.value++;
 }

@@ -15,6 +15,8 @@ import '../modules/home/daftar_riwayat/bindings/daftar_riwayat_binding.dart';
 import '../modules/home/daftar_riwayat/views/daftar_riwayat_view.dart';
 import '../modules/home/poinku/bindings/poinku_binding.dart';
 import '../modules/home/poinku/views/poinku_view.dart';
+import '../modules/home/poinku/voucherexchange/bindings/voucherexchange_binding.dart';
+import '../modules/home/poinku/voucherexchange/views/voucherexchange_view.dart';
 import '../modules/home/views/home_view.dart';
 
 part 'app_routes.dart';
@@ -39,6 +41,13 @@ class AppPages {
           name: _Paths.POINKU,
           page: () => const PoinkuView(),
           binding: PoinkuBinding(),
+          children: [
+            GetPage(
+              name: _Paths.VOUCHEREXCHANGE,
+              page: () => VoucherexchangeView(),
+              binding: VoucherexchangeBinding(),
+            ),
+          ],
         ),
       ],
     ),

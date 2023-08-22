@@ -206,7 +206,7 @@ class HomeView extends GetView<HomeController> {
                                     color: EcoSanColors.secondary,
                                     value: 10000,
                                     buttonStr: 'Tukarkan',
-                                    onTap: () {},
+                                    onTap: () => Get.toNamed('home/poinku'),
                                     leadingWidget: Container(
                                         width: 32 / 360 * 100.w,
                                         height: 32 / 360 * 100.w,

@@ -11,6 +11,8 @@ abstract class Routes {
   static const DATA_DIRI = _Paths.AUTH + _Paths.REGISTER + _Paths.DATA_DIRI;
   static const DAFTAR_RIWAYAT = _Paths.HOME + _Paths.DAFTAR_RIWAYAT;
   static const POINKU = _Paths.HOME + _Paths.POINKU;
+  static const VOUCHEREXCHANGE =
+      _Paths.HOME + _Paths.POINKU + _Paths.VOUCHEREXCHANGE;
 }
 
 abstract class _Paths {
@@ -23,4 +25,5 @@ abstract class _Paths {
   static const DATA_DIRI = '/data-diri';
   static const DAFTAR_RIWAYAT = '/daftar-riwayat';
   static const POINKU = '/poinku';
+  static const VOUCHEREXCHANGE = '/voucherexchange';
 }
