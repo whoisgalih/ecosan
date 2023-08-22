@@ -170,7 +170,8 @@ class HomeView extends GetView<HomeController> {
                                           SizedBox(
                                             width: 132 / 360 * 100.w,
                                             child: EcoSanButton(
-                                                onTap: () {},
+                                                onTap: () =>
+                                                    Get.toNamed('home/edit'),
                                                 child: Text(
                                                   'Edit Profile',
                                                   style: TextStyles.normal

@@ -15,6 +15,8 @@ import '../modules/home/daftar_riwayat/bindings/daftar_riwayat_binding.dart';
 import '../modules/home/daftar_riwayat/views/daftar_riwayat_view.dart';
 import '../modules/home/edit/bindings/edit_binding.dart';
 import '../modules/home/edit/views/edit_view.dart';
+import '../modules/home/faq/bindings/faq_binding.dart';
+import '../modules/home/faq/views/faq_view.dart';
 import '../modules/home/poinku/bindings/poinku_binding.dart';
 import '../modules/home/poinku/views/poinku_view.dart';
 import '../modules/home/poinku/voucherexchange/bindings/voucherexchange_binding.dart';
@@ -62,6 +64,11 @@ class AppPages {
           name: _Paths.EDIT,
           page: () => const EditView(),
           binding: EditBinding(),
+        ),
+        GetPage(
+          name: _Paths.FAQ,
+          page: () => const FaqView(),
+          binding: FaqBinding(),
         ),
       ],
     ),
