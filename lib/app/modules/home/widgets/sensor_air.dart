@@ -1,3 +1,4 @@
+import 'package:ecosan/app/modules/air/controllers/air_controller.dart';
 import 'package:ecosan/app/modules/home/controllers/sanitation_controller.dart';
 import 'package:ecosan/app/modules/home/widgets/air_quality.dart';
 import 'package:ecosan/app/modules/themes/colors.dart';
@@ -12,7 +13,7 @@ class SensorAir extends StatelessWidget {
     required this.controller,
   });
 
-  final SanitationController controller;
+  final AirController controller;
 
   @override
   Widget build(BuildContext context) {

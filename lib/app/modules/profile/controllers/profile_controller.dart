@@ -1,9 +1,10 @@
+import 'package:ecosan/app/models/user/user_model.dart';
+import 'package:ecosan/app/modules/auth/controllers/auth_controller.dart';
 import 'package:get/get.dart';
 
 class ProfileController extends GetxController {
-  //TODO: Implement ProfileController
+  AuthController authController = AuthController.authInstance;
 
-  final count = 0.obs;
   @override
   void onInit() {
     super.onInit();
@@ -19,5 +20,9 @@ class ProfileController extends GetxController {
     super.onClose();
   }
 
-  void increment() => count.value++;
+  void signOut() {
+    authController.signOut();
+  }
+
+  User get user => authController.user.value;
 }
