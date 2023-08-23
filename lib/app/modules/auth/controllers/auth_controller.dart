@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:ecosan/app/constants/firebase_constants.dart';
 import 'package:ecosan/app/models/user/user_model.dart' as user_model;
 import 'package:firebase_auth/firebase_auth.dart';
@@ -31,14 +32,18 @@ class AuthController extends GetxController {
   _setInitialScreen(User? user) async {
     if (user != null) {
       // user is logged in
-      await firestore.collection("users").doc(user.uid).get().then((value) {
-        if (value.exists) {
-          this.user = user_model.User.fromJson(value.data()!).obs;
-          Get.offAllNamed("/home");
-        } else {
-          Get.offAllNamed("/auth/register/data-diri");
-        }
-      });
+      DocumentSnapshot<Map<String, dynamic>> userData =
+          await firestore.collection("users").doc(user.uid).get();
+
+      print(userData.data());
+
+      if (userData.exists) {
+        this.user = user_model.User.fromJson(userData.data()!).obs;
+        print(this.user);
+        Get.offAllNamed("/home");
+      } else {
+        Get.offAllNamed("/auth/register/data-diri");
+      }
     } else {
       // user is null as in user is not available or not logged in
       Get.offAllNamed("/auth/login");
@@ -52,13 +57,13 @@ class AuthController extends GetxController {
         email: email,
         password: password,
       );
+
+      // show success snackbar
       Get.snackbar(
         "Success",
         "Account created successfully",
         snackPosition: SnackPosition.BOTTOM,
       );
-
-      // show success snackbar
 
       // set isNewuser to true
     } on FirebaseAuthException catch (e) {

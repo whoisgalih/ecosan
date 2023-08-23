@@ -3,6 +3,12 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class TextStyles {
+  static final TextStyle tiny2 = GoogleFonts.plusJakartaSans(
+    fontSize: 9,
+    height: 1.5,
+    fontWeight: FontWeight.w500,
+  );
+
   static final TextStyle tiny = GoogleFonts.plusJakartaSans(
     fontSize: 12,
     height: 1.5,

@@ -9,6 +9,9 @@ abstract class Routes {
   static const REGISTER = _Paths.AUTH + _Paths.REGISTER;
   static const WELCOME = _Paths.AUTH + _Paths.REGISTER + _Paths.WELCOME;
   static const DATA_DIRI = _Paths.AUTH + _Paths.REGISTER + _Paths.DATA_DIRI;
+  static const AIR = _Paths.AIR;
+  static const SAMPAH = _Paths.SAMPAH;
+  static const PROFILE = _Paths.PROFILE;
   static const DAFTAR_RIWAYAT = _Paths.HOME + _Paths.DAFTAR_RIWAYAT;
   static const POINKU = _Paths.HOME + _Paths.POINKU;
   static const VOUCHEREXCHANGE =
@@ -30,6 +33,9 @@ abstract class _Paths {
   static const REGISTER = '/register';
   static const WELCOME = '/welcome';
   static const DATA_DIRI = '/data-diri';
+  static const AIR = '/air';
+  static const SAMPAH = '/sampah';
+  static const PROFILE = '/profile';
   static const DAFTAR_RIWAYAT = '/daftar-riwayat';
   static const POINKU = '/poinku';
   static const VOUCHEREXCHANGE = '/voucherexchange';
