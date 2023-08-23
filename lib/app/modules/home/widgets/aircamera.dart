@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:camera/camera.dart';
+import 'package:ecosan/app/modules/air/controllers/air_controller.dart';
 import 'package:ecosan/app/modules/home/controllers/sanitation_controller.dart';
 import 'package:ecosan/app/modules/home/widgets/scan_air_bottomsheet.dart';
 import 'package:ecosan/app/modules/themes/colors.dart';
@@ -15,7 +16,7 @@ class AirCamera extends StatelessWidget {
     required this.sanitationController,
   });
 
-  final SanitationController sanitationController;
+  final AirController sanitationController;
 
   @override
   Widget build(BuildContext context) {

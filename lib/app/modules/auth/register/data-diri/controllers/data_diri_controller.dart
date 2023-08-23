@@ -34,8 +34,7 @@ class DataDiriController extends GetxController {
   void loadRegencies() async {
     String? data = await rootBundle.loadString('assets/json/regencies.json');
     final kon = json.decode(data) as List<dynamic>;
-    regencies = kon.map((e) => e['name'] as String).toList().obs;
-    regencies.refresh();
+    regencies.value = kon.map((e) => e['name'] as String).toList();
   }
 
   String? nameValidator(String? value) {

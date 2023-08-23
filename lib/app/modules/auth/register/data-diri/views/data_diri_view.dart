@@ -86,27 +86,30 @@ class DataDiriView extends GetView<DataDiriController> {
                           style: TextStyles.tiny.bold(),
                         ),
                         SizedBox(height: 4),
-                        DropdownButtonFormField(
-                          validator: controller.cityValidator,
-                          dropdownColor: Colors.white,
-                          value: controller.cityValue.value,
-                          onChanged: (value) {
-                            controller.cityValue = value.obs;
-                          },
-                          decoration: const InputDecoration(
-                            prefixIcon: Icon(
-                              Icons.location_city,
-                              size: 24,
+                        Obx(
+                          () => DropdownButtonFormField(
+                            validator: controller.cityValidator,
+                            dropdownColor: Colors.white,
+                            value: controller.cityValue.value,
+                            onChanged: (value) {
+                              controller.cityValue = value.obs;
+                            },
+                            decoration: const InputDecoration(
+                              prefixIcon: Icon(
+                                Icons.location_city,
+                                size: 24,
+                              ),
                             ),
+                            style:
+                                TextStyles.tiny.copyWith(color: Colors.black),
+                            hint: const Text('Pilih Asal Kota'),
+                            items: controller.regencies.map((e) {
+                              return DropdownMenuItem(
+                                value: e,
+                                child: Text(e),
+                              );
+                            }).toList(),
                           ),
-                          style: TextStyles.tiny.copyWith(color: Colors.black),
-                          hint: const Text('Pilih Asal Kota'),
-                          items: controller.regencies.map((e) {
-                            return DropdownMenuItem(
-                              value: e,
-                              child: Text(e),
-                            );
-                          }).toList(),
                         ),
                       ],
                     ),

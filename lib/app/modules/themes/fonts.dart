@@ -14,11 +14,6 @@ class TextStyles {
     height: 1.5,
     fontWeight: FontWeight.w500,
   );
-  static final TextStyle tiny2 = GoogleFonts.plusJakartaSans(
-    fontSize: 9,
-    height: 1.5,
-    fontWeight: FontWeight.w500,
-  );
 
   static final TextStyle small = GoogleFonts.plusJakartaSans(
     fontSize: 14,
