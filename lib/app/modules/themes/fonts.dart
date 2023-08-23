@@ -14,6 +14,11 @@ class TextStyles {
     height: 1.5,
     fontWeight: FontWeight.w500,
   );
+  static final TextStyle tiny2 = GoogleFonts.plusJakartaSans(
+    fontSize: 9,
+    height: 1.5,
+    fontWeight: FontWeight.w500,
+  );
 
   static final TextStyle small = GoogleFonts.plusJakartaSans(
     fontSize: 14,
@@ -53,5 +58,13 @@ extension WeightModifier on TextStyle {
 
   TextStyle bold({Color color = EcoSanColors.systemBlack}) {
     return copyWith(fontWeight: FontWeight.w700, color: color);
+  }
+
+  TextStyle extraLarge({Color color = EcoSanColors.systemBlack}) {
+    return copyWith(fontSize: 48, color: color);
+  }
+
+  TextStyle extraBold({Color color = EcoSanColors.systemBlack}) {
+    return copyWith(fontWeight: FontWeight.w800, color: color);
   }
 }

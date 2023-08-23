@@ -17,11 +17,13 @@ class EcoSanButton extends StatelessWidget {
   final double width;
   final double borderRadius;
   final List<BoxShadow>? boxShadows;
+  final Color? borderColor;
 
   const EcoSanButton({
     super.key,
     this.isEnabled = true,
     this.color,
+    this.borderColor,
     this.disabledColor,
     required this.onTap,
     required this.child,
@@ -56,6 +58,12 @@ class EcoSanButton extends StatelessWidget {
     return Container(
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(borderRadius),
+          border: borderColor != null
+              ? Border.all(
+                  color: borderColor!,
+                  width: 1,
+                )
+              : const Border(),
         ),
         width: width,
         padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),

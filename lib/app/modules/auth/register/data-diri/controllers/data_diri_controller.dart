@@ -1,6 +1,5 @@
 import 'dart:convert';
 
-import 'package:ecosan/app/constants/firebase_constants.dart';
 import 'package:ecosan/app/models/user/user_model.dart';
 import 'package:ecosan/app/modules/auth/controllers/auth_controller.dart';
 import 'package:flutter/material.dart';
@@ -72,6 +71,8 @@ class DataDiriController extends GetxController {
       registerFormKey.currentState!.save();
       User user = User(
           name: nameEditingController.text,
+          uid: authController.firebaseUser.value!.uid,
+          photoUrl: authController.firebaseUser.value!.photoURL,
           phone: phoneEditingController.text,
           birthdate: dateEditingController.text,
           city: cityValue.value!);

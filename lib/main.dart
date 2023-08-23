@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:sizer/sizer.dart';
 import 'firebase_options.dart';
 
 void main() async {
@@ -22,47 +23,51 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GetMaterialApp(
-      getPages: AppPages.routes,
-      initialRoute: AppPages.INITIAL,
-      title: 'EcoSan',
-      theme: ThemeData(
-        useMaterial3: true,
-        fontFamily: GoogleFonts.plusJakartaSans().fontFamily,
-        scaffoldBackgroundColor: Colors.white,
-        colorScheme: ColorScheme.fromSwatch(
-          primarySwatch: EcoSanColors.primary,
-          accentColor: EcoSanColors.secondary,
-          errorColor: EcoSanColors.error,
-        ),
-        textTheme: TextTheme(
-          titleLarge: TextStyles.header1.bold(),
-          titleMedium: TextStyles.header2.bold(),
-          titleSmall: TextStyles.header3.bold(),
-          bodyLarge: TextStyles.normal,
-          bodyMedium: TextStyles.small,
-          bodySmall: TextStyles.tiny,
-        ),
-        inputDecorationTheme: InputDecorationTheme(
-          enabledBorder: OutlineInputBorder(
-            borderSide: BorderSide(width: 1, color: EcoSanColors.primary[300]!),
-            borderRadius: const BorderRadius.all(Radius.circular(10)),
+    return Sizer(builder: (context, orientation, deviceType) {
+      return GetMaterialApp(
+        getPages: AppPages.routes,
+        initialRoute: AppPages.INITIAL,
+        title: 'EcoSan',
+        theme: ThemeData(
+          useMaterial3: true,
+          fontFamily: GoogleFonts.plusJakartaSans().fontFamily,
+          scaffoldBackgroundColor: Colors.white,
+          colorScheme: ColorScheme.fromSwatch(
+            primarySwatch: EcoSanColors.primary,
+            accentColor: EcoSanColors.secondary,
+            errorColor: EcoSanColors.error,
           ),
-          focusedBorder: OutlineInputBorder(
-            borderSide: BorderSide(width: 2, color: EcoSanColors.primary[300]!),
-            borderRadius: const BorderRadius.all(Radius.circular(10)),
+          textTheme: TextTheme(
+            titleLarge: TextStyles.header1.bold(),
+            titleMedium: TextStyles.header2.bold(),
+            titleSmall: TextStyles.header3.bold(),
+            bodyLarge: TextStyles.normal,
+            bodyMedium: TextStyles.small,
+            bodySmall: TextStyles.tiny,
           ),
-          errorBorder: OutlineInputBorder(
-            borderSide: BorderSide(width: 1, color: EcoSanColors.error[300]!),
-            borderRadius: const BorderRadius.all(Radius.circular(10)),
+          inputDecorationTheme: InputDecorationTheme(
+            enabledBorder: OutlineInputBorder(
+              borderSide:
+                  BorderSide(width: 1, color: EcoSanColors.primary[300]!),
+              borderRadius: const BorderRadius.all(Radius.circular(10)),
+            ),
+            focusedBorder: OutlineInputBorder(
+              borderSide:
+                  BorderSide(width: 2, color: EcoSanColors.primary[300]!),
+              borderRadius: const BorderRadius.all(Radius.circular(10)),
+            ),
+            errorBorder: OutlineInputBorder(
+              borderSide: BorderSide(width: 1, color: EcoSanColors.error[300]!),
+              borderRadius: const BorderRadius.all(Radius.circular(10)),
+            ),
+            focusedErrorBorder: OutlineInputBorder(
+              borderSide: BorderSide(width: 2, color: EcoSanColors.error[300]!),
+              borderRadius: const BorderRadius.all(Radius.circular(10)),
+            ),
+            contentPadding: const EdgeInsets.all(12),
+            prefixIconColor: EcoSanColors.primary,
+            hintStyle: TextStyles.tiny,
           ),
-          focusedErrorBorder: OutlineInputBorder(
-            borderSide: BorderSide(width: 2, color: EcoSanColors.error[300]!),
-            borderRadius: const BorderRadius.all(Radius.circular(10)),
-          ),
-          contentPadding: const EdgeInsets.all(12),
-          prefixIconColor: EcoSanColors.primary,
-          hintStyle: TextStyles.tiny,
         ),
         appBarTheme: AppBarTheme(
           actionsIconTheme: const IconThemeData(
