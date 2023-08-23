@@ -38,6 +38,7 @@ dev_dependencies:
 flutter:
   assets:
     - assets/images/
+    - assets/images/payment/
     - assets/json/
     - assets/svgs/
     # - assets/icons/
