@@ -20,6 +20,8 @@ import '../modules/home/edit/views/edit_view.dart';
 import '../modules/home/faq/bindings/faq_binding.dart';
 import '../modules/home/faq/views/faq_view.dart';
 import '../modules/home/metode_pembayaran/bindings/metode_pembayaran_binding.dart';
+import '../modules/home/kode_bayar/bindings/kode_bayar_binding.dart';
+import '../modules/home/kode_bayar/views/kode_bayar_view.dart';
 import '../modules/home/metode_pembayaran/views/metode_pembayaran_view.dart';
 import '../modules/home/pemasangan_alat/bindings/pemasangan_alat_binding.dart';
 import '../modules/home/pemasangan_alat/views/pemasangan_alat_view.dart';
@@ -97,6 +99,11 @@ class AppPages {
           name: _Paths.METODE_PEMBAYARAN,
           page: () => const MetodePembayaranView(),
           binding: MetodePembayaranBinding(),
+        ),
+        GetPage(
+          name: _Paths.KODE_BAYAR,
+          page: () => const KodeBayarView(),
+          binding: KodeBayarBinding(),
         ),
       ],
     ),
