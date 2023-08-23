@@ -16,6 +16,7 @@ abstract class Routes {
   static const VOUCHERKU = _Paths.HOME + _Paths.VOUCHERKU;
   static const EDIT = _Paths.HOME + _Paths.EDIT;
   static const FAQ = _Paths.HOME + _Paths.FAQ;
+  static const CONTACT = _Paths.HOME + _Paths.CONTACT;
 }
 
 abstract class _Paths {
@@ -32,4 +33,5 @@ abstract class _Paths {
   static const VOUCHERKU = '/voucherku';
   static const EDIT = '/edit';
   static const FAQ = '/faq';
+  static const CONTACT = '/contact';
 }

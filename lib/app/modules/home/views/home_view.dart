@@ -251,7 +251,7 @@ class HomeView extends GetView<HomeController> {
                           child: Column(
                             children: [
                               ProfileListTile(
-                                leading: Icon(
+                                leading: const Icon(
                                   Icons.history,
                                   color: EcoSanColors.primary,
                                 ),
@@ -262,21 +262,31 @@ class HomeView extends GetView<HomeController> {
                                 leading: SvgPicture.asset('assets/svgs/faq.svg',
                                     color: EcoSanColors.primary),
                                 title: 'FAQ',
-                                ontap: () {},
+                                ontap: () => Get.toNamed('home/faq'),
                               ),
                               ProfileListTile(
                                 leading: SvgPicture.asset(
                                     'assets/svgs/question.svg',
                                     color: EcoSanColors.primary),
                                 title: 'Hubungi Kami',
-                                ontap: () {},
+                                ontap: () => Get.toNamed('home/contact'),
                               ),
                               ProfileListTile(
-                                leading: Icon(Icons.logout,
-                                    color: EcoSanColors.primary),
-                                title: 'Keluar',
-                                ontap: () {},
-                              )
+                                  leading: const Icon(Icons.logout,
+                                      color: EcoSanColors.primary),
+                                  title: 'Keluar',
+                                  ontap: () => Get.defaultDialog(
+                                        title: 'Keluar',
+                                        middleText:
+                                            'Apakah anda yakin ingin keluar?',
+                                        textConfirm: 'Ya',
+                                        textCancel: 'Tidak',
+                                        confirmTextColor: Colors.white,
+                                        onConfirm: () {
+                                          controller.signOut();
+                                        },
+                                        onCancel: () {},
+                                      ))
                             ],
                           ),
                         ),
@@ -413,7 +423,7 @@ class ProfileCard extends StatelessWidget {
                       style: ElevatedButton.styleFrom(
                         padding:
                             EdgeInsets.symmetric(vertical: 2, horizontal: 1.h),
-                        minimumSize: Size(double.infinity, 0),
+                        minimumSize: const Size(double.infinity, 0),
                       ),
                       onPressed: onTap,
                       child: Text(

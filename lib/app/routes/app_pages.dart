@@ -11,6 +11,8 @@ import '../modules/auth/register/welcome/bindings/welcome_binding.dart';
 import '../modules/auth/register/welcome/views/welcome_view.dart';
 import '../modules/auth/views/auth_view.dart';
 import '../modules/home/bindings/home_binding.dart';
+import '../modules/home/contact/bindings/contact_binding.dart';
+import '../modules/home/contact/views/contact_view.dart';
 import '../modules/home/daftar_riwayat/bindings/daftar_riwayat_binding.dart';
 import '../modules/home/daftar_riwayat/views/daftar_riwayat_view.dart';
 import '../modules/home/edit/bindings/edit_binding.dart';
@@ -69,6 +71,11 @@ class AppPages {
           name: _Paths.FAQ,
           page: () => const FaqView(),
           binding: FaqBinding(),
+        ),
+        GetPage(
+          name: _Paths.CONTACT,
+          page: () => const ContactView(),
+          binding: ContactBinding(),
         ),
       ],
     ),

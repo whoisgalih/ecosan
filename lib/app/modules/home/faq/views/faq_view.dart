@@ -25,7 +25,7 @@ class FaqView extends GetView<FaqController> {
           backgroundColor: EcoSanColors.primary,
         ),
         body: Padding(
-          padding: EdgeInsets.symmetric(vertical: 2.5.h),
+          padding: EdgeInsets.symmetric(vertical: 2.5.h, horizontal: 2.h),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
@@ -56,15 +56,68 @@ class FaqView extends GetView<FaqController> {
                     style: TextStyles.normal.bold(color: EcoSanColors.primary),
                   ),
                   SizedBox(
-                    height: 2.5.h,
+                    height: 2.h,
                   ),
-                  Accordion(children: <AccordionSection>[
-                    AccordionSection(
-                        header: Text(
-                            'Apa saja service yang diberikan jika memesan perbaikan alat sanitasi air?'),
-                        content: Text(
-                            'Service yang diberikan berupa pengecekan alat, pencarian sumber masalah yang membuat alat tidak berfungsi, hingga penggantian alat apabila dirasa sudah tidak bisa di perbaiki.'))
-                  ])
+                  Accordion(
+                      paddingListTop: 0,
+                      paddingListBottom: 0,
+                      paddingListHorizontal: 0,
+                      headerPadding: EdgeInsets.symmetric(vertical: 1.h),
+                      contentHorizontalPadding: 0,
+                      headerBackgroundColor: Colors.white,
+                      contentBackgroundColor: Colors.white,
+                      rightIcon: Icon(
+                        Icons.keyboard_arrow_down,
+                        color: EcoSanColors.systemGray[2],
+                      ),
+                      contentBorderColor: Colors.white,
+                      children: controller.sanitasiAirAccordionData
+                          .map((data) => AccordionSection(
+                              header: Text(
+                                data['header']!,
+                                style:
+                                    TextStyles.tiny.bold(color: Colors.black),
+                              ),
+                              content: Text(
+                                data['content']!,
+                                style: TextStyles.tiny2,
+                              )))
+                          .toList()),
+                  SizedBox(
+                    height: 3.75.h,
+                  ),
+                  Text(
+                    'Tentang Sanitasi Air',
+                    style: TextStyles.normal.bold(color: EcoSanColors.primary),
+                  ),
+                  SizedBox(
+                    height: 2.h,
+                  ),
+                  Accordion(
+                      paddingListTop: 0,
+                      paddingListBottom: 0,
+                      paddingListHorizontal: 0,
+                      headerPadding: EdgeInsets.symmetric(vertical: 1.h),
+                      contentHorizontalPadding: 0,
+                      headerBackgroundColor: Colors.white,
+                      contentBackgroundColor: Colors.white,
+                      rightIcon: Icon(
+                        Icons.keyboard_arrow_down,
+                        color: EcoSanColors.systemGray[2],
+                      ),
+                      contentBorderColor: Colors.white,
+                      children: controller.sanitasiSampahAccordionData
+                          .map((data) => AccordionSection(
+                              header: Text(
+                                data['header']!,
+                                style:
+                                    TextStyles.tiny.bold(color: Colors.black),
+                              ),
+                              content: Text(
+                                data['content']!,
+                                style: TextStyles.tiny2,
+                              )))
+                          .toList()),
                 ],
               )
             ],
