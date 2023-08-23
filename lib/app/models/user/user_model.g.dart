@@ -10,6 +10,8 @@ User _$UserFromJson(Map<String, dynamic> json) => User(
       name: json['name'] as String,
       phone: json['phone'] as String,
       city: json['city'] as String,
+      uid: json['uid'] as String,
+      photoUrl: json['photoUrl'] as String?,
       birthdate: json['birthdate'] as String,
     );
 
@@ -18,6 +20,8 @@ const _$UserFieldMap = <String, String>{
   'phone': 'phone',
   'city': 'city',
   'birthdate': 'birthdate',
+  'uid': 'uid',
+  'photoUrl': 'photoUrl',
 };
 
 Map<String, dynamic> _$UserToJson(User instance) => <String, dynamic>{
@@ -25,4 +29,6 @@ Map<String, dynamic> _$UserToJson(User instance) => <String, dynamic>{
       'phone': instance.phone,
       'city': instance.city,
       'birthdate': instance.birthdate,
+      'uid': instance.uid,
+      'photoUrl': instance.photoUrl,
     };

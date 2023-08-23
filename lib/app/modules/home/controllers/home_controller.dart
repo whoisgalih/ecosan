@@ -9,7 +9,6 @@ class HomeController extends GetxController {
   final SanitationController? sanitationController = SanitationController.i;
   late Rx<User> user;
   late Rx<int> index = 0.obs;
-
   @override
   void onInit() {
     super.onInit();

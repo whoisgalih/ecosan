@@ -57,4 +57,8 @@ extension WeightModifier on TextStyle {
   TextStyle extraLarge({Color color = EcoSanColors.systemBlack}) {
     return copyWith(fontSize: 48, color: color);
   }
+
+  TextStyle extraBold({Color color = EcoSanColors.systemBlack}) {
+    return copyWith(fontWeight: FontWeight.w800, color: color);
+  }
 }

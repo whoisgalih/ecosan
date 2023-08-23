@@ -137,12 +137,16 @@ class AuthController extends GetxController {
     }
   }
 
-  void signOut() {
+  Future<void> updateFirestoreUser() async {
     try {
-      GoogleSignIn().signOut();
-      auth.signOut();
+      await firestore.collection("users").doc(auth.currentUser!.uid).update({
+        "name": user.value.name,
+        "phone": user.value.phone,
+        "city": user.value.city,
+      });
+      Get.snackbar('Sukses', 'Berhasil mengupdate profile');
     } catch (e) {
-      print(e.toString());
+      Get.snackbar('error found', e.toString());
     }
   }
 
@@ -164,6 +168,15 @@ class AuthController extends GetxController {
         e.message!,
         snackPosition: SnackPosition.BOTTOM,
       );
+    } catch (e) {
+      print(e.toString());
+    }
+  }
+
+  void signOut() {
+    try {
+      GoogleSignIn().signOut();
+      auth.signOut();
     } catch (e) {
       print(e.toString());
     }

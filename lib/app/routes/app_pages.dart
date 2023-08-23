@@ -11,7 +11,27 @@ import '../modules/auth/register/welcome/bindings/welcome_binding.dart';
 import '../modules/auth/register/welcome/views/welcome_view.dart';
 import '../modules/auth/views/auth_view.dart';
 import '../modules/home/bindings/home_binding.dart';
+import '../modules/home/contact/bindings/contact_binding.dart';
+import '../modules/home/contact/views/contact_view.dart';
+import '../modules/home/daftar_riwayat/bindings/daftar_riwayat_binding.dart';
+import '../modules/home/daftar_riwayat/views/daftar_riwayat_view.dart';
+import '../modules/home/edit/bindings/edit_binding.dart';
+import '../modules/home/edit/views/edit_view.dart';
+import '../modules/home/faq/bindings/faq_binding.dart';
+import '../modules/home/faq/views/faq_view.dart';
+import '../modules/home/metode_pembayaran/bindings/metode_pembayaran_binding.dart';
+import '../modules/home/metode_pembayaran/views/metode_pembayaran_view.dart';
+import '../modules/home/pemasangan_alat/bindings/pemasangan_alat_binding.dart';
+import '../modules/home/pemasangan_alat/views/pemasangan_alat_view.dart';
+import '../modules/home/pembersihan_filter/bindings/pembersihan_filter_binding.dart';
+import '../modules/home/pembersihan_filter/views/pembersihan_filter_view.dart';
+import '../modules/home/poinku/bindings/poinku_binding.dart';
+import '../modules/home/poinku/views/poinku_view.dart';
+import '../modules/home/poinku/voucherexchange/bindings/voucherexchange_binding.dart';
+import '../modules/home/poinku/voucherexchange/views/voucherexchange_view.dart';
 import '../modules/home/views/home_view.dart';
+import '../modules/home/voucherku/bindings/voucherku_binding.dart';
+import '../modules/home/voucherku/views/voucherku_view.dart';
 
 part 'app_routes.dart';
 
@@ -25,6 +45,60 @@ class AppPages {
       name: _Paths.HOME,
       page: () => const HomeView(),
       binding: HomeBinding(),
+      children: [
+        GetPage(
+          name: _Paths.DAFTAR_RIWAYAT,
+          page: () => const DaftarRiwayatView(),
+          binding: DaftarRiwayatBinding(),
+        ),
+        GetPage(
+          name: _Paths.POINKU,
+          page: () => const PoinkuView(),
+          binding: PoinkuBinding(),
+          children: [
+            GetPage(
+              name: _Paths.VOUCHEREXCHANGE,
+              page: () => VoucherexchangeView(),
+              binding: VoucherexchangeBinding(),
+            ),
+          ],
+        ),
+        GetPage(
+          name: _Paths.VOUCHERKU,
+          page: () => const VoucherkuView(),
+          binding: VoucherkuBinding(),
+        ),
+        GetPage(
+          name: _Paths.EDIT,
+          page: () => const EditView(),
+          binding: EditBinding(),
+        ),
+        GetPage(
+          name: _Paths.FAQ,
+          page: () => const FaqView(),
+          binding: FaqBinding(),
+        ),
+        GetPage(
+          name: _Paths.CONTACT,
+          page: () => const ContactView(),
+          binding: ContactBinding(),
+        ),
+        GetPage(
+          name: _Paths.PEMBERSIHAN_FILTER,
+          page: () => const PembersihanFilterView(),
+          binding: PembersihanFilterBinding(),
+        ),
+        GetPage(
+          name: _Paths.PEMASANGAN_ALAT,
+          page: () => const PemasanganAlatView(),
+          binding: PemasanganAlatBinding(),
+        ),
+        GetPage(
+          name: _Paths.METODE_PEMBAYARAN,
+          page: () => const MetodePembayaranView(),
+          binding: MetodePembayaranBinding(),
+        ),
+      ],
     ),
     GetPage(
       name: _Paths.AUTH,
