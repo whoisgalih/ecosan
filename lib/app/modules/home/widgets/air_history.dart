@@ -1,3 +1,4 @@
+import 'package:ecosan/app/modules/air/controllers/air_controller.dart';
 import 'package:ecosan/app/modules/home/controllers/sanitation_controller.dart';
 import 'package:ecosan/app/modules/home/widgets/air_quality.dart';
 import 'package:ecosan/app/modules/home/widgets/sensor_air.dart';
@@ -14,7 +15,7 @@ class AirHistory extends StatelessWidget {
     required this.sanitationController,
   });
 
-  final SanitationController sanitationController;
+  final AirController sanitationController;
 
   @override
   Widget build(BuildContext context) {

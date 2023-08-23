@@ -22,9 +22,9 @@ class EditController extends GetxController {
   @override
   void onReady() {
     super.onReady();
-    nameEditingController.text = homeController.user.value.name;
-    telpEditingController.text = homeController.user.value.phone;
-    addressEditingController.text = homeController.user.value.city;
+    nameEditingController.text = homeController.user.name;
+    telpEditingController.text = homeController.user.phone;
+    addressEditingController.text = homeController.user.city;
     emailEditingController.text =
         homeController.authController.firebaseUser.value!.email!;
   }
@@ -57,7 +57,7 @@ class EditController extends GetxController {
         final imageUrl = await imageRef.getDownloadURL();
 
         // Update the user's image URL in Firestore
-        homeController.user.value.photoUrl = imageUrl;
+        homeController.user.photoUrl = imageUrl;
 
         await homeController.authController.updateFirestoreUser();
         // Close the FilePicker dialog

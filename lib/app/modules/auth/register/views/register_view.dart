@@ -2,7 +2,7 @@ import 'package:ecosan/app/modules/themes/colors.dart';
 import 'package:ecosan/app/modules/themes/fonts.dart';
 import 'package:ecosan/app/modules/widgets/button.dart';
 import 'package:ecosan/app/modules/widgets/form_input.dart';
-import 'package:ecosan/app/modules/widgets/text_button.dart';
+import 'package:ecosan/app/modules/widgets/button_text.dart';
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';

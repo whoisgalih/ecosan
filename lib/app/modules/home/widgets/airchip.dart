@@ -1,3 +1,4 @@
+import 'package:ecosan/app/modules/air/controllers/air_controller.dart';
 import 'package:ecosan/app/modules/home/controllers/home_controller.dart';
 import 'package:ecosan/app/modules/home/controllers/sanitation_controller.dart';
 import 'package:ecosan/app/modules/themes/fonts.dart';
@@ -13,7 +14,7 @@ class AirChip extends StatelessWidget {
     required this.chipContent,
   });
 
-  final SanitationController controller;
+  final AirController controller;
   final int chipAirIndex;
   final String chipContent;
 

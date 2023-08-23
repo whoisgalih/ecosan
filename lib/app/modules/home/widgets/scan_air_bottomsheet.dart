@@ -86,7 +86,6 @@ class ScanAirBottomSheet extends StatelessWidget {
                     child: EcoSanButton(
                         onTap: () {
                           Get.back();
-                          HomeController.i.index.value = 0;
                         },
                         borderColor: EcoSanColors.primary,
                         color: Colors.white,

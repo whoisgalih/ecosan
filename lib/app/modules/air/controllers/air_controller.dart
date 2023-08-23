@@ -4,8 +4,8 @@ import 'package:camera/camera.dart';
 import 'package:ecosan/app/modules/home/widgets/air_history.dart';
 import 'package:get/get.dart';
 
-class SanitationController extends GetxController {
-  static SanitationController i = Get.find();
+class AirController extends GetxController {
+  static AirController i = Get.find();
   List<CameraDescription>? cameras; //list out the camera available
   CameraController? controller; //controller for camera
   final random = Random();

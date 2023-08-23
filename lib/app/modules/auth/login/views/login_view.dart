@@ -1,4 +1,4 @@
-import 'package:ecosan/app/modules/widgets/text_button.dart';
+import 'package:ecosan/app/modules/widgets/button_text.dart';
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
