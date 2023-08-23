@@ -109,14 +109,16 @@ class SensorAir extends StatelessWidget {
                         height: 1.5.h,
                       )
                     : const SizedBox(),
-                const LayananSanitasiListTile(
+                LayananSanitasiListTile(
                   layananName: 'Pembersihan Filter',
+                  onTap: () => Get.toNamed('home/pembersihan-filter'),
                 ),
                 SizedBox(
                   height: 0.8.h,
                 ),
-                const LayananSanitasiListTile(
+                LayananSanitasiListTile(
                   layananName: 'Pemasangan Alat',
+                  onTap: () => Get.toNamed('home/pemasangan-alat'),
                 )
               ],
             ),

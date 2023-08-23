@@ -19,6 +19,12 @@ import '../modules/home/edit/bindings/edit_binding.dart';
 import '../modules/home/edit/views/edit_view.dart';
 import '../modules/home/faq/bindings/faq_binding.dart';
 import '../modules/home/faq/views/faq_view.dart';
+import '../modules/home/metode_pembayaran/bindings/metode_pembayaran_binding.dart';
+import '../modules/home/metode_pembayaran/views/metode_pembayaran_view.dart';
+import '../modules/home/pemasangan_alat/bindings/pemasangan_alat_binding.dart';
+import '../modules/home/pemasangan_alat/views/pemasangan_alat_view.dart';
+import '../modules/home/pembersihan_filter/bindings/pembersihan_filter_binding.dart';
+import '../modules/home/pembersihan_filter/views/pembersihan_filter_view.dart';
 import '../modules/home/poinku/bindings/poinku_binding.dart';
 import '../modules/home/poinku/views/poinku_view.dart';
 import '../modules/home/poinku/voucherexchange/bindings/voucherexchange_binding.dart';
@@ -76,6 +82,21 @@ class AppPages {
           name: _Paths.CONTACT,
           page: () => const ContactView(),
           binding: ContactBinding(),
+        ),
+        GetPage(
+          name: _Paths.PEMBERSIHAN_FILTER,
+          page: () => const PembersihanFilterView(),
+          binding: PembersihanFilterBinding(),
+        ),
+        GetPage(
+          name: _Paths.PEMASANGAN_ALAT,
+          page: () => const PemasanganAlatView(),
+          binding: PemasanganAlatBinding(),
+        ),
+        GetPage(
+          name: _Paths.METODE_PEMBAYARAN,
+          page: () => const MetodePembayaranView(),
+          binding: MetodePembayaranBinding(),
         ),
       ],
     ),

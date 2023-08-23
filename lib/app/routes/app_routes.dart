@@ -17,6 +17,9 @@ abstract class Routes {
   static const EDIT = _Paths.HOME + _Paths.EDIT;
   static const FAQ = _Paths.HOME + _Paths.FAQ;
   static const CONTACT = _Paths.HOME + _Paths.CONTACT;
+  static const PEMBERSIHAN_FILTER = _Paths.HOME + _Paths.PEMBERSIHAN_FILTER;
+  static const PEMASANGAN_ALAT = _Paths.HOME + _Paths.PEMASANGAN_ALAT;
+  static const METODE_PEMBAYARAN = _Paths.HOME + _Paths.METODE_PEMBAYARAN;
 }
 
 abstract class _Paths {
@@ -34,4 +37,7 @@ abstract class _Paths {
   static const EDIT = '/edit';
   static const FAQ = '/faq';
   static const CONTACT = '/contact';
+  static const PEMBERSIHAN_FILTER = '/pembersihan-filter';
+  static const PEMASANGAN_ALAT = '/pemasangan-alat';
+  static const METODE_PEMBAYARAN = '/metode-pembayaran';
 }
