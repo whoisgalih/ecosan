@@ -4,8 +4,8 @@ import 'package:camera/camera.dart';
 import 'package:ecosan/app/modules/air/widgets/air_history.dart';
 import 'package:get/get.dart';
 
-class SanitationController extends GetxController {
-  static SanitationController i = Get.find();
+class AirController extends GetxController {
+  static AirController i = Get.find();
   List<CameraDescription>? cameras; //list out the camera available
   CameraController? controller; //controller for camera
   final random = Random();
@@ -23,9 +23,13 @@ class SanitationController extends GetxController {
     super.onInit();
     cameras = await availableCameras();
     if (cameras != null) {
-      controller = CameraController(cameras![0], ResolutionPreset.high);
-      await controller!.initialize().then((value) => null);
-      await controller!.pausePreview();
+      try {
+        controller = CameraController(cameras![0], ResolutionPreset.high);
+        await controller!.initialize();
+        await controller!.pausePreview();
+      } catch (e) {
+        Get.snackbar("Error", e.toString());
+      }
     } else {
       Get.snackbar("Error", "Camera not found");
     }

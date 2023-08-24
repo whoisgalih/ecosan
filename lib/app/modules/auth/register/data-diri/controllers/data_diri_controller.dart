@@ -14,7 +14,7 @@ class DataDiriController extends GetxController {
   final dateEditingController = TextEditingController();
   RxList<String> regencies = <String>[].obs;
   Rx<String?> cityValue = null.obs;
-  final count = 0.obs;
+
   @override
   void onInit() {
     super.onInit();
@@ -34,8 +34,7 @@ class DataDiriController extends GetxController {
   void loadRegencies() async {
     String? data = await rootBundle.loadString('assets/json/regencies.json');
     final kon = json.decode(data) as List<dynamic>;
-    regencies = kon.map((e) => e['name'] as String).toList().obs;
-    regencies.refresh();
+    regencies.value = kon.map((e) => e['name'] as String).toList();
   }
 
   String? nameValidator(String? value) {
@@ -45,21 +44,25 @@ class DataDiriController extends GetxController {
     return null;
   }
 
-  String? numberValidator(String? value) {
+  String? phoneValidator(String? value) {
     if (value == null || value.isEmpty) {
       return 'Nomor telepon tidak boleh kosong';
-    }
-    if (!GetUtils.isPhoneNumber(value)) {
-      return 'Nomor telepon tidak valid';
     }
     return null;
   }
 
-  String dateValidator(String? value) {
+  String? dateValidator(String? value) {
     if (value == null || value.isEmpty) {
       return 'Tanggal lahir tidak boleh kosong';
     }
-    return '';
+    return null;
+  }
+
+  String? cityValidator(String? value) {
+    if (value == null || value.isEmpty) {
+      return 'Kota tidak boleh kosong';
+    }
+    return null;
   }
 
   void register() {
@@ -75,6 +78,4 @@ class DataDiriController extends GetxController {
       authController.addUserToFirestore(user);
     }
   }
-
-  void increment() => count.value++;
 }
