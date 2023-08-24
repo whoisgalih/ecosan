@@ -159,13 +159,19 @@ class MetodePembayaranView extends GetView<MetodePembayaranController> {
                 onTap: () {
                   if (controller.selectedPaymentIdx.value != null) {
                     Get.offNamedUntil('/home', (route) => false);
-                    Get.toNamed('home/kode-bayar');
+                    Get.toNamed('home/kode-bayar', arguments: {
+                      'paymentMethod': controller
+                          .paymentMethod[controller.selectedPaymentIdx.value!]
+                    });
                   }
                 },
                 child: Text(
                   'Selanjutnya',
                   style: TextStyles.normal.bold(color: Colors.white),
-                ))
+                )),
+            SizedBox(
+              height: 4.5.h,
+            )
           ],
         ),
       ),

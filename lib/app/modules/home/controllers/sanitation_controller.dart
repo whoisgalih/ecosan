@@ -1,7 +1,7 @@
 import 'dart:math';
 
 import 'package:camera/camera.dart';
-import 'package:ecosan/app/modules/home/widgets/air_history.dart';
+import 'package:ecosan/app/modules/air/widgets/air_history.dart';
 import 'package:get/get.dart';
 
 class SanitationController extends GetxController {
