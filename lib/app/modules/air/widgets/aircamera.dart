@@ -3,7 +3,7 @@ import 'dart:io';
 import 'package:camera/camera.dart';
 import 'package:ecosan/app/modules/air/controllers/air_controller.dart';
 import 'package:ecosan/app/modules/home/controllers/sanitation_controller.dart';
-import 'package:ecosan/app/modules/home/widgets/scan_air_bottomsheet.dart';
+import 'package:ecosan/app/modules/air/widgets/scan_air_bottomsheet.dart';
 import 'package:ecosan/app/modules/themes/colors.dart';
 import 'package:ecosan/app/modules/themes/fonts.dart';
 import 'package:flutter/material.dart';

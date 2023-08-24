@@ -91,6 +91,10 @@ class MetodePembayaranView extends GetView<MetodePembayaranController> {
                                   null
                               ? () => controller.selectedPaymentIdx.value = null
                               : null,
+                          onCloseSection: controller.selectedPaymentIdx.value !=
+                                  null
+                              ? () => controller.selectedPaymentIdx.value = null
+                              : null,
                           header: Text(
                             'Virtual Account',
                             style:
@@ -121,6 +125,10 @@ class MetodePembayaranView extends GetView<MetodePembayaranController> {
                                   null
                               ? () => controller.selectedPaymentIdx.value = null
                               : null,
+                          onCloseSection: controller.selectedPaymentIdx.value !=
+                                  null
+                              ? () => controller.selectedPaymentIdx.value = null
+                              : null,
                           header: Text('Dompet Digital',
                               style: TextStyles.normal
                                   .copyWith(color: Colors.white)),
@@ -148,11 +156,22 @@ class MetodePembayaranView extends GetView<MetodePembayaranController> {
               ],
             )),
             EcoSanButton(
-                onTap: () {},
+                onTap: () {
+                  if (controller.selectedPaymentIdx.value != null) {
+                    Get.offNamedUntil('/home', (route) => false);
+                    Get.toNamed('home/kode-bayar', arguments: {
+                      'paymentMethod': controller
+                          .paymentMethod[controller.selectedPaymentIdx.value!]
+                    });
+                  }
+                },
                 child: Text(
                   'Selanjutnya',
                   style: TextStyles.normal.bold(color: Colors.white),
-                ))
+                )),
+            SizedBox(
+              height: 4.5.h,
+            )
           ],
         ),
       ),

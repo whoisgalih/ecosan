@@ -1,7 +1,7 @@
 import 'dart:math';
 
 import 'package:camera/camera.dart';
-import 'package:ecosan/app/modules/home/widgets/air_history.dart';
+import 'package:ecosan/app/modules/air/widgets/air_history.dart';
 import 'package:get/get.dart';
 
 class AirController extends GetxController {
@@ -23,9 +23,13 @@ class AirController extends GetxController {
     super.onInit();
     cameras = await availableCameras();
     if (cameras != null) {
-      controller = CameraController(cameras![0], ResolutionPreset.high);
-      await controller!.initialize().then((value) => null);
-      await controller!.pausePreview();
+      try {
+        controller = CameraController(cameras![0], ResolutionPreset.high);
+        await controller!.initialize();
+        await controller!.pausePreview();
+      } catch (e) {
+        Get.snackbar("Error", e.toString());
+      }
     } else {
       Get.snackbar("Error", "Camera not found");
     }

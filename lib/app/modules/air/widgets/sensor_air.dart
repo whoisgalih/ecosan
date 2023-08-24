@@ -1,6 +1,6 @@
 import 'package:ecosan/app/modules/air/controllers/air_controller.dart';
 import 'package:ecosan/app/modules/home/controllers/sanitation_controller.dart';
-import 'package:ecosan/app/modules/home/widgets/air_quality.dart';
+import 'package:ecosan/app/modules/air/widgets/air_quality.dart';
 import 'package:ecosan/app/modules/themes/colors.dart';
 import 'package:ecosan/app/modules/themes/fonts.dart';
 import 'package:flutter/material.dart';
@@ -112,14 +112,14 @@ class SensorAir extends StatelessWidget {
                     : const SizedBox(),
                 LayananSanitasiListTile(
                   layananName: 'Pembersihan Filter',
-                  onTap: () => Get.toNamed('home/pembersihan-filter'),
+                  onTap: () => Get.toNamed('/air/pembersihan-filter'),
                 ),
                 SizedBox(
                   height: 0.8.h,
                 ),
                 LayananSanitasiListTile(
                   layananName: 'Pemasangan Alat',
-                  onTap: () => Get.toNamed('home/pemasangan-alat'),
+                  onTap: () => Get.toNamed('/air/pemasangan-alat'),
                 )
               ],
             ),
