@@ -37,7 +37,7 @@ class SampahView extends GetView<SampahController> {
                           icon: Icons.delivery_dining,
                           title: "Pickup Point",
                           onTap: () {
-                            // Get.toNamed('/sampah/pickup-point');
+                            Get.toNamed('/sampah/pickup-point');
                           }),
                       const SizedBox(
                         width: 24,

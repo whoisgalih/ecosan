@@ -32,12 +32,14 @@ import '../modules/home/poinku/views/poinku_view.dart';
 import '../modules/home/poinku/voucherexchange/bindings/voucherexchange_binding.dart';
 import '../modules/home/poinku/voucherexchange/views/voucherexchange_view.dart';
 import '../modules/home/views/home_view.dart';
+import '../modules/home/voucherku/bindings/voucherku_binding.dart';
+import '../modules/home/voucherku/views/voucherku_view.dart';
 import '../modules/profile/bindings/profile_binding.dart';
 import '../modules/profile/views/profile_view.dart';
 import '../modules/sampah/bindings/sampah_binding.dart';
+import '../modules/sampah/pickup-point/bindings/pickup_point_binding.dart';
+import '../modules/sampah/pickup-point/views/pickup_point_view.dart';
 import '../modules/sampah/views/sampah_view.dart';
-import '../modules/home/voucherku/bindings/voucherku_binding.dart';
-import '../modules/home/voucherku/views/voucherku_view.dart';
 
 part 'app_routes.dart';
 
@@ -149,6 +151,13 @@ class AppPages {
       page: () => const SampahView(),
       binding: SampahBinding(),
       transition: Transition.noTransition,
+      children: [
+        GetPage(
+          name: _Paths.PICKUP_POINT,
+          page: () => const PickupPointView(),
+          binding: PickupPointBinding(),
+        ),
+      ],
     ),
     GetPage(
       name: _Paths.PROFILE,

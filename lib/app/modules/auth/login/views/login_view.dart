@@ -49,7 +49,6 @@ class LoginView extends GetView<LoginController> {
                       keyboardType: TextInputType.emailAddress,
                       validator: controller.emailValidator,
                     ),
-                    const SizedBox(height: 16),
                     FormInput(
                       controller: controller.passwordController,
                       label: "Password",
@@ -57,8 +56,8 @@ class LoginView extends GetView<LoginController> {
                       keyboardType: TextInputType.visiblePassword,
                       icon: Icons.lock,
                       validator: controller.passwordValidator,
+                      bottomMargin: 4,
                     ),
-                    const SizedBox(height: 4),
                     ButtonText(text: "Lupa password?", onTap: () {}),
                     SizedBox(height: 88),
                     EcoSanButton(
