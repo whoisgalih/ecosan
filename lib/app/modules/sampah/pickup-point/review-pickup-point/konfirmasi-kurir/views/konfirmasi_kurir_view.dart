@@ -1,8 +1,5 @@
-import 'package:ecosan/app/modules/themes/colors.dart';
-import 'package:ecosan/app/modules/themes/fonts.dart';
 import 'package:ecosan/app/modules/widgets/illustration_layout.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 
 import 'package:get/get.dart';
 

@@ -1,4 +1,5 @@
 import 'package:ecosan/app/modules/widgets/illustration_layout.dart';
+import 'package:ecosan/app/routes/app_pages.dart';
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
@@ -22,8 +23,8 @@ class ClaimView extends GetView<ClaimController> {
         svgPath: "assets/svgs/konfirmasi-kurir.svg",
         buttonText: "Klaim Poin",
         onTap: () {
-          Get.toNamed(
-              "/sampah/pickup-point/pickup-history/claim/claim-success");
+          Get.offNamedUntil(Routes.RECEIVE_POINT,
+              (route) => route.settings.name == Routes.SAMPAH);
         },
       ),
     );
