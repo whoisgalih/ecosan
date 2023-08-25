@@ -30,6 +30,12 @@ abstract class Routes {
       _Paths.PICKUP_POINT +
       _Paths.REVIEW_PICKUP_POINT +
       _Paths.KONFIRMASI_KURIR;
+  static const PICKUP_HISTORY =
+      _Paths.SAMPAH + _Paths.PICKUP_POINT + _Paths.PICKUP_HISTORY;
+  static const CLAIM = _Paths.SAMPAH +
+      _Paths.PICKUP_POINT +
+      _Paths.PICKUP_HISTORY +
+      _Paths.CLAIM;
 }
 
 abstract class _Paths {
@@ -56,4 +62,6 @@ abstract class _Paths {
   static const PICKUP_POINT = '/pickup-point';
   static const REVIEW_PICKUP_POINT = '/review-pickup-point';
   static const KONFIRMASI_KURIR = '/konfirmasi-kurir';
+  static const PICKUP_HISTORY = '/pickup-history';
+  static const CLAIM = '/claim';
 }

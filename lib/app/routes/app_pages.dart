@@ -38,6 +38,10 @@ import '../modules/profile/bindings/profile_binding.dart';
 import '../modules/profile/views/profile_view.dart';
 import '../modules/sampah/bindings/sampah_binding.dart';
 import '../modules/sampah/pickup-point/bindings/pickup_point_binding.dart';
+import '../modules/sampah/pickup-point/pickup-history/bindings/pickup_history_binding.dart';
+import '../modules/sampah/pickup-point/pickup-history/claim/bindings/claim_binding.dart';
+import '../modules/sampah/pickup-point/pickup-history/claim/views/claim_view.dart';
+import '../modules/sampah/pickup-point/pickup-history/views/pickup_history_view.dart';
 import '../modules/sampah/pickup-point/review-pickup-point/bindings/review_pickup_point_binding.dart';
 import '../modules/sampah/pickup-point/review-pickup-point/konfirmasi-kurir/bindings/konfirmasi_kurir_binding.dart';
 import '../modules/sampah/pickup-point/review-pickup-point/konfirmasi-kurir/views/konfirmasi_kurir_view.dart';
@@ -170,6 +174,18 @@ class AppPages {
                   name: _Paths.KONFIRMASI_KURIR,
                   page: () => const KonfirmasiKurirView(),
                   binding: KonfirmasiKurirBinding(),
+                ),
+              ],
+            ),
+            GetPage(
+              name: _Paths.PICKUP_HISTORY,
+              page: () => const PickupHistoryView(),
+              binding: PickupHistoryBinding(),
+              children: [
+                GetPage(
+                  name: _Paths.CLAIM,
+                  page: () => const ClaimView(),
+                  binding: ClaimBinding(),
                 ),
               ],
             ),
