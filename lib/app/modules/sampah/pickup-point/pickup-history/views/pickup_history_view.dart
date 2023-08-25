@@ -1,4 +1,3 @@
-import 'package:ecosan/app/modules/themes/colors.dart';
 import 'package:ecosan/app/modules/themes/fonts.dart';
 import 'package:ecosan/app/modules/widgets/button.dart';
 import 'package:ecosan/app/routes/app_pages.dart';

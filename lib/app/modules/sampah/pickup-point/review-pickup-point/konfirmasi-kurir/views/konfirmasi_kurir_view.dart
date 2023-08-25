@@ -1,10 +1,10 @@
 import 'package:ecosan/app/modules/themes/colors.dart';
 import 'package:ecosan/app/modules/themes/fonts.dart';
+import 'package:ecosan/app/modules/widgets/illustration_layout.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 import 'package:get/get.dart';
-import 'package:sizer/sizer.dart';
 
 import '../controllers/konfirmasi_kurir_controller.dart';
 
@@ -25,36 +25,11 @@ class KonfirmasiKurirView extends GetView<KonfirmasiKurirController> {
           ),
         ),
       ),
-      body: SingleChildScrollView(
-        child: Container(
-          width: double.infinity,
-          margin: EdgeInsets.symmetric(horizontal: 16, vertical: 64),
-          child: Column(
-            children: [
-              SvgPicture.asset("assets/svgs/konfirmasi-kurir.svg", width: 80.w),
-              SizedBox(
-                height: 40,
-              ),
-              Text(
-                "Konfirmasi Kurir",
-                style: TextStyles.header2.bold(color: EcoSanColors.primary),
-              ),
-              const SizedBox(
-                height: 8,
-              ),
-              Text(
-                "Terima kasih telah menggunakan layanan pickup poin. Silakan menunggu beberapa saat untuk mendapatkan kurir",
-                style: TextStyles.normal,
-                textAlign: TextAlign.center,
-              ),
-              // Obx(() => Text(
-              //       "${controller.count.value}",
-              //       // style:
-              //       //     TextStyles.normal.copyWith(color: Colors.transparent),
-              //     ))
-            ],
-          ),
-        ),
+      body: const IllustrationLayout.noButton(
+        title: "Konfirmasi Kurir",
+        description:
+            "Terima kasih telah menggunakan layanan pickup poin. Silakan menunggu beberapa saat untuk mendapatkan kurir",
+        svgPath: "assets/svgs/konfirmasi-kurir.svg",
       ),
     );
   }

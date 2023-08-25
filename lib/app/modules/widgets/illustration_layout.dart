@@ -19,6 +19,13 @@ class IllustrationLayout extends StatelessWidget {
     required this.button,
   });
 
+  const IllustrationLayout.noButton({
+    super.key,
+    required this.title,
+    required this.description,
+    required this.svgPath,
+  }) : button = const SizedBox();
+
   IllustrationLayout.buttonText({
     super.key,
     required this.title,
@@ -66,14 +73,16 @@ class IllustrationLayout extends StatelessWidget {
             ),
           ),
         ),
-        Container(
-          margin: EdgeInsets.only(
-              left: 16,
-              right: 16,
-              top: 16,
-              bottom: MediaQuery.of(context).padding.bottom + 16),
-          child: button,
-        ),
+        button == const SizedBox()
+            ? const SizedBox()
+            : Container(
+                margin: EdgeInsets.only(
+                    left: 16,
+                    right: 16,
+                    top: 16,
+                    bottom: MediaQuery.of(context).padding.bottom + 16),
+                child: button,
+              ),
       ],
     );
   }
