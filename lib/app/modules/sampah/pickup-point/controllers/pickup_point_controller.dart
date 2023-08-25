@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class PickupPointController extends GetxController {
-  final GlobalKey formKey = GlobalKey<FormState>();
+  final GlobalKey pickupPointFormKey = GlobalKey<FormState>();
 
   TextEditingController nameController = TextEditingController();
   TextEditingController phoneController = TextEditingController();

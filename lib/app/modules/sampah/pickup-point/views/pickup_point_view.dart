@@ -1,7 +1,7 @@
-import 'package:ecosan/app/modules/themes/colors.dart';
 import 'package:ecosan/app/modules/themes/fonts.dart';
 import 'package:ecosan/app/modules/widgets/button.dart';
 import 'package:ecosan/app/modules/widgets/form_input.dart';
+import 'package:ecosan/app/routes/app_pages.dart';
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
@@ -29,7 +29,7 @@ class PickupPointView extends GetView<PickupPointController> {
           child: Container(
             margin: EdgeInsets.symmetric(horizontal: 16, vertical: 24),
             child: Form(
-              key: controller.formKey,
+              key: controller.pickupPointFormKey,
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -99,7 +99,9 @@ class PickupPointView extends GetView<PickupPointController> {
                     controller: controller.noteController,
                   ),
                   EcoSanButton(
-                    onTap: () {},
+                    onTap: () {
+                      Get.toNamed(Routes.REVIEW_PICKUP_POINT);
+                    },
                     child: Text(
                       "Selanjutnya",
                       style: TextStyles.normal.bold(

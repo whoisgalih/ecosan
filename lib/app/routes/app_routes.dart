@@ -24,6 +24,12 @@ abstract class Routes {
   static const PEMASANGAN_ALAT = _Paths.HOME + _Paths.PEMASANGAN_ALAT;
   static const METODE_PEMBAYARAN = _Paths.HOME + _Paths.METODE_PEMBAYARAN;
   static const PICKUP_POINT = _Paths.SAMPAH + _Paths.PICKUP_POINT;
+  static const REVIEW_PICKUP_POINT =
+      _Paths.SAMPAH + _Paths.PICKUP_POINT + _Paths.REVIEW_PICKUP_POINT;
+  static const KONFIRMASI_KURIR = _Paths.SAMPAH +
+      _Paths.PICKUP_POINT +
+      _Paths.REVIEW_PICKUP_POINT +
+      _Paths.KONFIRMASI_KURIR;
 }
 
 abstract class _Paths {
@@ -48,4 +54,6 @@ abstract class _Paths {
   static const PEMASANGAN_ALAT = '/pemasangan-alat';
   static const METODE_PEMBAYARAN = '/metode-pembayaran';
   static const PICKUP_POINT = '/pickup-point';
+  static const REVIEW_PICKUP_POINT = '/review-pickup-point';
+  static const KONFIRMASI_KURIR = '/konfirmasi-kurir';
 }
