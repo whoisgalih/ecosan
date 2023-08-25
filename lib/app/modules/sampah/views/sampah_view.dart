@@ -46,7 +46,7 @@ class SampahView extends GetView<SampahController> {
                           icon: Icons.pin_drop_rounded,
                           title: "Drop Point",
                           onTap: () {
-                            // Get.toNamed('/sampah/drop-point');
+                            Get.toNamed('/sampah/drop-point');
                           }),
                     ],
                   ),

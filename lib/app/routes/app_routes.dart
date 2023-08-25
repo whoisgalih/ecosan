@@ -37,6 +37,7 @@ abstract class Routes {
       _Paths.PICKUP_HISTORY +
       _Paths.CLAIM;
   static const RECEIVE_POINT = _Paths.SAMPAH + _Paths.RECEIVE_POINT;
+  static const DROP_POINT = _Paths.SAMPAH + _Paths.DROP_POINT;
 }
 
 abstract class _Paths {
@@ -66,4 +67,5 @@ abstract class _Paths {
   static const PICKUP_HISTORY = '/pickup-history';
   static const CLAIM = '/claim';
   static const RECEIVE_POINT = '/receive-point';
+  static const DROP_POINT = '/drop-point';
 }

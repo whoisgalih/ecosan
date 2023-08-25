@@ -37,6 +37,8 @@ import '../modules/home/voucherku/views/voucherku_view.dart';
 import '../modules/profile/bindings/profile_binding.dart';
 import '../modules/profile/views/profile_view.dart';
 import '../modules/sampah/bindings/sampah_binding.dart';
+import '../modules/sampah/drop-point/bindings/drop_point_binding.dart';
+import '../modules/sampah/drop-point/views/drop_point_view.dart';
 import '../modules/sampah/pickup-point/bindings/pickup_point_binding.dart';
 import '../modules/sampah/pickup-point/pickup-history/bindings/pickup_history_binding.dart';
 import '../modules/sampah/pickup-point/pickup-history/claim/bindings/claim_binding.dart';
@@ -197,6 +199,11 @@ class AppPages {
           name: _Paths.RECEIVE_POINT,
           page: () => const ReceivePointView(),
           binding: ReceivePointBinding(),
+        ),
+        GetPage(
+          name: _Paths.DROP_POINT,
+          page: () => const DropPointView(),
+          binding: DropPointBinding(),
         ),
       ],
     ),
