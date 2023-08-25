@@ -36,6 +36,7 @@ abstract class Routes {
       _Paths.PICKUP_POINT +
       _Paths.PICKUP_HISTORY +
       _Paths.CLAIM;
+  static const RECEIVE_POINT = _Paths.SAMPAH + _Paths.RECEIVE_POINT;
 }
 
 abstract class _Paths {
@@ -64,4 +65,5 @@ abstract class _Paths {
   static const KONFIRMASI_KURIR = '/konfirmasi-kurir';
   static const PICKUP_HISTORY = '/pickup-history';
   static const CLAIM = '/claim';
+  static const RECEIVE_POINT = '/receive-point';
 }

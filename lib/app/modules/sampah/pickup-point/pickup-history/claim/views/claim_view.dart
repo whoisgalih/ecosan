@@ -1,6 +1,7 @@
 import 'package:ecosan/app/modules/themes/colors.dart';
 import 'package:ecosan/app/modules/themes/fonts.dart';
 import 'package:ecosan/app/modules/widgets/button.dart';
+import 'package:ecosan/app/modules/widgets/illustration_layout.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
@@ -19,53 +20,16 @@ class ClaimView extends GetView<ClaimController> {
         centerTitle: true,
         leading: SizedBox(),
       ),
-      body: Column(
-        children: [
-          Expanded(
-            child: SingleChildScrollView(
-              child: Container(
-                width: double.infinity,
-                margin: EdgeInsets.symmetric(horizontal: 16, vertical: 64),
-                child: Column(
-                  children: [
-                    SvgPicture.asset("assets/svgs/konfirmasi-kurir.svg",
-                        width: 80.w),
-                    SizedBox(
-                      height: 40,
-                    ),
-                    Text(
-                      "Konfirmasi Kurir",
-                      style:
-                          TextStyles.header2.bold(color: EcoSanColors.primary),
-                    ),
-                    const SizedBox(
-                      height: 8,
-                    ),
-                    Text(
-                      "Terima kasih telah menggunakan layanan pickup poin. Silakan menunggu beberapa saat untuk mendapatkan kurir",
-                      style: TextStyles.normal,
-                      textAlign: TextAlign.center,
-                    ),
-                  ],
-                ),
-              ),
-            ),
-          ),
-          Container(
-            margin: EdgeInsets.only(
-                left: 16,
-                right: 16,
-                top: 16,
-                bottom: MediaQuery.of(context).padding.bottom + 16),
-            child: EcoSanButton(
-              child: Text("Kalim Poin",
-                  style: TextStyles.normal.bold(color: Colors.white)),
-              onTap: () {
-                Get.offAllNamed("/sampah/pickup-point/pickup-history");
-              },
-            ),
-          ),
-        ],
+      body: IllustrationLayout.buttonText(
+        title: "Sampah Telah Diambil Kurir",
+        description:
+            "Selamat kamu mendapatkan poin karena telah menggunakan layanan pickup poin. Klaim poin sekarang dan tukarkan poin dengan voucher menarik",
+        svgPath: "assets/svgs/konfirmasi-kurir.svg",
+        buttonText: "Klaim Poin",
+        onTap: () {
+          Get.toNamed(
+              "/sampah/pickup-point/pickup-history/claim/claim-success");
+        },
       ),
     );
   }

@@ -47,6 +47,8 @@ import '../modules/sampah/pickup-point/review-pickup-point/konfirmasi-kurir/bind
 import '../modules/sampah/pickup-point/review-pickup-point/konfirmasi-kurir/views/konfirmasi_kurir_view.dart';
 import '../modules/sampah/pickup-point/review-pickup-point/views/review_pickup_point_view.dart';
 import '../modules/sampah/pickup-point/views/pickup_point_view.dart';
+import '../modules/sampah/receive-point/bindings/receive_point_binding.dart';
+import '../modules/sampah/receive-point/views/receive_point_view.dart';
 import '../modules/sampah/views/sampah_view.dart';
 
 part 'app_routes.dart';
@@ -190,6 +192,11 @@ class AppPages {
               ],
             ),
           ],
+        ),
+        GetPage(
+          name: _Paths.RECEIVE_POINT,
+          page: () => const ReceivePointView(),
+          binding: ReceivePointBinding(),
         ),
       ],
     ),
