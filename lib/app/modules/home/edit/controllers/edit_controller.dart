@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:ecosan/app/constants/firebase_constants.dart';
+import 'package:ecosan/app/models/user/user_model.dart';
 import 'package:ecosan/app/modules/home/controllers/home_controller.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
@@ -22,9 +23,9 @@ class EditController extends GetxController {
   @override
   void onReady() {
     super.onReady();
-    nameEditingController.text = homeController.user.name;
-    telpEditingController.text = homeController.user.phone;
-    addressEditingController.text = homeController.user.city;
+    nameEditingController.text = homeController.user.value.name;
+    telpEditingController.text = homeController.user.value.phone;
+    addressEditingController.text = homeController.user.value.city;
     emailEditingController.text =
         homeController.authController.firebaseUser.value!.email!;
   }
@@ -34,9 +35,17 @@ class EditController extends GetxController {
     super.onClose();
   }
 
-  void edit() async {
-    await homeController.authController.updateFirestoreUser();
-    Get.back();
+  Future<void> edit() async {
+    print('updating');
+    homeController.user.value.name = nameEditingController.text;
+    homeController.user.value.phone = telpEditingController.text;
+    homeController.user.value.city = addressEditingController.text;
+    try {
+      await homeController.authController.updateFirestoreUser();
+      Get.back();
+    } catch (e) {
+      print(e);
+    }
   }
 
   Future<void> updateImage() async {
@@ -51,14 +60,15 @@ class EditController extends GetxController {
         // Reference to Firebase Storage location
 
         // Upload the selected image to Firebase Storage
+        print('uploading image');
         await imageRef.putFile(file);
 
         // Get the download URL of the uploaded image
         final imageUrl = await imageRef.getDownloadURL();
-
+        print('success: ' + imageUrl);
         // Update the user's image URL in Firestore
-        homeController.user.photoUrl = imageUrl;
-
+        homeController.user.value.photoUrl = imageUrl;
+        print('updating firestore user');
         await homeController.authController.updateFirestoreUser();
         // Close the FilePicker dialog
         Get.back();

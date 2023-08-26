@@ -47,6 +47,9 @@ class ProfileView extends GetView<ProfileController> {
                       mainAxisAlignment: MainAxisAlignment.end,
                       children: [
                         CircleAvatar(
+                          backgroundImage: controller.user.photoUrl != null
+                              ? NetworkImage(controller.user.photoUrl!)
+                              : null,
                           radius: 45 / 360 * 100.w,
                           backgroundColor: Colors.white,
                         ),
@@ -61,46 +64,53 @@ class ProfileView extends GetView<ProfileController> {
                     padding: const EdgeInsets.only(),
                     child: Padding(
                       padding: EdgeInsets.only(right: 2.h),
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.end,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            controller.user.name,
-                            style: TextStyles.header3
-                                .bold()
-                                .copyWith(color: Colors.black),
-                          ),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            children: [
-                              const Icon(Icons.location_on, color: Colors.red),
-                              Text(controller.user.city,
-                                  style: TextStyles.small.copyWith(
-                                      color: const Color(0xFF94959A))),
-                            ],
-                          ),
-                          SizedBox(
-                            height: 1.h,
-                          ),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.end,
-                            children: [
-                              SizedBox(
-                                width: 132 / 360 * 100.w,
-                                child: EcoSanButton(
-                                    onTap: () => Get.toNamed('home/edit'),
-                                    child: Text(
-                                      'Edit Profile',
-                                      style: TextStyles.normal
-                                          .bold()
-                                          .copyWith(color: Colors.white),
-                                    )),
-                              ),
-                            ],
-                          )
-                        ],
+                      child: Obx(
+                        () => Column(
+                          mainAxisAlignment: MainAxisAlignment.end,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              controller.user.name,
+                              style: TextStyles.header3
+                                  .bold()
+                                  .copyWith(color: Colors.black),
+                            ),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              children: [
+                                const Icon(Icons.location_on,
+                                    color: Colors.red),
+                                Expanded(
+                                  child: Text(controller.user.city,
+                                      maxLines: 1,
+                                      overflow: TextOverflow.ellipsis,
+                                      style: TextStyles.small.copyWith(
+                                          color: const Color(0xFF94959A))),
+                                ),
+                              ],
+                            ),
+                            SizedBox(
+                              height: 1.h,
+                            ),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.end,
+                              children: [
+                                SizedBox(
+                                  width: 132 / 360 * 100.w,
+                                  child: EcoSanButton(
+                                      onTap: () => Get.toNamed('home/edit'),
+                                      child: Text(
+                                        'Edit Profile',
+                                        style: TextStyles.normal
+                                            .bold()
+                                            .copyWith(color: Colors.white),
+                                      )),
+                                ),
+                              ],
+                            )
+                          ],
+                        ),
                       ),
                     ),
                   )),
@@ -190,16 +200,54 @@ class ProfileView extends GetView<ProfileController> {
                       leading:
                           const Icon(Icons.logout, color: EcoSanColors.primary),
                       title: 'Keluar',
-                      ontap: () => Get.defaultDialog(
-                            title: 'Keluar',
-                            middleText: 'Apakah anda yakin ingin keluar?',
-                            textConfirm: 'Ya',
-                            textCancel: 'Tidak',
-                            confirmTextColor: Colors.white,
-                            onConfirm: () {
-                              controller.signOut();
-                            },
-                            onCancel: () {},
+                      ontap: () => showDialog(
+                            context: context,
+                            builder: (context) => AlertDialog(
+                              backgroundColor: EcoSanColors.primary,
+                              titlePadding: EdgeInsets.zero,
+                              shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(10)),
+                              contentPadding: EdgeInsets.zero,
+                              title: Column(
+                                mainAxisAlignment: MainAxisAlignment.start,
+                                children: [
+                                  Row(
+                                    mainAxisAlignment: MainAxisAlignment.end,
+                                    children: [
+                                      IconButton(
+                                          onPressed: () {},
+                                          icon: const Icon(
+                                            Icons.close,
+                                            color: Colors.white,
+                                            size: 10,
+                                          ))
+                                    ],
+                                  ),
+                                  Center(
+                                    child: Text(
+                                      'Keluar',
+                                      style: TextStyles.normal
+                                          .semibold(color: Colors.white),
+                                    ),
+                                  ),
+                                  const SizedBox(
+                                    height: 18,
+                                  ),
+                                ],
+                              ),
+                              content: Container(
+                                decoration: const BoxDecoration(
+                                    color: Colors.white,
+                                    borderRadius: BorderRadius.only(
+                                      bottomLeft: Radius.circular(10),
+                                      bottomRight: Radius.circular(10),
+                                    )),
+                                height: 100,
+                                child: const Column(
+                                  children: [Text('asdasdasd')],
+                                ),
+                              ),
+                            ),
                           ))
                 ],
               ),

@@ -148,8 +148,11 @@ class AuthController extends GetxController {
         "name": user.value.name,
         "phone": user.value.phone,
         "city": user.value.city,
+        "photoUrl": user.value.photoUrl,
       });
-      Get.snackbar('Sukses', 'Berhasil mengupdate profile');
+      user.refresh();
+      print('done updating');
+      // Get.snackbar('Sukses', 'Berhasil mengupdate profile');
     } catch (e) {
       Get.snackbar('error found', e.toString());
     }
