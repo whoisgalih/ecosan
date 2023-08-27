@@ -3,6 +3,7 @@ import 'package:ecosan/app/modules/home/controllers/sanitation_controller.dart';
 import 'package:ecosan/app/modules/air/widgets/air_quality.dart';
 import 'package:ecosan/app/modules/themes/colors.dart';
 import 'package:ecosan/app/modules/themes/fonts.dart';
+import 'package:ecosan/app/modules/widgets/alert.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:sizer/sizer.dart';
@@ -107,15 +108,29 @@ class SensorAir extends StatelessWidget {
                   : const SizedBox(),
               LayananSanitasiListTile(
                 layananName: 'Pembersihan Filter',
-                onTap: () => Get.toNamed('/air/pembersihan-filter'),
+                onTap: () {
+                  if (controller.airData != null) {
+                    Get.toNamed('/air/pembersihan-filter');
+                  } else {
+                    Get.snackbar('Peringatan', 'Sensor air belum terpasang',
+                        snackPosition: SnackPosition.BOTTOM);
+                  }
+                },
               ),
               SizedBox(
                 height: 0.8.h,
               ),
               LayananSanitasiListTile(
-                layananName: 'Pemasangan Alat',
-                onTap: () => Get.toNamed('/air/pemasangan-alat'),
-              )
+                  layananName: 'Pemasangan Alat',
+                  onTap: () {
+                    if (controller.airData == null) {
+                      Get.toNamed('/air/pemasangan-alat');
+                    } else {
+                      Get.snackbar('Peringatan',
+                          'Perangkat sudah terpasang, anda tidak perlu memasang lagi',
+                          snackPosition: SnackPosition.BOTTOM);
+                    }
+                  })
             ],
           ),
         ),
