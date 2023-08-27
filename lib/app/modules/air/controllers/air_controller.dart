@@ -21,7 +21,7 @@ class AirController extends GetxController {
   @override
   void onInit() async {
     super.onInit();
-
+    listBulan = [];
     if (!HomeController.i.user.value.isNewUser) {
       Random random = Random();
       airData = SanitasiAirData(
@@ -56,7 +56,6 @@ class AirController extends GetxController {
       dataKualitasAir = dataKualitasAir.reversed.toList();
       listBulan = dataKualitasAir.map((e) => e.month).toSet().toList();
     }
-    listBulan = [];
     cameras = await availableCameras();
     if (cameras != null) {
       try {

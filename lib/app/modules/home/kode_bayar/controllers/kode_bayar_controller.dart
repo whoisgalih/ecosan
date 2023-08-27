@@ -58,12 +58,9 @@ class KodeBayarController extends GetxController {
         phone: Get.arguments['phone']);
     try {
       print('sending to databases');
-      final result = await firestore
-          .collection('users')
-          .doc(AuthController.authInstance.firebaseUser.value!.uid)
-          .collection('transactions')
-          .add(transaction.toJson());
-      print(result.id);
+      final authInstance = AuthController.authInstance;
+      authInstance.user.value.transactions.add(transaction);
+      await authInstance.updateFirestoreUser();
       Get.offAndToNamed('/home/transaction-success', arguments: {
         'transaction': transaction,
       });

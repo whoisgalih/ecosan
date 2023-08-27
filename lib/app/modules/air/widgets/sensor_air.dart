@@ -1,9 +1,7 @@
 import 'package:ecosan/app/modules/air/controllers/air_controller.dart';
-import 'package:ecosan/app/modules/home/controllers/sanitation_controller.dart';
 import 'package:ecosan/app/modules/air/widgets/air_quality.dart';
 import 'package:ecosan/app/modules/themes/colors.dart';
 import 'package:ecosan/app/modules/themes/fonts.dart';
-import 'package:ecosan/app/modules/widgets/alert.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:sizer/sizer.dart';
