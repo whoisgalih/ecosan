@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:ecosan/app/modules/themes/colors.dart';
 import 'package:ecosan/app/modules/themes/fonts.dart';
 import 'package:flutter/material.dart';
@@ -5,6 +7,16 @@ import 'package:get/get.dart';
 
 class KodeBayarController extends GetxController {
   final count = 0.obs;
+  final countdown = (24 * 60 * 60).obs; // 24 hours in seconds
+  late Timer _timer;
+void _startCountdown() {
+    _timer = Timer.periodic(Duration(seconds: 1), (_) {
+      if (countdown.value > 0) {
+        countdown.value--;
+      }
+    });
+  }
+
   final List<Widget> langkahPembayaran = [
     RichText(
         textAlign: TextAlign.justify,
@@ -49,6 +61,7 @@ class KodeBayarController extends GetxController {
   @override
   void onInit() {
     super.onInit();
+    _startCountdown();
   }
 
   @override

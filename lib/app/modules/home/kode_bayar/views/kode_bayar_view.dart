@@ -14,6 +14,14 @@ class KodeBayarView extends GetView<KodeBayarController> {
   const KodeBayarView({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
+    String _formatDuration(Duration duration) {
+      final hours = duration.inHours.toString().padLeft(2, '0');
+      final minutes = (duration.inMinutes % 60).toString().padLeft(2, '0');
+      final seconds = (duration.inSeconds % 60).toString().padLeft(2, '0');
+
+      return '$hours Jam $minutes Menit $seconds Detik';
+    }
+
     MetodePembayaran metodePembayaran = Get.arguments['paymentMethod'];
     return Scaffold(
       appBar: AppBar(
@@ -89,7 +97,12 @@ class KodeBayarView extends GetView<KodeBayarController> {
                           ),
                         ],
                       ),
-                      Text('23 Jam 59 Menit 10 Detik', style: TextStyles.tiny)
+                      Obx(
+                        () => Text(
+                            _formatDuration(
+                                Duration(seconds: controller.countdown.value)),
+                            style: TextStyles.tiny),
+                      )
                     ],
                   ),
                   SizedBox(
