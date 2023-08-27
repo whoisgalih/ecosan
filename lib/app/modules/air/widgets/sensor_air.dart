@@ -1,5 +1,4 @@
 import 'package:ecosan/app/modules/air/controllers/air_controller.dart';
-import 'package:ecosan/app/modules/home/controllers/sanitation_controller.dart';
 import 'package:ecosan/app/modules/air/widgets/air_quality.dart';
 import 'package:ecosan/app/modules/themes/colors.dart';
 import 'package:ecosan/app/modules/themes/fonts.dart';
@@ -32,99 +31,107 @@ class SensorAir extends StatelessWidget {
               SizedBox(
                 height: 21 / 800 * 100.h,
               ),
-              Obx(
-                () => AirQuality(
-                  airQuality: controller.airQuality.value,
-                ),
-              )
+              AirQuality(
+                airQuality: controller.airData?.value,
+              ),
             ],
           ),
         ),
-        Obx(
-          () => controller.airQuality.value != null
-              ? Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      'Rincian Kualitas Air',
-                      style: TextStyles.small.semibold(),
-                    ),
-                    SizedBox(
-                      height: 1.5.h,
-                    ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        const Flexible(
-                            flex: 1,
-                            child: WaterQualityContainer(
-                              indicator: 'pH',
-                              value: '7.5',
-                              unit: '',
-                            )),
-                        SizedBox(
-                          width: 33 / 360 * 100.w,
-                        ),
-                        const Flexible(
-                            flex: 1,
-                            child: WaterQualityContainer(
-                              indicator: 'ORP',
-                              value: '700',
-                              unit: 'mV',
-                            )),
-                        SizedBox(
-                          width: 33 / 360 * 100.w,
-                        ),
-                        const Flexible(
-                            flex: 1,
-                            child: WaterQualityContainer(
-                              indicator: 'TDS',
-                              value: '500',
-                              unit: 'ppm',
-                            )),
-                      ],
-                    )
-                  ],
-                )
-              : const Text(
-                  'Status air tidak dapat diketahui karena kamu belum memasang Sensor Air. Pasang Sensor Air sekarang!'),
-        ),
+        controller.airData != null
+            ? Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    'Rincian Kualitas Air',
+                    style: TextStyles.small.semibold(),
+                  ),
+                  SizedBox(
+                    height: 1.5.h,
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      Flexible(
+                          flex: 1,
+                          child: WaterQualityContainer(
+                            indicator: 'pH',
+                            value: controller.airData!.pH.toStringAsFixed(1),
+                            unit: '',
+                          )),
+                      SizedBox(
+                        width: 33 / 360 * 100.w,
+                      ),
+                      Flexible(
+                          flex: 1,
+                          child: WaterQualityContainer(
+                            indicator: 'ORP',
+                            value: controller.airData!.orp.toStringAsFixed(0),
+                            unit: 'mV',
+                          )),
+                      SizedBox(
+                        width: 33 / 360 * 100.w,
+                      ),
+                      Flexible(
+                          flex: 1,
+                          child: WaterQualityContainer(
+                            indicator: 'TDS',
+                            value: controller.airData!.tds.toStringAsFixed(0),
+                            unit: 'ppm',
+                          )),
+                    ],
+                  )
+                ],
+              )
+            : const Text(
+                'Status air tidak dapat diketahui karena kamu belum memasang Sensor Air. Pasang Sensor Air sekarang!'),
         SizedBox(
           height: 2.5.h,
         ),
         SizedBox(
           width: double.infinity,
-          child: Obx(
-            () => Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                controller.airQuality.value != null
-                    ? Text(
-                        'Layanan Sanitasi Air',
-                        style: TextStyles.small.semibold(),
-                      )
-                    : const SizedBox(),
-                controller.airQuality.value != null
-                    ? SizedBox(
-                        height: 1.5.h,
-                      )
-                    : const SizedBox(),
-                LayananSanitasiListTile(
-                  layananName: 'Pembersihan Filter',
-                  onTap: () => Get.toNamed('/air/pembersihan-filter'),
-                ),
-                SizedBox(
-                  height: 0.8.h,
-                ),
-                LayananSanitasiListTile(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              controller.airData != null
+                  ? Text(
+                      'Layanan Sanitasi Air',
+                      style: TextStyles.small.semibold(),
+                    )
+                  : const SizedBox(),
+              controller.airData != null
+                  ? SizedBox(
+                      height: 1.5.h,
+                    )
+                  : const SizedBox(),
+              LayananSanitasiListTile(
+                layananName: 'Pembersihan Filter',
+                onTap: () {
+                  if (controller.airData != null) {
+                    Get.toNamed('/air/pembersihan-filter');
+                  } else {
+                    Get.snackbar('Peringatan', 'Sensor air belum terpasang',
+                        snackPosition: SnackPosition.BOTTOM);
+                  }
+                },
+              ),
+              SizedBox(
+                height: 0.8.h,
+              ),
+              LayananSanitasiListTile(
                   layananName: 'Pemasangan Alat',
-                  onTap: () => Get.toNamed('/air/pemasangan-alat'),
-                )
-              ],
-            ),
+                  onTap: () {
+                    if (controller.airData == null) {
+                      Get.toNamed('/air/pemasangan-alat');
+                    } else {
+                      Get.snackbar('Peringatan',
+                          'Perangkat sudah terpasang, anda tidak perlu memasang lagi',
+                          snackPosition: SnackPosition.BOTTOM);
+                    }
+                  })
+            ],
           ),
-        )
+        ),
       ],
     );
   }

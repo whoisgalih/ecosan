@@ -1,3 +1,4 @@
+import 'package:ecosan/app/constants/utils.dart';
 import 'package:ecosan/app/models/user/voucher.dart';
 import 'package:ecosan/app/modules/home/poinku/views/poinku_view.dart';
 import 'package:ecosan/app/modules/themes/colors.dart';
@@ -14,40 +15,10 @@ class VoucherexchangeView extends GetView<VoucherexchangeController> {
   final Voucher voucher = Get.arguments['voucher'];
   final dateTime = DateTime.now();
   final newDate = DateTime.now().add(Duration(days: 2));
-  String getMonthName(int monthIndex) {
-    switch (monthIndex) {
-      case 1:
-        return "Januari";
-      case 2:
-        return "Februari";
-      case 3:
-        return "Maret";
-      case 4:
-        return "April";
-      case 5:
-        return "Mei";
-      case 6:
-        return "Juni";
-      case 7:
-        return "Juli";
-      case 8:
-        return "Agustus";
-      case 9:
-        return "September";
-      case 10:
-        return "Oktober";
-      case 11:
-        return "November";
-      case 12:
-        return "Desember";
-      default:
-        return "Bulan Tidak Valid";
-    }
-  }
 
   String tanggalFormatter() {
     String formattedDate =
-        "${dateTime.day}-${newDate.day} ${getMonthName(newDate.month)} ${newDate.year}";
+        "${dateTime.day}-${newDate.day} ${Utils.getMonthFromInt(newDate.month)} ${newDate.year}";
     return formattedDate;
   }
 

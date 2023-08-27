@@ -77,7 +77,7 @@ class PembersihanFilterView extends GetView<PembersihanFilterController> {
                   ),
                   Text(
                     'Lokasi Pembersihan FIlter',
-                    style: TextStyles.tiny.copyWith(color: Color(0xFF1E1E1E)),
+                    style: TextStyles.tiny.copyWith(color: const Color(0xFF1E1E1E)),
                   ),
                   SizedBox(
                     height: 1.5.h,
@@ -94,7 +94,13 @@ class PembersihanFilterView extends GetView<PembersihanFilterController> {
                   EcoSanButton(
                     onTap: () {
                       if (controller.formKey.currentState!.validate()) {
-                        Get.toNamed('/home/metode-pembayaran');
+                        Get.toNamed('/home/metode-pembayaran', arguments: {
+                          'order_type': 'Pembersihan Filter',
+                          'price': 500000,
+                          'address': controller.addressController.text,
+                          'name': controller.nameController.text,
+                          'phone': controller.numberController.text,
+                        });
                       }
                     },
                     child: Text(

@@ -13,7 +13,9 @@ User _$UserFromJson(Map<String, dynamic> json) => User(
       uid: json['uid'] as String,
       photoUrl: json['photoUrl'] as String?,
       birthdate: json['birthdate'] as String,
-    );
+    )..transactions = (json['transactions'] as List<dynamic>)
+        .map((e) => Transaction.fromJson(e as Map<String, dynamic>))
+        .toList();
 
 const _$UserFieldMap = <String, String>{
   'name': 'name',
@@ -22,6 +24,7 @@ const _$UserFieldMap = <String, String>{
   'birthdate': 'birthdate',
   'uid': 'uid',
   'photoUrl': 'photoUrl',
+  'transactions': 'transactions',
 };
 
 Map<String, dynamic> _$UserToJson(User instance) => <String, dynamic>{
@@ -31,4 +34,5 @@ Map<String, dynamic> _$UserToJson(User instance) => <String, dynamic>{
       'birthdate': instance.birthdate,
       'uid': instance.uid,
       'photoUrl': instance.photoUrl,
+      'transactions': instance.transactions.map((e) => e.toJson()).toList(),
     };
