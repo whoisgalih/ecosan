@@ -1,10 +1,14 @@
-class Voucher {
+import 'package:equatable/equatable.dart';
+
+class Voucher extends Equatable {
   Voucher({
     required this.title,
     required this.price,
     this.purchasedDate,
     this.usedDate,
   });
+  @override
+  List<Object?> get props => [title, price, purchasedDate, usedDate];
   final String title;
   final int price;
   String? purchasedDate;
