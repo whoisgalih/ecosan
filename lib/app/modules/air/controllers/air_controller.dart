@@ -2,6 +2,7 @@ import 'dart:math';
 
 import 'package:camera/camera.dart';
 import 'package:ecosan/app/modules/air/widgets/air_history.dart';
+import 'package:ecosan/app/modules/home/controllers/home_controller.dart';
 import 'package:get/get.dart';
 
 class AirController extends GetxController {
@@ -11,7 +12,7 @@ class AirController extends GetxController {
   final random = Random();
   final image = Rxn<XFile?>();
   late final RxInt airIndex = 0.obs;
-  final Rx<int?> airQuality = 90.obs;
+  SanitasiAirData? airData;
   final isFlashOn = false.obs;
   final isProcessing = false.obs;
   late List<SanitasiAirData> dataKualitasAir;
@@ -19,8 +20,42 @@ class AirController extends GetxController {
   final indexBulan = 0.obs;
   @override
   void onInit() async {
-    // TODO: implement onInit
     super.onInit();
+
+    if (HomeController.i.user.value.isNewUser) {
+      Random random = Random();
+      airData = SanitasiAirData(
+          DateTime.now().day,
+          DateTime.now().month,
+          5.0 + random.nextDouble() * 2.5,
+          200.0 + random.nextDouble() * 100.0,
+          30.0 + random.nextDouble() * 20.0,
+          1 + random.nextInt(100),
+          DateTime.now().year);
+      dataKualitasAir = [];
+
+      DateTime today = DateTime.now();
+      DateTime twoMonthsAgo =
+          today.subtract(const Duration(days: 60)); // 2 months ago
+
+      for (DateTime date = today.subtract(const Duration(days: 1));
+          date.isAfter(twoMonthsAgo);
+          date = date.subtract(const Duration(days: 1))) {
+        dataKualitasAir.add(
+          SanitasiAirData(
+            date.day,
+            date.month,
+            5.0 + random.nextDouble() * 2.5,
+            200.0 + random.nextDouble() * 100.0,
+            30.0 + random.nextDouble() * 20.0,
+            1 + random.nextInt(100),
+            date.year,
+          ),
+        );
+      }
+      dataKualitasAir = dataKualitasAir.reversed.toList();
+      listBulan = dataKualitasAir.map((e) => e.month).toSet().toList();
+    }
     cameras = await availableCameras();
     if (cameras != null) {
       try {
@@ -47,31 +82,6 @@ class AirController extends GetxController {
         await controller!.pausePreview();
       }
     });
-    dataKualitasAir = <SanitasiAirData>[
-      for (int day = 1; day <= 31; day++)
-        SanitasiAirData(
-          day,
-          1,
-          5.0 + random.nextDouble() * 2.5, // pH antara 5.0 dan 7.5
-          200.0 + random.nextDouble() * 100.0, // orp antara 200.0 dan 300.0
-          30.0 + random.nextDouble() * 20.0, // tds antara 30.0 dan 50.0
-          1 + random.nextInt(100), // value antara 1 dan 100
-          2023,
-        ),
-
-      // Bulan 2
-      for (int day = 1; day <= 20; day++)
-        SanitasiAirData(
-          day,
-          2,
-          5.0 + random.nextDouble() * 2.5, // pH antara 5.0 dan 7.5
-          200.0 + random.nextDouble() * 100.0, // orp antara 200.0 dan 300.0
-          30.0 + random.nextDouble() * 20.0, // tds antara 30.0 dan 50.0
-          1 + random.nextInt(100), // value antara 1 dan 100
-          2023,
-        ),
-    ];
-    listBulan = dataKualitasAir.map((e) => e.month).toSet().toList();
   }
 
   @override
@@ -80,6 +90,8 @@ class AirController extends GetxController {
     super.onClose();
     controller!.dispose();
   }
+
+  //generate random value for air quality 1-10
 
   Future<void> flashToggle() async {
     if (isFlashOn.value) {
@@ -102,37 +114,6 @@ class AirController extends GetxController {
       print('resume');
       image.value = null;
       controller!.resumePreview();
-    }
-  }
-
-  String getNamaBulan(int bulan) {
-    switch (bulan) {
-      case 1:
-        return 'Januari';
-      case 2:
-        return 'Februari';
-      case 3:
-        return 'Maret';
-      case 4:
-        return 'April';
-      case 5:
-        return 'Mei';
-      case 6:
-        return 'Juni';
-      case 7:
-        return 'Juli';
-      case 8:
-        return 'Agustus';
-      case 9:
-        return 'September';
-      case 10:
-        return 'Oktober';
-      case 11:
-        return 'November';
-      case 12:
-        return 'Desember';
-      default:
-        return '';
     }
   }
 }

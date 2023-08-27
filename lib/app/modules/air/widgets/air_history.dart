@@ -1,5 +1,5 @@
+import 'package:ecosan/app/constants/utils.dart';
 import 'package:ecosan/app/modules/air/controllers/air_controller.dart';
-import 'package:ecosan/app/modules/home/controllers/sanitation_controller.dart';
 import 'package:ecosan/app/modules/air/widgets/air_quality.dart';
 import 'package:ecosan/app/modules/air/widgets/sensor_air.dart';
 import 'package:ecosan/app/modules/themes/colors.dart';
@@ -31,8 +31,7 @@ class AirHistory extends StatelessWidget {
                       ? sanitationController.indexBulan.value--
                       : null,
                   icon: Icon(Icons.arrow_left)),
-              Text(sanitationController.getNamaBulan(sanitationController
-                  .listBulan
+              Text(Utils.getMonthFromInt(sanitationController.listBulan
                   .elementAt(sanitationController.indexBulan.value))),
               IconButton(
                   onPressed: () => sanitationController.indexBulan <
@@ -95,7 +94,7 @@ class AirHistory extends StatelessWidget {
                             height: 2.8.h,
                           ),
                           Text(
-                            'Status Air pada ${airData.date} ${sanitationController.getNamaBulan(airData.month)} ${airData.year}',
+                            'Status Air pada ${airData.date} ${Utils.getMonthFromInt(airData.month)} ${airData.year}',
                             style: TextStyles.normal
                                 .semibold()
                                 .copyWith(color: Colors.black),

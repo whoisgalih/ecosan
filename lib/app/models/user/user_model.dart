@@ -28,4 +28,6 @@ class User {
   String? photoUrl;
   List<Transaction> transactions = [];
   Map<String, Object?> toJson() => _$UserToJson(this);
+
+  bool get isNewUser => transactions.isEmpty;
 }

@@ -22,7 +22,7 @@ class AirView extends GetView<AirController> {
       ),
       body: SingleChildScrollView(
         child: Container(
-          margin: EdgeInsets.all(16),
+          margin: const EdgeInsets.all(16),
           child: Column(
             children: [
               Container(
