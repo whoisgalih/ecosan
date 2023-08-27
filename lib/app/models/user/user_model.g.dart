@@ -11,11 +11,16 @@ User _$UserFromJson(Map<String, dynamic> json) => User(
       phone: json['phone'] as String,
       city: json['city'] as String,
       uid: json['uid'] as String,
+      poin: json['poin'] as int,
       photoUrl: json['photoUrl'] as String?,
       birthdate: json['birthdate'] as String,
-    )..transactions = (json['transactions'] as List<dynamic>)
-        .map((e) => Transaction.fromJson(e as Map<String, dynamic>))
-        .toList();
+    )
+      ..transactions = (json['transactions'] as List<dynamic>)
+          .map((e) => Transaction.fromJson(e as Map<String, dynamic>))
+          .toList()
+      ..vouchers = (json['vouchers'] as List<dynamic>)
+          .map((e) => Voucher.fromJson(e as Map<String, dynamic>))
+          .toList();
 
 const _$UserFieldMap = <String, String>{
   'name': 'name',
@@ -25,6 +30,8 @@ const _$UserFieldMap = <String, String>{
   'uid': 'uid',
   'photoUrl': 'photoUrl',
   'transactions': 'transactions',
+  'vouchers': 'vouchers',
+  'poin': 'poin',
 };
 
 Map<String, dynamic> _$UserToJson(User instance) => <String, dynamic>{
@@ -35,4 +42,6 @@ Map<String, dynamic> _$UserToJson(User instance) => <String, dynamic>{
       'uid': instance.uid,
       'photoUrl': instance.photoUrl,
       'transactions': instance.transactions.map((e) => e.toJson()).toList(),
+      'vouchers': instance.vouchers.map((e) => e.toJson()).toList(),
+      'poin': instance.poin,
     };
