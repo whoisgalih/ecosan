@@ -1,3 +1,5 @@
+import 'package:ecosan/app/constants/utils.dart';
+import 'package:ecosan/app/models/user/transaction_model.dart';
 import 'package:ecosan/app/modules/themes/colors.dart';
 import 'package:ecosan/app/modules/themes/fonts.dart';
 import 'package:ecosan/app/modules/widgets/button.dart';
@@ -12,6 +14,15 @@ class TransactionSuccessView extends GetView<TransactionSuccessController> {
   const TransactionSuccessView({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
+    Transaction transaction = Get.arguments['transaction'];
+    String getDescription() {
+      if (transaction.orderType == 'Pemasangan Alat') {
+        return 'Pemasangan alat akan dilakukan dengan estimasi 1 - 2 hari setelah pembayaran berhasil';
+      } else {
+        return 'Pembersihan akan dilakukan dengan estimasi 1 - 2 hari setelah pembayaran berhasil';
+      }
+    }
+
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
@@ -44,18 +55,17 @@ class TransactionSuccessView extends GetView<TransactionSuccessController> {
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
                       Text(
-                        'Sedang diproses',
+                        'Status Pesanan',
                         style: TextStyles.small.semibold(),
                       ),
                       Text(
-                        'Sedang diproses',
+                        transaction.status,
                         style: TextStyles.small,
                       )
                     ],
                   ),
                   spacer(),
-                  const Text(
-                      'Pembersihan akan dilakukan dengan estimasi 1 - 2 hari setelah pembayaran berhasil'),
+                  Text(getDescription()),
                   separator(),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -85,7 +95,7 @@ class TransactionSuccessView extends GetView<TransactionSuccessController> {
                       ),
                       Expanded(
                         child: Text(
-                          'Aditya Rahmat\n+6281254621763181\nJln. Soekarna Hatta, RT. 7, No. 90, Muara Angkeh, Jakarta Utara, D.K.I Jakarta, ID, 14440',
+                          '${transaction.name}\n${transaction.phone}\n${transaction.address}',
                           style: TextStyles.small,
                         ),
                       )
@@ -102,11 +112,11 @@ class TransactionSuccessView extends GetView<TransactionSuccessController> {
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
                       Text(
-                        '1 x Pembersihan Filter',
+                        '1 x ${transaction.orderType}',
                         style: TextStyles.small,
                       ),
                       Text(
-                        'Rp 500.000',
+                        Utils.rupiahFormatter(transaction.price),
                         style: TextStyles.small,
                       )
                     ],
@@ -117,7 +127,7 @@ class TransactionSuccessView extends GetView<TransactionSuccessController> {
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
                       Text(
-                        '1 x Biaya Pembersihan',
+                        '1 x Biaya ${transaction.orderType.split(' ').first}',
                         style: TextStyles.small,
                       ),
                       Text(
@@ -152,7 +162,7 @@ class TransactionSuccessView extends GetView<TransactionSuccessController> {
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
                       Text(
-                        'BNI VA',
+                        transaction.paymentMethod,
                         style: TextStyles.small,
                       ),
                       Text(
@@ -171,7 +181,7 @@ class TransactionSuccessView extends GetView<TransactionSuccessController> {
                         style: TextStyles.small.semibold(),
                       ),
                       Text(
-                        '367627361341',
+                        transaction.transactionCode,
                         style: TextStyles.small.semibold(),
                       )
                     ],
@@ -186,7 +196,7 @@ class TransactionSuccessView extends GetView<TransactionSuccessController> {
                         style: TextStyles.small,
                       ),
                       Text(
-                        '17 Agustus 2023, 09:25',
+                        Utils.dateFormatter(transaction.orderDate),
                         style: TextStyles.small,
                       )
                     ],
@@ -201,7 +211,7 @@ class TransactionSuccessView extends GetView<TransactionSuccessController> {
                         style: TextStyles.small,
                       ),
                       Text(
-                        '17 Agustus 2023, 09:27',
+                        Utils.dateFormatter(transaction.paymentDate),
                         style: TextStyles.small,
                       )
                     ],

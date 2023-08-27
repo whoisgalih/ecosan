@@ -1,5 +1,4 @@
-import 'dart:math';
-
+import 'package:ecosan/app/constants/utils.dart';
 import 'package:ecosan/app/modules/home/metode_pembayaran/controllers/metode_pembayaran_controller.dart';
 import 'package:ecosan/app/modules/themes/fonts.dart';
 import 'package:ecosan/app/modules/widgets/button.dart';
@@ -22,17 +21,6 @@ class KodeBayarView extends GetView<KodeBayarController> {
       final seconds = (duration.inSeconds % 60).toString().padLeft(2, '0');
 
       return '$hours Jam $minutes Menit $seconds Detik';
-    }
-
-    String _rupiahFormatter(int amount) {
-      String formatted = amount.toString();
-
-      String result =
-          'Rp ${formatted.replaceAllMapped(RegExp(r'(\d{1,3})(?=(\d{3})+(?!\d))'), (match) {
-        return '${match.group(1)}.';
-      })}';
-
-      return result;
     }
 
     MetodePembayaran metodePembayaran = Get.arguments['payment_method'];
@@ -71,7 +59,7 @@ class KodeBayarView extends GetView<KodeBayarController> {
                     style: TextStyles.small.copyWith(color: Colors.white),
                   ),
                   Text(
-                    _rupiahFormatter(price),
+                    Utils.rupiahFormatter(price),
                     style: TextStyles.small.copyWith(color: Colors.white),
                   )
                 ],

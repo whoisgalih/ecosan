@@ -46,7 +46,8 @@ class KodeBayarController extends GetxController {
 
   Future<void> pay() async {
     transaction_model.Transaction transaction = transaction_model.Transaction(
-        status: 'pending',
+        status: 'Sedang diproses',
+        transactionCode: kodeBayar,
         price: Get.arguments['price'],
         orderDate: Get.arguments['order_date'],
         paymentDate: DateTime.now().toString(),
@@ -63,7 +64,9 @@ class KodeBayarController extends GetxController {
           .collection('transactions')
           .add(transaction.toJson());
       print(result.id);
-      Get.offAndToNamed('/home/transaction-success', arguments: transaction);
+      Get.offAndToNamed('/home/transaction-success', arguments: {
+        'transaction': transaction,
+      });
     } catch (e) {
       Get.snackbar('Error', e.toString());
     }
@@ -84,7 +87,7 @@ class KodeBayarController extends GetxController {
               children: [
                 TextSpan(text: paymentTitle, style: TextStyles.small.bold()),
                 TextSpan(
-                    text: ' pada halaman BRImo.',
+                    text: ' pada halaman $paymentTitle.',
                     style: TextStyles.small
                         .copyWith(color: EcoSanColors.systemBlack)),
               ])),

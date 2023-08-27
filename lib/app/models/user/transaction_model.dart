@@ -8,6 +8,7 @@ class Transaction {
   String name;
   String address;
   String phone;
+  String transactionCode;
 
   Transaction({
     required this.status,
@@ -19,6 +20,7 @@ class Transaction {
     required this.name,
     required this.address,
     required this.phone,
+    required this.transactionCode,
   });
 
   factory Transaction.fromJson(Map<String, dynamic> json) {
@@ -32,6 +34,7 @@ class Transaction {
       address: json['address'],
       orderType: json['order_type'],
       phone: json['number'],
+      transactionCode: json['transaction_code'],
     );
   }
 
@@ -45,5 +48,6 @@ class Transaction {
         'address': address,
         'order_type': orderType,
         'number': phone,
+        'transaction_code': transactionCode,
       };
 }

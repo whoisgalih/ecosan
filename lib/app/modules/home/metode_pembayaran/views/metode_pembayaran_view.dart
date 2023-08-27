@@ -1,4 +1,5 @@
 import 'package:accordion/accordion.dart';
+import 'package:ecosan/app/constants/utils.dart';
 import 'package:ecosan/app/modules/themes/colors.dart';
 import 'package:ecosan/app/modules/themes/fonts.dart';
 import 'package:ecosan/app/modules/widgets/button.dart';
@@ -13,17 +14,6 @@ class MetodePembayaranView extends GetView<MetodePembayaranController> {
   const MetodePembayaranView({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
-    String _rupiahFormatter(int amount) {
-      String formatted = amount.toString();
-
-      String result =
-          'Rp ${formatted.replaceAllMapped(RegExp(r'(\d{1,3})(?=(\d{3})+(?!\d))'), (match) {
-        return '${match.group(1)}.';
-      })}';
-
-      return result;
-    }
-
     final int price = Get.arguments['price'];
     final arguments = Get.arguments;
     return Scaffold(
@@ -67,7 +57,7 @@ class MetodePembayaranView extends GetView<MetodePembayaranController> {
                     style: TextStyles.small.copyWith(color: Colors.white),
                   ),
                   Text(
-                    _rupiahFormatter(price),
+                    Utils.rupiahFormatter(price),
                     style:
                         TextStyles.header3.bold().copyWith(color: Colors.white),
                   ),
