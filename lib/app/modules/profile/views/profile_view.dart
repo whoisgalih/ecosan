@@ -215,7 +215,7 @@ class ProfileView extends GetView<ProfileController> {
                                     mainAxisAlignment: MainAxisAlignment.end,
                                     children: [
                                       IconButton(
-                                          onPressed: () {},
+                                          onPressed: () => Get.back(),
                                           icon: const Icon(
                                             Icons.close,
                                             color: Colors.white,
@@ -236,15 +236,69 @@ class ProfileView extends GetView<ProfileController> {
                                 ],
                               ),
                               content: Container(
+                                padding: EdgeInsets.symmetric(
+                                    vertical: 2.5.h, horizontal: 2.25.h),
                                 decoration: const BoxDecoration(
                                     color: Colors.white,
                                     borderRadius: BorderRadius.only(
                                       bottomLeft: Radius.circular(10),
                                       bottomRight: Radius.circular(10),
                                     )),
-                                height: 100,
-                                child: const Column(
-                                  children: [Text('asdasdasd')],
+                                width: double.infinity,
+                                height: 240 / 800 * 100.h,
+                                child: Column(
+                                  children: [
+                                    SvgPicture.asset(
+                                      'assets/svgs/logout.svg',
+                                      height: 10.h,
+                                    ),
+                                    SizedBox(
+                                      height: 1.25.h,
+                                    ),
+                                    Text(
+                                      'Apakah anda yakin untuk keluar dari akun?',
+                                      textAlign: TextAlign.center,
+                                      style: TextStyles.small,
+                                    ),
+                                    SizedBox(
+                                      height: 2.5.h,
+                                    ),
+                                    Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceBetween,
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.center,
+                                      children: [
+                                        Flexible(
+                                          flex: 1,
+                                          child: EcoSanButton(
+                                              color: Colors.white,
+                                              borderColor: EcoSanColors.primary,
+                                              onTap: () => Get.back(),
+                                              child: Text(
+                                                'Batal',
+                                                style: TextStyles.tiny.bold(
+                                                    color:
+                                                        EcoSanColors.primary),
+                                              )),
+                                        ),
+                                        SizedBox(
+                                          width: 2.h,
+                                        ),
+                                        Flexible(
+                                          flex: 1,
+                                          child: EcoSanButton(
+                                              onTap: () => controller.signOut(),
+                                              color: EcoSanColors.primary,
+                                              child: Text(
+                                                'Keluar',
+                                                style: TextStyles.tiny
+                                                    .bold(color: Colors.white),
+                                              )),
+                                        )
+                                      ],
+                                    )
+                                  ],
                                 ),
                               ),
                             ),
