@@ -150,6 +150,9 @@ class AuthController extends GetxController {
         "transactions": user.value.transactions
             .map((transaction) => transaction.toJson())
             .toList(),
+        "vouchers":
+            user.value.vouchers.map((voucher) => voucher.toJson()).toList(),
+        "poin": user.value.poin,
       });
       user.refresh();
       print('done updating');
