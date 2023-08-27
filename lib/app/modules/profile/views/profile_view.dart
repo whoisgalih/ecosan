@@ -1,6 +1,7 @@
 import 'package:ecosan/app/modules/home/views/home_view.dart';
 import 'package:ecosan/app/modules/themes/colors.dart';
 import 'package:ecosan/app/modules/themes/fonts.dart';
+import 'package:ecosan/app/modules/widgets/alert.dart';
 import 'package:ecosan/app/modules/widgets/bottom_bar.dart';
 import 'package:ecosan/app/modules/widgets/button.dart';
 import 'package:flutter/material.dart';
@@ -202,104 +203,61 @@ class ProfileView extends GetView<ProfileController> {
                       title: 'Keluar',
                       ontap: () => showDialog(
                             context: context,
-                            builder: (context) => AlertDialog(
-                              backgroundColor: EcoSanColors.primary,
-                              titlePadding: EdgeInsets.zero,
-                              shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(10)),
-                              contentPadding: EdgeInsets.zero,
-                              title: Column(
-                                mainAxisAlignment: MainAxisAlignment.start,
+                            builder: (context) => EcosansAlert(
+                              title: 'Keluar',
+                              content: Column(
+                                mainAxisSize: MainAxisSize.min,
                                 children: [
+                                  SvgPicture.asset(
+                                    'assets/svgs/logout.svg',
+                                    height: 10.h,
+                                  ),
+                                  SizedBox(
+                                    height: 1.25.h,
+                                  ),
+                                  Text(
+                                    'Apakah anda yakin untuk keluar dari akun?',
+                                    textAlign: TextAlign.center,
+                                    style: TextStyles.small,
+                                  ),
+                                  SizedBox(
+                                    height: 2.5.h,
+                                  ),
                                   Row(
-                                    mainAxisAlignment: MainAxisAlignment.end,
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.center,
                                     children: [
-                                      IconButton(
-                                          onPressed: () => Get.back(),
-                                          icon: const Icon(
-                                            Icons.close,
+                                      Flexible(
+                                        flex: 1,
+                                        child: EcoSanButton(
                                             color: Colors.white,
-                                            size: 10,
-                                          ))
+                                            borderColor: EcoSanColors.primary,
+                                            onTap: () => Get.back(),
+                                            child: Text(
+                                              'Batal',
+                                              style: TextStyles.tiny.bold(
+                                                  color: EcoSanColors.primary),
+                                            )),
+                                      ),
+                                      SizedBox(
+                                        width: 2.h,
+                                      ),
+                                      Flexible(
+                                        flex: 1,
+                                        child: EcoSanButton(
+                                            onTap: () => controller.signOut(),
+                                            color: EcoSanColors.primary,
+                                            child: Text(
+                                              'Keluar',
+                                              style: TextStyles.tiny
+                                                  .bold(color: Colors.white),
+                                            )),
+                                      )
                                     ],
-                                  ),
-                                  Center(
-                                    child: Text(
-                                      'Keluar',
-                                      style: TextStyles.normal
-                                          .semibold(color: Colors.white),
-                                    ),
-                                  ),
-                                  const SizedBox(
-                                    height: 18,
-                                  ),
+                                  )
                                 ],
-                              ),
-                              content: Container(
-                                padding: EdgeInsets.symmetric(
-                                    vertical: 2.5.h, horizontal: 2.25.h),
-                                decoration: const BoxDecoration(
-                                    color: Colors.white,
-                                    borderRadius: BorderRadius.only(
-                                      bottomLeft: Radius.circular(10),
-                                      bottomRight: Radius.circular(10),
-                                    )),
-                                width: double.infinity,
-                                height: 240 / 800 * 100.h,
-                                child: Column(
-                                  children: [
-                                    SvgPicture.asset(
-                                      'assets/svgs/logout.svg',
-                                      height: 10.h,
-                                    ),
-                                    SizedBox(
-                                      height: 1.25.h,
-                                    ),
-                                    Text(
-                                      'Apakah anda yakin untuk keluar dari akun?',
-                                      textAlign: TextAlign.center,
-                                      style: TextStyles.small,
-                                    ),
-                                    SizedBox(
-                                      height: 2.5.h,
-                                    ),
-                                    Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.spaceBetween,
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.center,
-                                      children: [
-                                        Flexible(
-                                          flex: 1,
-                                          child: EcoSanButton(
-                                              color: Colors.white,
-                                              borderColor: EcoSanColors.primary,
-                                              onTap: () => Get.back(),
-                                              child: Text(
-                                                'Batal',
-                                                style: TextStyles.tiny.bold(
-                                                    color:
-                                                        EcoSanColors.primary),
-                                              )),
-                                        ),
-                                        SizedBox(
-                                          width: 2.h,
-                                        ),
-                                        Flexible(
-                                          flex: 1,
-                                          child: EcoSanButton(
-                                              onTap: () => controller.signOut(),
-                                              color: EcoSanColors.primary,
-                                              child: Text(
-                                                'Keluar',
-                                                style: TextStyles.tiny
-                                                    .bold(color: Colors.white),
-                                              )),
-                                        )
-                                      ],
-                                    )
-                                  ],
-                                ),
                               ),
                             ),
                           ))
