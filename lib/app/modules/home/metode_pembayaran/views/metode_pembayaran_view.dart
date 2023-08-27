@@ -13,6 +13,19 @@ class MetodePembayaranView extends GetView<MetodePembayaranController> {
   const MetodePembayaranView({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
+    String _rupiahFormatter(int amount) {
+      String formatted = amount.toString();
+
+      String result =
+          'Rp ${formatted.replaceAllMapped(RegExp(r'(\d{1,3})(?=(\d{3})+(?!\d))'), (match) {
+        return '${match.group(1)}.';
+      })}';
+
+      return result;
+    }
+
+    final int price = Get.arguments['price'];
+    final arguments = Get.arguments;
     return Scaffold(
       appBar: AppBar(
         title: Text(
@@ -21,7 +34,7 @@ class MetodePembayaranView extends GetView<MetodePembayaranController> {
         ),
         backgroundColor: EcoSanColors.primary,
         leading: IconButton(
-            onPressed: () {},
+            onPressed: () => Get.back(),
             icon: const Icon(
               Icons.arrow_back,
               color: Colors.white,
@@ -54,7 +67,7 @@ class MetodePembayaranView extends GetView<MetodePembayaranController> {
                     style: TextStyles.small.copyWith(color: Colors.white),
                   ),
                   Text(
-                    'Rp 500.000',
+                    _rupiahFormatter(price),
                     style:
                         TextStyles.header3.bold().copyWith(color: Colors.white),
                   ),
@@ -141,10 +154,11 @@ class MetodePembayaranView extends GetView<MetodePembayaranController> {
                                       GestureDetector(
                                         behavior: HitTestBehavior.opaque,
                                         onTap: () => controller
-                                            .selectedPaymentIdx.value = index,
+                                            .selectedPaymentIdx
+                                            .value = index + 4,
                                         child: AccordionListTile(
                                           controller: controller,
-                                          index: index,
+                                          index: index + 4,
                                           va: va,
                                         ),
                                       ),
@@ -160,8 +174,14 @@ class MetodePembayaranView extends GetView<MetodePembayaranController> {
                   if (controller.selectedPaymentIdx.value != null) {
                     Get.offNamedUntil('/home', (route) => false);
                     Get.toNamed('home/kode-bayar', arguments: {
-                      'paymentMethod': controller
-                          .paymentMethod[controller.selectedPaymentIdx.value!]
+                      'payment_method': controller
+                          .paymentMethod[controller.selectedPaymentIdx.value!],
+                      'order_type': arguments['order_type'],
+                      'price': arguments['price'],
+                      'address': arguments['address'],
+                      'name': arguments['name'],
+                      'phone': arguments['phone'],
+                      'order_date': DateTime.now().toString(),
                     });
                   }
                 },

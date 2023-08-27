@@ -85,7 +85,7 @@ class DataDiriView extends GetView<DataDiriController> {
                           'Asal Kota',
                           style: TextStyles.tiny.bold(),
                         ),
-                        SizedBox(height: 4),
+                        const SizedBox(height: 4),
                         Obx(
                           () => DropdownButtonFormField(
                             validator: controller.cityValidator,

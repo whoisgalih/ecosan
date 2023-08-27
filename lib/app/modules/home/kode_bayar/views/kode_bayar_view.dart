@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:ecosan/app/modules/home/metode_pembayaran/controllers/metode_pembayaran_controller.dart';
 import 'package:ecosan/app/modules/themes/fonts.dart';
 import 'package:ecosan/app/modules/widgets/button.dart';
@@ -22,7 +24,19 @@ class KodeBayarView extends GetView<KodeBayarController> {
       return '$hours Jam $minutes Menit $seconds Detik';
     }
 
-    MetodePembayaran metodePembayaran = Get.arguments['paymentMethod'];
+    String _rupiahFormatter(int amount) {
+      String formatted = amount.toString();
+
+      String result =
+          'Rp ${formatted.replaceAllMapped(RegExp(r'(\d{1,3})(?=(\d{3})+(?!\d))'), (match) {
+        return '${match.group(1)}.';
+      })}';
+
+      return result;
+    }
+
+    MetodePembayaran metodePembayaran = Get.arguments['payment_method'];
+    int price = Get.arguments['price'];
     return Scaffold(
       appBar: AppBar(
           title: Text(
@@ -57,7 +71,7 @@ class KodeBayarView extends GetView<KodeBayarController> {
                     style: TextStyles.small.copyWith(color: Colors.white),
                   ),
                   Text(
-                    'Rp 500.000',
+                    _rupiahFormatter(price),
                     style: TextStyles.small.copyWith(color: Colors.white),
                   )
                 ],
@@ -117,14 +131,14 @@ class KodeBayarView extends GetView<KodeBayarController> {
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
                       Text(
-                        '6317315486136',
+                        controller.kodeBayar,
                         style: TextStyles.header3.bold(),
                       ),
                       InkWell(
                         borderRadius: BorderRadius.circular(10),
                         onTap: () async {
-                          await Clipboard.setData(
-                              const ClipboardData(text: '6317315486136'));
+                          await Clipboard.setData(ClipboardData(
+                              text: controller.kodeBayar.toString()));
                           Get.snackbar(
                               'Berhasil', 'Kode Bayar berhasil disalin',
                               snackPosition: SnackPosition.BOTTOM);
@@ -145,7 +159,8 @@ class KodeBayarView extends GetView<KodeBayarController> {
                       )
                     ],
                   ),
-                  Text('Hanya menerima dari Bank BRI', style: TextStyles.tiny2)
+                  Text('Hanya menerima dari ${metodePembayaran.title}',
+                      style: TextStyles.tiny2)
                 ],
               ),
             ),
@@ -178,7 +193,9 @@ class KodeBayarView extends GetView<KodeBayarController> {
               ),
             ),
             EcoSanButton(
-                onTap: () => Get.offAndToNamed('/home/transaction-success'),
+                onTap: () async {
+                  await controller.pay();
+                },
                 child: Text(
                   'Gunakan',
                   style: TextStyles.normal.bold(color: Colors.white),
