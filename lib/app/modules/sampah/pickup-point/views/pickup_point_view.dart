@@ -2,7 +2,6 @@ import 'package:ecosan/app/modules/auth/register/data-diri/views/data_diri_view.
 import 'package:ecosan/app/modules/themes/fonts.dart';
 import 'package:ecosan/app/modules/widgets/button.dart';
 import 'package:ecosan/app/modules/widgets/form_input.dart';
-import 'package:ecosan/app/routes/app_pages.dart';
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';

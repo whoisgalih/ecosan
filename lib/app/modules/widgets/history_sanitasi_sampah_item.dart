@@ -1,4 +1,3 @@
-import 'package:ecosan/app/constants/loading_state.dart';
 import 'package:ecosan/app/models/trashHistory/trash_history_model.dart';
 import 'package:ecosan/app/modules/themes/colors.dart';
 import 'package:ecosan/app/modules/themes/fonts.dart';
