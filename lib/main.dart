@@ -77,12 +77,14 @@ class MyApp extends StatelessWidget {
                 color: Colors.white,
               ),
               backgroundColor: EcoSanColors.primary,
+              foregroundColor: Colors.white,
               titleTextStyle: TextStyles.header3.copyWith(
                 color: Colors.white,
                 fontWeight: FontWeight.bold,
               ),
               centerTitle: false,
               elevation: 0,
+              titleSpacing: 0,
             ),
           ),
         );

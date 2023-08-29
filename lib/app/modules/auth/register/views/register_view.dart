@@ -49,7 +49,6 @@ class RegisterView extends GetView<RegisterController> {
                       keyboardType: TextInputType.emailAddress,
                       validator: controller.emailValidator,
                     ),
-                    SizedBox(height: 16),
                     FormInput(
                       controller: controller.passwordController,
                       label: "Password",
@@ -58,7 +57,6 @@ class RegisterView extends GetView<RegisterController> {
                       icon: Icons.lock,
                       validator: controller.passwordValidator,
                     ),
-                    SizedBox(height: 16),
                     FormInput(
                       controller: controller.confirmPasswordController,
                       label: "Konfirmasi Password",
@@ -66,8 +64,8 @@ class RegisterView extends GetView<RegisterController> {
                       keyboardType: TextInputType.visiblePassword,
                       icon: Icons.lock,
                       validator: controller.confirmPasswordValidator,
+                      bottomMargin: 64,
                     ),
-                    SizedBox(height: 64),
                     EcoSanButton(
                       onTap: () {
                         controller.register();

@@ -23,6 +23,21 @@ abstract class Routes {
   static const PEMBERSIHAN_FILTER = _Paths.AIR + _Paths.PEMBERSIHAN_FILTER;
   static const PEMASANGAN_ALAT = _Paths.AIR + _Paths.PEMASANGAN_ALAT;
   static const METODE_PEMBAYARAN = _Paths.HOME + _Paths.METODE_PEMBAYARAN;
+  static const PICKUP_POINT = _Paths.SAMPAH + _Paths.PICKUP_POINT;
+  static const REVIEW_PICKUP_POINT =
+      _Paths.SAMPAH + _Paths.PICKUP_POINT + _Paths.REVIEW_PICKUP_POINT;
+  static const KONFIRMASI_KURIR = _Paths.SAMPAH +
+      _Paths.PICKUP_POINT +
+      _Paths.REVIEW_PICKUP_POINT +
+      _Paths.KONFIRMASI_KURIR;
+  static const PICKUP_HISTORY =
+      _Paths.SAMPAH + _Paths.PICKUP_POINT + _Paths.PICKUP_HISTORY;
+  static const CLAIM = _Paths.SAMPAH +
+      _Paths.PICKUP_POINT +
+      _Paths.PICKUP_HISTORY +
+      _Paths.CLAIM;
+  static const RECEIVE_POINT = _Paths.SAMPAH + _Paths.RECEIVE_POINT;
+  static const DROP_POINT = _Paths.SAMPAH + _Paths.DROP_POINT;
   static const KODE_BAYAR =
       _Paths.HOME + _Paths.METODE_PEMBAYARAN + _Paths.KODE_BAYAR;
   static const TRANSACTION_SUCCESS = _Paths.HOME + _Paths.TRANSACTION_SUCCESS;
@@ -49,6 +64,13 @@ abstract class _Paths {
   static const PEMBERSIHAN_FILTER = '/pembersihan-filter';
   static const PEMASANGAN_ALAT = '/pemasangan-alat';
   static const METODE_PEMBAYARAN = '/metode-pembayaran';
+  static const PICKUP_POINT = '/pickup-point';
+  static const REVIEW_PICKUP_POINT = '/review-pickup-point';
+  static const KONFIRMASI_KURIR = '/konfirmasi-kurir';
+  static const PICKUP_HISTORY = '/pickup-history';
+  static const CLAIM = '/claim';
+  static const RECEIVE_POINT = '/receive-point';
+  static const DROP_POINT = '/drop-point';
   static const KODE_BAYAR = '/kode-bayar';
   static const TRANSACTION_SUCCESS = '/transaction-success';
 }
