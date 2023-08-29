@@ -124,7 +124,6 @@ class PickupPointView extends GetView<PickupPointController> {
                 EcoSanButton(
                   onTap: () {
                     controller.setPickupPoint();
-                    Get.toNamed(Routes.REVIEW_PICKUP_POINT);
                   },
                   child: Text(
                     "Selanjutnya",

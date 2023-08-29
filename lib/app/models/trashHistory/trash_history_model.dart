@@ -2,6 +2,10 @@ import 'package:json_annotation/json_annotation.dart';
 
 part 'trash_history_model.g.dart';
 
+enum TrashHistoryStatus { order, onTheWay, waitingToClaim, completed, canceled }
+
+enum TrashHistoryType { pickup, dropoff }
+
 @JsonSerializable()
 class TrashHistory {
   final String? id;
@@ -14,8 +18,8 @@ class TrashHistory {
   final String time;
   final String note;
 
-  final String status;
-  final String type; // pickup or dropoff
+  final TrashHistoryStatus status;
+  final TrashHistoryType type; // pickup or dropoff
 
   final String trashBankName;
   final double? latitude;

@@ -6,7 +6,7 @@ import 'package:get/get.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 
 class AuthController extends GetxController {
-  static AuthController authInstance = Get.find();
+  static AuthController authInstance = Get.find<AuthController>();
   late Rx<User?> firebaseUser;
 
   late Rx<user_model.User> user;

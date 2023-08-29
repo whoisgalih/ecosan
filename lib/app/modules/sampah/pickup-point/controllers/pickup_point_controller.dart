@@ -1,11 +1,20 @@
+import 'package:ecosan/app/models/trashHistory/trash_history_model.dart';
 import 'package:ecosan/app/modules/auth/controllers/auth_controller.dart';
+import 'package:ecosan/app/routes/app_pages.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class PickupPointController extends GetxController {
+  static PickupPointController instance = Get.find<PickupPointController>();
+
+  // user data source
   final AuthController authController = AuthController.authInstance;
 
+  // form key
   final GlobalKey<FormState> pickupPointFormKey = GlobalKey<FormState>();
+
+  // form data
+  late TrashHistory trashHistory;
 
   // Text Editing Controller
   TextEditingController nameController = TextEditingController();
@@ -54,6 +63,11 @@ class PickupPointController extends GetxController {
     if (value == null || value.isEmpty) {
       return 'Berat kisaran tidak boleh kosong';
     }
+    try {
+      double.parse(value);
+    } catch (e) {
+      return 'Berat kisaran tidak valid';
+    }
     return null;
   }
 
@@ -70,6 +84,20 @@ class PickupPointController extends GetxController {
         trashTypeValue.value != null &&
         timeValue.value != null) {
       pickupPointFormKey.currentState!.save();
+      trashHistory = TrashHistory(
+        name: nameController.text,
+        phone: phoneController.text,
+        address: addressController.text,
+        trashType: trashTypeValue.value!,
+        weight: double.parse(weightController.text),
+        time: timeValue.value!,
+        note: noteController.text,
+        status: TrashHistoryStatus.order,
+        type: TrashHistoryType.pickup,
+        trashBankName: "TPS Kuningan Barat",
+      );
+
+      Get.toNamed(Routes.REVIEW_PICKUP_POINT);
     }
   }
 

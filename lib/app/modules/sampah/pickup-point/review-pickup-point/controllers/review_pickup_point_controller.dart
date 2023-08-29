@@ -1,11 +1,14 @@
 import 'dart:async';
 
+import 'package:ecosan/app/modules/sampah/pickup-point/controllers/pickup_point_controller.dart';
 import 'package:get/get.dart';
 import 'package:geolocator/geolocator.dart';
 
 enum LoadingState { loading, success, error }
 
 class ReviewPickupPointController extends GetxController {
+  PickupPointController pickupPointController = PickupPointController.instance;
+
   Rx<LoadingState> loadingState = LoadingState.loading.obs;
   Rx<Position> position = const Position(
     latitude: 0,

@@ -15,8 +15,8 @@ TrashHistory _$TrashHistoryFromJson(Map<String, dynamic> json) => TrashHistory(
       weight: (json['weight'] as num).toDouble(),
       time: json['time'] as String,
       note: json['note'] as String,
-      status: json['status'] as String,
-      type: json['type'] as String,
+      status: $enumDecode(_$TrashHistoryStatusEnumMap, json['status']),
+      type: $enumDecode(_$TrashHistoryTypeEnumMap, json['type']),
       trashBankName: json['trashBankName'] as String,
       latitude: (json['latitude'] as num?)?.toDouble(),
       longitude: (json['longitude'] as num?)?.toDouble(),
@@ -48,9 +48,22 @@ Map<String, dynamic> _$TrashHistoryToJson(TrashHistory instance) =>
       'weight': instance.weight,
       'time': instance.time,
       'note': instance.note,
-      'status': instance.status,
-      'type': instance.type,
+      'status': _$TrashHistoryStatusEnumMap[instance.status]!,
+      'type': _$TrashHistoryTypeEnumMap[instance.type]!,
       'trashBankName': instance.trashBankName,
       'latitude': instance.latitude,
       'longitude': instance.longitude,
     };
+
+const _$TrashHistoryStatusEnumMap = {
+  TrashHistoryStatus.order: 'order',
+  TrashHistoryStatus.onTheWay: 'onTheWay',
+  TrashHistoryStatus.waitingToClaim: 'waitingToClaim',
+  TrashHistoryStatus.completed: 'completed',
+  TrashHistoryStatus.canceled: 'canceled',
+};
+
+const _$TrashHistoryTypeEnumMap = {
+  TrashHistoryType.pickup: 'pickup',
+  TrashHistoryType.dropoff: 'dropoff',
+};
