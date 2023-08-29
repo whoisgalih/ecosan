@@ -1,8 +1,6 @@
 import 'dart:async';
 import 'dart:math';
 
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:ecosan/app/constants/firebase_constants.dart';
 import 'package:ecosan/app/models/user/transaction_model.dart'
     as transaction_model;
 

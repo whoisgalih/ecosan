@@ -1,7 +1,6 @@
 import 'dart:io';
 
 import 'package:ecosan/app/constants/firebase_constants.dart';
-import 'package:ecosan/app/models/user/user_model.dart';
 import 'package:ecosan/app/modules/home/controllers/home_controller.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
