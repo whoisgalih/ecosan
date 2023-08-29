@@ -1,7 +1,6 @@
 // create repository from trash history model
 
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:cloud_firestore_odm/cloud_firestore_odm.dart';
 import 'package:ecosan/app/constants/firebase_constants.dart';
 import 'package:ecosan/app/models/trashHistory/trash_history_model.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -16,10 +15,14 @@ class TrashHistoryRepository {
     return trashHistoryCollection.add(trashHistory.toJson());
   }
 
-  Future<void> update(TrashHistory trashHistory) async {
-    await trashHistoryCollection
-        .doc(trashHistory.id)
-        .update(trashHistory.toJson());
+  // get by id
+  Future<TrashHistory> get(String id) async {
+    final doc = await trashHistoryCollection.doc(id).get();
+    return TrashHistory.fromJson(doc.data() as Map<String, dynamic>);
+  }
+
+  Future<void> update(String id, Map<String, dynamic> data) async {
+    await trashHistoryCollection.doc(id).update(data);
   }
 
   Future<void> delete(TrashHistory trashHistory) async {

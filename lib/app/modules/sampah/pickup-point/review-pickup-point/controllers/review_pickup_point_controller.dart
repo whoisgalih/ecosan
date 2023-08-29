@@ -1,17 +1,15 @@
 import 'dart:async';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:ecosan/app/constants/firebase_constants.dart';
+import 'package:ecosan/app/constants/loading_state.dart';
 import 'package:ecosan/app/modules/sampah/pickup-point/controllers/pickup_point_controller.dart';
 import 'package:ecosan/app/repository/trash_history/trash_history_repository.dart';
 import 'package:ecosan/app/routes/app_pages.dart';
 import 'package:get/get.dart';
 import 'package:geolocator/geolocator.dart';
 
-enum LoadingState { loading, success, error }
-
 class ReviewPickupPointController extends GetxController {
-  PickupPointController pickupPointController = PickupPointController.instance;
+  late PickupPointController pickupPointController;
 
   Rx<LoadingState> loadingState = LoadingState.loading.obs;
   Rx<Position> position = const Position(
@@ -89,6 +87,7 @@ class ReviewPickupPointController extends GetxController {
   void onInit() {
     super.onInit();
     setPosition();
+    pickupPointController = PickupPointController.instance;
   }
 
   @override
@@ -99,5 +98,6 @@ class ReviewPickupPointController extends GetxController {
   @override
   void onClose() {
     super.onClose();
+    pickupPointController.dispose();
   }
 }
