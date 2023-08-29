@@ -21,9 +21,13 @@ class VerificationController extends GetxController {
       {"status": "waitingToClaim"},
     );
 
-    await Get.offNamedUntil(Routes.VERIFICATION_SUCCESS, (route) {
-      return route.settings.name == Routes.SAMPAH;
-    });
+    await Get.offNamedUntil(
+      Routes.VERIFICATION_SUCCESS,
+      (route) {
+        return route.settings.name == Routes.SAMPAH;
+      },
+      arguments: id,
+    );
   }
 
   @override

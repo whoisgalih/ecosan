@@ -25,10 +25,6 @@ class TrashHistoryRepository {
     await trashHistoryCollection.doc(id).update(data);
   }
 
-  Future<void> delete(TrashHistory trashHistory) async {
-    await trashHistoryCollection.doc(trashHistory.id).delete();
-  }
-
   Future<List<TrashHistory>> getAll() async {
     final querySnapshot = await trashHistoryCollection.get();
     return querySnapshot.docs.map((doc) {
