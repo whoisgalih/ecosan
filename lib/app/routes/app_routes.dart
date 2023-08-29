@@ -43,6 +43,10 @@ abstract class Routes {
   static const TRANSACTION_SUCCESS = _Paths.HOME + _Paths.TRANSACTION_SUCCESS;
   static const PREVIEW_DROP_POINT =
       _Paths.SAMPAH + _Paths.DROP_POINT + _Paths.PREVIEW_DROP_POINT;
+  static const INPUT_TRASH = _Paths.SAMPAH +
+      _Paths.DROP_POINT +
+      _Paths.PREVIEW_DROP_POINT +
+      _Paths.INPUT_TRASH;
 }
 
 abstract class _Paths {
@@ -76,4 +80,5 @@ abstract class _Paths {
   static const KODE_BAYAR = '/kode-bayar';
   static const TRANSACTION_SUCCESS = '/transaction-success';
   static const PREVIEW_DROP_POINT = '/preview-drop-point';
+  static const INPUT_TRASH = '/input-trash';
 }

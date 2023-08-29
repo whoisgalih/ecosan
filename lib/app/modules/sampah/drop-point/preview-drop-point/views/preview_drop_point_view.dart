@@ -1,5 +1,6 @@
 import 'package:ecosan/app/modules/themes/fonts.dart';
 import 'package:ecosan/app/modules/widgets/button.dart';
+import 'package:ecosan/app/routes/app_pages.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_map/flutter_map.dart';
 
@@ -87,10 +88,12 @@ class PreviewDropPointView extends GetView<PreviewDropPointController> {
                   bottom: MediaQuery.of(context).padding.bottom + 16,
                 ),
                 child: EcoSanButton(
-                  onTap: () {},
+                  onTap: () {
+                    Get.toNamed(Routes.INPUT_TRASH);
+                  },
                   child: Text(
-                    "Pilih Lokasi",
-                    style: TextStyle(color: Colors.white),
+                    "Antar Sekarang",
+                    style: TextStyles.normal.semibold(color: Colors.white),
                   ),
                 ),
               ),

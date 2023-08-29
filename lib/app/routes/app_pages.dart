@@ -43,6 +43,8 @@ import '../modules/profile/views/profile_view.dart';
 import '../modules/sampah/bindings/sampah_binding.dart';
 import '../modules/sampah/drop-point/bindings/drop_point_binding.dart';
 import '../modules/sampah/drop-point/preview-drop-point/bindings/preview_drop_point_binding.dart';
+import '../modules/sampah/drop-point/preview-drop-point/input-trash/bindings/input_trash_binding.dart';
+import '../modules/sampah/drop-point/preview-drop-point/input-trash/views/input_trash_view.dart';
 import '../modules/sampah/drop-point/preview-drop-point/views/preview_drop_point_view.dart';
 import '../modules/sampah/drop-point/views/drop_point_view.dart';
 import '../modules/sampah/pickup-point/bindings/pickup_point_binding.dart';
@@ -226,6 +228,13 @@ class AppPages {
               name: _Paths.PREVIEW_DROP_POINT,
               page: () => const PreviewDropPointView(),
               binding: PreviewDropPointBinding(),
+              children: [
+                GetPage(
+                  name: _Paths.INPUT_TRASH,
+                  page: () => const InputTrashView(),
+                  binding: InputTrashBinding(),
+                ),
+              ],
             ),
           ],
         ),
