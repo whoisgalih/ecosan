@@ -1,3 +1,4 @@
+import 'package:ecosan/app/models/dropPoint/drop_point_model.dart';
 import 'package:ecosan/app/modules/themes/fonts.dart';
 import 'package:ecosan/app/modules/widgets/button.dart';
 import 'package:ecosan/app/routes/app_pages.dart';
@@ -10,7 +11,13 @@ import 'package:latlong2/latlong.dart';
 import '../controllers/preview_drop_point_controller.dart';
 
 class PreviewDropPointView extends GetView<PreviewDropPointController> {
-  const PreviewDropPointView({Key? key}) : super(key: key);
+  final DropPoint dropPoint;
+
+  const PreviewDropPointView({
+    Key? key,
+    required this.dropPoint,
+  }) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -31,11 +38,7 @@ class PreviewDropPointView extends GetView<PreviewDropPointController> {
         children: [
           FlutterMap(
             options: MapOptions(
-              center: LatLng(
-                // give lat long of jakarta here
-                -6.1753924,
-                106.8271528,
-              ),
+              center: LatLng(dropPoint.latitude, dropPoint.longitude),
               zoom: 15.0,
               enableMultiFingerGestureRace: false,
               enableScrollWheel: false,
@@ -61,21 +64,21 @@ class PreviewDropPointView extends GetView<PreviewDropPointController> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      "Pengepul Indah Permai",
+                      dropPoint.name,
                       style: TextStyles.normal.semibold(),
                     ),
                     const SizedBox(
                       height: 8,
                     ),
                     Text(
-                      "Jl. S. Supriadi No.38 A, Sebelah Mesjid Al-Huda Jakarta Timur",
+                      dropPoint.address,
                       style: TextStyles.tiny,
                     ),
                     const SizedBox(
                       height: 8,
                     ),
                     Text(
-                      "083567383485",
+                      dropPoint.phone,
                       style: TextStyles.tiny,
                     ),
                   ],

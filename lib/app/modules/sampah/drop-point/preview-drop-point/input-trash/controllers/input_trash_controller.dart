@@ -6,7 +6,6 @@ class InputTrashController extends GetxController {
 
   TextEditingController nameController = TextEditingController();
   TextEditingController phoneController = TextEditingController();
-  TextEditingController addressController = TextEditingController();
   TextEditingController trashTypeController = TextEditingController();
   TextEditingController weightController = TextEditingController();
   TextEditingController timeController = TextEditingController();

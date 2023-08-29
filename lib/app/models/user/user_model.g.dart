@@ -41,7 +41,7 @@ Map<String, dynamic> _$UserToJson(User instance) => <String, dynamic>{
       'birthdate': instance.birthdate,
       'uid': instance.uid,
       'photoUrl': instance.photoUrl,
-      'transactions': instance.transactions.map((e) => e.toJson()).toList(),
-      'vouchers': instance.vouchers.map((e) => e.toJson()).toList(),
+      'transactions': instance.transactions,
+      'vouchers': instance.vouchers,
       'poin': instance.poin,
     };

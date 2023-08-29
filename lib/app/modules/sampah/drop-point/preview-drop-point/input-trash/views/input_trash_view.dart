@@ -63,13 +63,6 @@ class InputTrashView extends GetView<InputTrashController> {
                   controller: controller.phoneController,
                 ),
                 FormInput(
-                  icon: Icons.location_on,
-                  label: "Alamat",
-                  hint: "Masukkan alamat",
-                  keyboardType: TextInputType.streetAddress,
-                  controller: controller.addressController,
-                ),
-                FormInput(
                   icon: Icons.delete,
                   label: "Jenis Sampah",
                   hint: "Pilih jenis sampah",
