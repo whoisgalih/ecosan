@@ -2,7 +2,6 @@ import 'dart:async';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:ecosan/app/constants/loading_state.dart';
-import 'package:ecosan/app/modules/sampah/controllers/sampah_controller.dart';
 import 'package:ecosan/app/modules/sampah/pickup-point/controllers/pickup_point_controller.dart';
 import 'package:ecosan/app/repository/trash_history/trash_history_repository.dart';
 import 'package:ecosan/app/routes/app_pages.dart';
