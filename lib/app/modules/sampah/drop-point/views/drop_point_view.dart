@@ -1,5 +1,6 @@
 import 'package:ecosan/app/modules/themes/colors.dart';
 import 'package:ecosan/app/modules/themes/fonts.dart';
+import 'package:ecosan/app/routes/app_pages.dart';
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
@@ -105,7 +106,9 @@ class DropPointView extends GetView<DropPointController> {
                         child: Material(
                           color: EcoSanColors.primary,
                           child: InkWell(
-                            onTap: () {},
+                            onTap: () {
+                              Get.toNamed(Routes.PREVIEW_DROP_POINT);
+                            },
                             child: Padding(
                               padding: const EdgeInsets.symmetric(
                                   horizontal: 12, vertical: 4),
