@@ -1,6 +1,7 @@
 import 'package:ecosan/app/modules/home/views/home_view.dart';
 import 'package:ecosan/app/modules/themes/colors.dart';
 import 'package:ecosan/app/modules/themes/fonts.dart';
+import 'package:ecosan/app/modules/widgets/alert.dart';
 import 'package:ecosan/app/modules/widgets/bottom_bar.dart';
 import 'package:ecosan/app/modules/widgets/button.dart';
 import 'package:flutter/material.dart';
@@ -47,6 +48,9 @@ class ProfileView extends GetView<ProfileController> {
                       mainAxisAlignment: MainAxisAlignment.end,
                       children: [
                         CircleAvatar(
+                          backgroundImage: controller.user.photoUrl != null
+                              ? NetworkImage(controller.user.photoUrl!)
+                              : null,
                           radius: 45 / 360 * 100.w,
                           backgroundColor: Colors.white,
                         ),
@@ -61,46 +65,53 @@ class ProfileView extends GetView<ProfileController> {
                     padding: const EdgeInsets.only(),
                     child: Padding(
                       padding: EdgeInsets.only(right: 2.h),
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.end,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            controller.user.name,
-                            style: TextStyles.header3
-                                .bold()
-                                .copyWith(color: Colors.black),
-                          ),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            children: [
-                              const Icon(Icons.location_on, color: Colors.red),
-                              Text(controller.user.city,
-                                  style: TextStyles.small.copyWith(
-                                      color: const Color(0xFF94959A))),
-                            ],
-                          ),
-                          SizedBox(
-                            height: 1.h,
-                          ),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.end,
-                            children: [
-                              SizedBox(
-                                width: 132 / 360 * 100.w,
-                                child: EcoSanButton(
-                                    onTap: () => Get.toNamed('home/edit'),
-                                    child: Text(
-                                      'Edit Profile',
-                                      style: TextStyles.normal
-                                          .bold()
-                                          .copyWith(color: Colors.white),
-                                    )),
-                              ),
-                            ],
-                          )
-                        ],
+                      child: Obx(
+                        () => Column(
+                          mainAxisAlignment: MainAxisAlignment.end,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              controller.user.name,
+                              style: TextStyles.header3
+                                  .bold()
+                                  .copyWith(color: Colors.black),
+                            ),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              children: [
+                                const Icon(Icons.location_on,
+                                    color: Colors.red),
+                                Expanded(
+                                  child: Text(controller.user.city,
+                                      maxLines: 1,
+                                      overflow: TextOverflow.ellipsis,
+                                      style: TextStyles.small.copyWith(
+                                          color: const Color(0xFF94959A))),
+                                ),
+                              ],
+                            ),
+                            SizedBox(
+                              height: 1.h,
+                            ),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.end,
+                              children: [
+                                SizedBox(
+                                  width: 132 / 360 * 100.w,
+                                  child: EcoSanButton(
+                                      onTap: () => Get.toNamed('home/edit'),
+                                      child: Text(
+                                        'Edit Profile',
+                                        style: TextStyles.normal
+                                            .bold()
+                                            .copyWith(color: Colors.white),
+                                      )),
+                                ),
+                              ],
+                            )
+                          ],
+                        ),
                       ),
                     ),
                   )),
@@ -114,49 +125,51 @@ class ProfileView extends GetView<ProfileController> {
               color: Colors.white,
               width: double.infinity,
               padding: EdgeInsets.symmetric(horizontal: 1.5.h, vertical: 2.5.h),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Flexible(
-                      flex: 1,
-                      child: ProfileCard(
-                        title: 'Poinku',
-                        color: EcoSanColors.secondary,
-                        value: 10000,
-                        buttonStr: 'Tukarkan',
-                        onTap: () => Get.toNamed('home/poinku'),
-                        leadingWidget: Container(
-                            width: 32 / 360 * 100.w,
-                            height: 32 / 360 * 100.w,
-                            decoration: const BoxDecoration(
-                                shape: BoxShape.circle, color: Colors.white),
-                            child: const Center(
-                              child: Icon(
-                                Icons.attach_money_rounded,
-                                color: EcoSanColors.secondary,
-                              ),
-                            )),
-                      )),
-                  SizedBox(
-                    width: 2.5.h,
-                  ),
-                  Flexible(
-                      flex: 1,
-                      child: ProfileCard(
-                        color: EcoSanColors.primary,
-                        title: 'Voucherku',
-                        value: 5,
-                        buttonStr: 'Detail',
-                        onTap: () => Get.toNamed('home/voucherku'),
-                        leadingWidget: SizedBox(
-                            width: 32 / 360 * 100.w,
-                            height: 32 / 360 * 100.w,
-                            child: SvgPicture.asset(
-                              'assets/svgs/voucher.svg',
-                              color: Colors.white,
-                            )),
-                      )),
-                ],
+              child: Obx(
+                () => Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Flexible(
+                        flex: 1,
+                        child: ProfileCard(
+                          title: 'Poinku',
+                          color: EcoSanColors.secondary,
+                          value: controller.user.poin,
+                          buttonStr: 'Tukarkan',
+                          onTap: () => Get.toNamed('home/poinku'),
+                          leadingWidget: Container(
+                              width: 32 / 360 * 100.w,
+                              height: 32 / 360 * 100.w,
+                              decoration: const BoxDecoration(
+                                  shape: BoxShape.circle, color: Colors.white),
+                              child: const Center(
+                                child: Icon(
+                                  Icons.attach_money_rounded,
+                                  color: EcoSanColors.secondary,
+                                ),
+                              )),
+                        )),
+                    SizedBox(
+                      width: 2.5.h,
+                    ),
+                    Flexible(
+                        flex: 1,
+                        child: ProfileCard(
+                          color: EcoSanColors.primary,
+                          title: 'Voucherku',
+                          value: controller.user.vouchers.length,
+                          buttonStr: 'Detail',
+                          onTap: () => Get.toNamed('home/voucherku'),
+                          leadingWidget: SizedBox(
+                              width: 32 / 360 * 100.w,
+                              height: 32 / 360 * 100.w,
+                              child: SvgPicture.asset(
+                                'assets/svgs/voucher.svg',
+                                color: Colors.white,
+                              )),
+                        )),
+                  ],
+                ),
               ),
             ),
             SizedBox(
@@ -190,16 +203,65 @@ class ProfileView extends GetView<ProfileController> {
                       leading:
                           const Icon(Icons.logout, color: EcoSanColors.primary),
                       title: 'Keluar',
-                      ontap: () => Get.defaultDialog(
-                            title: 'Keluar',
-                            middleText: 'Apakah anda yakin ingin keluar?',
-                            textConfirm: 'Ya',
-                            textCancel: 'Tidak',
-                            confirmTextColor: Colors.white,
-                            onConfirm: () {
-                              controller.signOut();
-                            },
-                            onCancel: () {},
+                      ontap: () => showDialog(
+                            context: context,
+                            builder: (context) => EcosansAlert(
+                              title: 'Keluar',
+                              content: Column(
+                                mainAxisSize: MainAxisSize.min,
+                                children: [
+                                  SvgPicture.asset(
+                                    'assets/svgs/logout.svg',
+                                    height: 10.h,
+                                  ),
+                                  SizedBox(
+                                    height: 1.25.h,
+                                  ),
+                                  Text(
+                                    'Apakah anda yakin untuk keluar dari akun?',
+                                    textAlign: TextAlign.center,
+                                    style: TextStyles.small,
+                                  ),
+                                  SizedBox(
+                                    height: 2.5.h,
+                                  ),
+                                  Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.center,
+                                    children: [
+                                      Flexible(
+                                        flex: 1,
+                                        child: EcoSanButton(
+                                            color: Colors.white,
+                                            borderColor: EcoSanColors.primary,
+                                            onTap: () => Get.back(),
+                                            child: Text(
+                                              'Batal',
+                                              style: TextStyles.tiny.bold(
+                                                  color: EcoSanColors.primary),
+                                            )),
+                                      ),
+                                      SizedBox(
+                                        width: 2.h,
+                                      ),
+                                      Flexible(
+                                        flex: 1,
+                                        child: EcoSanButton(
+                                            onTap: () => controller.signOut(),
+                                            color: EcoSanColors.primary,
+                                            child: Text(
+                                              'Keluar',
+                                              style: TextStyles.tiny
+                                                  .bold(color: Colors.white),
+                                            )),
+                                      )
+                                    ],
+                                  )
+                                ],
+                              ),
+                            ),
                           ))
                 ],
               ),

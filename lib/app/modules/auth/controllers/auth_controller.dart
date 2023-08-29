@@ -31,11 +31,8 @@ class AuthController extends GetxController {
 
   _setInitialScreen(User? user) async {
     if (user != null) {
-      // user is logged in
       DocumentSnapshot<Map<String, dynamic>> userData =
           await firestore.collection("users").doc(user.uid).get();
-
-      print(userData.data());
 
       if (userData.exists) {
         this.user = user_model.User.fromJson(userData.data()!).obs;
@@ -148,8 +145,17 @@ class AuthController extends GetxController {
         "name": user.value.name,
         "phone": user.value.phone,
         "city": user.value.city,
+        "photoUrl": user.value.photoUrl,
+        "birthdate": user.value.birthdate,
+        "transactions": user.value.transactions
+            .map((transaction) => transaction.toJson())
+            .toList(),
+        "vouchers":
+            user.value.vouchers.map((voucher) => voucher.toJson()).toList(),
+        "poin": user.value.poin,
       });
-      Get.snackbar('Sukses', 'Berhasil mengupdate profile');
+      user.refresh();
+      print('done updating');
     } catch (e) {
       Get.snackbar('error found', e.toString());
     }

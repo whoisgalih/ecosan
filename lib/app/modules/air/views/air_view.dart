@@ -1,7 +1,7 @@
-import 'package:ecosan/app/modules/home/widgets/air_history.dart';
-import 'package:ecosan/app/modules/home/widgets/aircamera.dart';
-import 'package:ecosan/app/modules/home/widgets/airchip.dart';
-import 'package:ecosan/app/modules/home/widgets/sensor_air.dart';
+import 'package:ecosan/app/modules/air/widgets/air_history.dart';
+import 'package:ecosan/app/modules/air/widgets/aircamera.dart';
+import 'package:ecosan/app/modules/air/widgets/airchip.dart';
+import 'package:ecosan/app/modules/air/widgets/sensor_air.dart';
 import 'package:ecosan/app/modules/themes/colors.dart';
 import 'package:ecosan/app/modules/widgets/bottom_bar.dart';
 import 'package:flutter/material.dart';
@@ -22,7 +22,7 @@ class AirView extends GetView<AirController> {
       ),
       body: SingleChildScrollView(
         child: Container(
-          margin: EdgeInsets.all(16),
+          margin: const EdgeInsets.all(16),
           child: Column(
             children: [
               Container(

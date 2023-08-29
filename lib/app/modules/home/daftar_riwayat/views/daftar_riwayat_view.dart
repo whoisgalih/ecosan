@@ -1,3 +1,6 @@
+import 'package:ecosan/app/constants/utils.dart';
+import 'package:ecosan/app/models/user/transaction_model.dart';
+import 'package:ecosan/app/modules/home/controllers/home_controller.dart';
 import 'package:ecosan/app/modules/themes/colors.dart';
 import 'package:ecosan/app/modules/themes/fonts.dart';
 import 'package:flutter/material.dart';
@@ -71,130 +74,153 @@ class DaftarRiwayatView extends GetView<DaftarRiwayatController> {
               SizedBox(
                 height: 2.h,
               ),
-              Expanded(
-                  child: ListView.separated(
-                itemCount: 10,
-                separatorBuilder: (context, index) => SizedBox(
-                  height: 1.5.h,
-                ),
-                itemBuilder: (context, index) => Container(
-                  width: double.infinity,
-                  height: 181 / 800 * 100.h,
-                  padding:
-                      EdgeInsets.symmetric(vertical: 2.25.h, horizontal: 1.5.h),
-                  decoration: BoxDecoration(
-                      boxShadow: const [
-                        BoxShadow(
-                          color: Color.fromRGBO(0, 0, 0, 0.25),
-                          offset: Offset(0, 4), // Atur offset shadow (x, y)
-                          blurRadius: 4, // Blur radius
-                          spreadRadius: 0, // Jarak penyebaran shadow
-                        ),
-                      ],
-                      borderRadius: BorderRadius.circular(6),
-                      border: Border.all(color: EcoSanColors.primary, width: 1),
-                      color: Colors.white),
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: [
-                          Container(
-                            padding: EdgeInsets.all(0.5.h),
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(6),
-                              color: EcoSanColors.primary,
-                            ),
-                            child:
-                                SvgPicture.asset('assets/svgs/water_drop.svg'),
-                          ),
-                          SizedBox(width: 0.5.h),
-                          Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text(
-                                'Sanitasi Air',
-                                style: TextStyles.normal
-                                    .extraBold()
-                                    .copyWith(color: EcoSanColors.primary),
-                              ),
-                              Text(
-                                '1 Agustus 2023',
-                                style: TextStyles.tiny
-                                    .copyWith(color: const Color(0xFF838383)),
-                              )
-                            ],
-                          ),
-                          const Spacer(),
-                          Container(
-                            padding: EdgeInsets.all(0.5.h),
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(6),
-                              color: const Color(0xFF85E0A3),
-                            ),
-                            child: Text(
-                              'Berhasil',
-                              style: TextStyles.tiny
-                                  .semibold()
-                                  .copyWith(color: const Color(0xFFFFFFFF)),
-                            ),
-                          )
-                        ],
-                      ),
-                      SizedBox(
-                        height: 1.5.h,
-                      ),
-                      Text('Pembersihan Filter',
-                          style: TextStyles.small
-                              .bold()
-                              .copyWith(color: Color(0xFF55565A))),
-                      SizedBox(
-                        height: 1.5.h,
-                      ),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: [
-                          Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text(
-                                'Total Harga',
-                                style: TextStyles.tiny,
-                              ),
-                              Text(
-                                'Rp. 100.000',
-                                style: TextStyles.small.semibold(),
-                              )
-                            ],
-                          ),
-                          Container(
-                            padding: EdgeInsets.symmetric(
-                                horizontal: 1.5.h, vertical: 0.5.h),
-                            decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(6),
-                                color: Color(0xFF14AE5C),
-                                border: Border.all(
-                                    color: Color(0xFF14AE5C), width: 1)),
-                            child: Text(
-                              'Pesan Lagi',
-                              style: TextStyles.tiny
-                                  .semibold()
-                                  .copyWith(color: Colors.white),
-                            ),
-                          )
-                        ],
-                      )
-                    ],
+              Obx(
+                () => Expanded(
+                    child: ListView.separated(
+                  itemCount: HomeController.i.user.value.transactions.length,
+                  separatorBuilder: (context, index) => SizedBox(
+                    height: 1.5.h,
                   ),
-                ),
-              ))
+                  itemBuilder: (context, index) => riwayatCard(HomeController
+                      .i.user.value.transactions
+                      .elementAt(index)),
+                )),
+              )
             ],
           ),
         ));
+  }
+
+  Container riwayatCard(Transaction transaction) {
+    Color typeColor;
+    String svgAsset;
+    bool isAirSanitation = transaction.orderType == 'Pemasangan Alat' ||
+        transaction.orderType == 'Pembersihan Filter';
+    if (isAirSanitation) {
+      typeColor = EcoSanColors.primary;
+      svgAsset = 'assets/svgs/water_drop.svg';
+    } else {
+      typeColor = EcoSanColors.secondary;
+      svgAsset = 'assets/svgs/trash.svg';
+    }
+
+    String dateFormatter() {
+      DateTime date = DateTime.parse(transaction.orderDate);
+      return '${date.day} ${Utils.getMonthFromInt(date.month)} ${date.year}';
+    }
+
+    return Container(
+      width: double.infinity,
+      height: 181 / 800 * 100.h,
+      padding: EdgeInsets.symmetric(vertical: 2.25.h, horizontal: 1.5.h),
+      decoration: BoxDecoration(
+          boxShadow: const [
+            BoxShadow(
+              color: Color.fromRGBO(0, 0, 0, 0.25),
+              offset: Offset(0, 4),
+              blurRadius: 4,
+              spreadRadius: 0,
+            ),
+          ],
+          borderRadius: BorderRadius.circular(6),
+          border: Border.all(color: typeColor, width: 1),
+          color: Colors.white),
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Row(
+            mainAxisAlignment: MainAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              Container(
+                padding: EdgeInsets.all(0.5.h),
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(6),
+                  color: typeColor,
+                ),
+                child: SvgPicture.asset(svgAsset),
+              ),
+              SizedBox(width: 0.5.h),
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    isAirSanitation ? 'Sanitasi Air' : 'Sanitasi Sampah',
+                    style: TextStyles.normal
+                        .extraBold()
+                        .copyWith(color: typeColor),
+                  ),
+                  Text(
+                    dateFormatter(),
+                    style: TextStyles.tiny
+                        .copyWith(color: const Color(0xFF838383)),
+                  )
+                ],
+              ),
+              const Spacer(),
+              Container(
+                padding: EdgeInsets.all(0.5.h),
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(6),
+                  color: transaction.status != 'pending'
+                      ? const Color(0xFF85E0A3)
+                      : EcoSanColors.secondary,
+                ),
+                child: Text(
+                  transaction.status,
+                  style: TextStyles.tiny
+                      .semibold()
+                      .copyWith(color: const Color(0xFFFFFFFF)),
+                ),
+              )
+            ],
+          ),
+          SizedBox(
+            height: 1.5.h,
+          ),
+          Text(transaction.orderType,
+              style: TextStyles.small
+                  .bold()
+                  .copyWith(color: const Color(0xFF55565A))),
+          SizedBox(
+            height: 1.5.h,
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    'Total Harga',
+                    style: TextStyles.tiny,
+                  ),
+                  Text(
+                    Utils.rupiahFormatter(transaction.price),
+                    style: TextStyles.small.semibold(),
+                  )
+                ],
+              ),
+              Container(
+                padding:
+                    EdgeInsets.symmetric(horizontal: 1.5.h, vertical: 0.5.h),
+                decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(6),
+                    color: Color(0xFF14AE5C),
+                    border: Border.all(color: Color(0xFF14AE5C), width: 1)),
+                child: Text(
+                  'Pesan Lagi',
+                  style:
+                      TextStyles.tiny.semibold().copyWith(color: Colors.white),
+                ),
+              )
+            ],
+          )
+        ],
+      ),
+    );
   }
 }
 

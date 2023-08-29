@@ -6,7 +6,11 @@ class HomeController extends GetxController {
   final AuthController authController = AuthController.authInstance;
   static HomeController i = Get.find();
 
-  User get user => authController.user.value;
+  Rx<User> get user => authController.user;
+
+  void setUser(User user){
+    authController.user.value = user;
+  }
 
   @override
   void onInit() {

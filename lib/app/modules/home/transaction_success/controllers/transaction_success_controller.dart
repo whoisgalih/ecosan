@@ -1,7 +1,7 @@
 import 'package:get/get.dart';
 
-class PemasanganAlatController extends GetxController {
-  //TODO: Implement PemasanganAlatController
+class TransactionSuccessController extends GetxController {
+  //TODO: Implement TransactionSuccessController
 
   final count = 0.obs;
   @override

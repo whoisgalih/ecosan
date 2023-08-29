@@ -1,12 +1,15 @@
+import 'package:ecosan/app/models/user/user_model.dart';
+import 'package:ecosan/app/modules/auth/controllers/auth_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-class PembersihanFilterController extends GetxController {
+class PemasanganAlatController extends GetxController {
   final formKey = GlobalKey<FormState>();
   final pengaduanController = TextEditingController();
   final nameController = TextEditingController();
   final numberController = TextEditingController();
   final addressController = TextEditingController();
+  User get user =>AuthController.authInstance.user.value;
   @override
   void onInit() {
     super.onInit();
@@ -15,7 +18,9 @@ class PembersihanFilterController extends GetxController {
   @override
   void onReady() {
     super.onReady();
-    pengaduanController.text = 'Pembersihan Filter';
+    pengaduanController.text = 'Sensor Air';
+    nameController.text = user.name;
+    numberController.text = user.phone.replaceFirst('0', '+').replaceFirst('8', '62');
   }
 
   @override
