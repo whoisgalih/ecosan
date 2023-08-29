@@ -46,6 +46,8 @@ import '../modules/sampah/drop-point/preview-drop-point/bindings/preview_drop_po
 import '../modules/sampah/drop-point/preview-drop-point/input-trash/bindings/input_trash_binding.dart';
 import '../modules/sampah/drop-point/preview-drop-point/input-trash/views/input_trash_view.dart';
 import '../modules/sampah/drop-point/preview-drop-point/views/preview_drop_point_view.dart';
+import '../modules/sampah/drop-point/verification/bindings/verification_binding.dart';
+import '../modules/sampah/drop-point/verification/views/verification_view.dart';
 import '../modules/sampah/drop-point/views/drop_point_view.dart';
 import '../modules/sampah/pickup-point/bindings/pickup_point_binding.dart';
 import '../modules/sampah/pickup-point/pickup-history/bindings/pickup_history_binding.dart';
@@ -235,6 +237,11 @@ class AppPages {
                   binding: InputTrashBinding(),
                 ),
               ],
+            ),
+            GetPage(
+              name: _Paths.VERIFICATION,
+              page: () => const VerificationView(),
+              binding: VerificationBinding(),
             ),
           ],
         ),

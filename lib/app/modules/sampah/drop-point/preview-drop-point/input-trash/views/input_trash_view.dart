@@ -1,6 +1,7 @@
 import 'package:ecosan/app/modules/themes/fonts.dart';
 import 'package:ecosan/app/modules/widgets/button.dart';
 import 'package:ecosan/app/modules/widgets/form_input.dart';
+import 'package:ecosan/app/routes/app_pages.dart';
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
@@ -98,7 +99,12 @@ class InputTrashView extends GetView<InputTrashController> {
                   controller: controller.noteController,
                 ),
                 EcoSanButton(
-                  onTap: () {},
+                  onTap: () {
+                    Get.offNamedUntil(
+                      Routes.VERIFICATION,
+                      (route) => route.settings.name == Routes.SAMPAH,
+                    );
+                  },
                   child: Text(
                     "Selanjutnya",
                     style: TextStyles.normal.bold(
