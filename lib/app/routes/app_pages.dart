@@ -232,7 +232,9 @@ class AppPages {
           children: [
             GetPage(
               name: _Paths.PREVIEW_DROP_POINT,
-              page: () => const PreviewDropPointView(),
+              page: () => PreviewDropPointView(
+                dropPoint: Get.arguments,
+              ),
               binding: PreviewDropPointBinding(),
               children: [
                 GetPage(

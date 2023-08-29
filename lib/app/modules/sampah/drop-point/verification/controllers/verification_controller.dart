@@ -1,3 +1,5 @@
+import 'package:ecosan/app/models/trashHistory/trash_history_model.dart';
+import 'package:ecosan/app/repository/trash_history/trash_history_repository.dart';
 import 'package:ecosan/app/routes/app_pages.dart';
 import 'package:get/get.dart';
 
@@ -12,6 +14,14 @@ class VerificationController extends GetxController {
         count.value--;
       });
     }
+
+    String id = Get.arguments;
+
+    trashHistoryRepository.update(
+      id,
+      {"status": "waitingToClaim"},
+    );
+
     await Get.offNamedUntil(Routes.VERIFICATION_SUCCESS, (route) {
       return route.settings.name == Routes.SAMPAH;
     });

@@ -1,7 +1,7 @@
+import 'package:ecosan/app/modules/auth/register/data-diri/views/data_diri_view.dart';
 import 'package:ecosan/app/modules/themes/fonts.dart';
 import 'package:ecosan/app/modules/widgets/button.dart';
 import 'package:ecosan/app/modules/widgets/form_input.dart';
-import 'package:ecosan/app/routes/app_pages.dart';
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
@@ -53,6 +53,7 @@ class PickupPointView extends GetView<PickupPointController> {
                   hint: "Masukkan nama lengkap",
                   keyboardType: TextInputType.name,
                   controller: controller.nameController,
+                  validator: controller.nameValidator,
                 ),
                 FormInput(
                   icon: Icons.phone,
@@ -60,6 +61,7 @@ class PickupPointView extends GetView<PickupPointController> {
                   hint: "Masukkan nomor telepon",
                   keyboardType: TextInputType.phone,
                   controller: controller.phoneController,
+                  validator: controller.phoneValidator,
                 ),
                 FormInput(
                   icon: Icons.location_on,
@@ -67,28 +69,38 @@ class PickupPointView extends GetView<PickupPointController> {
                   hint: "Masukkan alamat",
                   keyboardType: TextInputType.streetAddress,
                   controller: controller.addressController,
+                  validator: controller.addressValidator,
                 ),
-                FormInput(
-                  icon: Icons.delete,
-                  label: "Jenis Sampah",
+                EcoSanDropDown(
+                  title: "Jenis Sampah",
                   hint: "Pilih jenis sampah",
-                  keyboardType: TextInputType.none,
-                  controller: controller.trashTypeController,
+                  icon: Icons.delete,
+                  selectedValue: controller.trashTypeValue.value,
+                  onChanged: (value) {
+                    controller.trashTypeValue.value = value;
+                  },
+                  validator: controller.trashTypeValidator,
+                  options: ["Organik", "Anorganik"],
                 ),
-                // berat kisaran
                 FormInput(
                   icon: Icons.scale,
                   label: "Berat Kisaran",
                   hint: "Masukkan berat kisaran",
                   keyboardType: TextInputType.number,
                   controller: controller.weightController,
+                  validator: controller.weightValidator,
                 ),
-                FormInput(
-                  icon: Icons.watch_later,
-                  label: "Waktu Pengambilan",
+                EcoSanDropDown(
+                  title: "Waktu Pengambilan",
                   hint: "Pilih waktu pengambilan",
-                  keyboardType: TextInputType.datetime,
-                  controller: controller.timeController,
+                  icon: Icons.watch_later,
+                  selectedValue: controller.timeValue.value,
+                  onChanged: (value) {
+                    controller.timeValue.value = value;
+                  },
+                  validator: controller.timeValidator,
+                  // genereate time from 8 am to 5 pm every 2 hours
+                  options: ["08.00", "10.00", "12.00", "14.00", "16.00"],
                 ),
                 FormInput(
                   icon: Icons.description,
@@ -97,9 +109,12 @@ class PickupPointView extends GetView<PickupPointController> {
                   keyboardType: TextInputType.text,
                   controller: controller.noteController,
                 ),
+                const SizedBox(
+                  height: 16,
+                ),
                 EcoSanButton(
                   onTap: () {
-                    Get.toNamed(Routes.REVIEW_PICKUP_POINT);
+                    controller.setPickupPoint();
                   },
                   child: Text(
                     "Selanjutnya",

@@ -1,11 +1,16 @@
 import 'dart:async';
 
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:ecosan/app/constants/loading_state.dart';
+import 'package:ecosan/app/modules/sampah/pickup-point/controllers/pickup_point_controller.dart';
+import 'package:ecosan/app/repository/trash_history/trash_history_repository.dart';
+import 'package:ecosan/app/routes/app_pages.dart';
 import 'package:get/get.dart';
 import 'package:geolocator/geolocator.dart';
 
-enum LoadingState { loading, success, error }
-
 class ReviewPickupPointController extends GetxController {
+  late PickupPointController pickupPointController;
+
   Rx<LoadingState> loadingState = LoadingState.loading.obs;
   Rx<Position> position = const Position(
     latitude: 0,
@@ -48,17 +53,42 @@ class ReviewPickupPointController extends GetxController {
 
   void setPosition() async {
     Position pos = await determinePosition();
-    print("Latitude: ${pos.latitude}");
-    print("Longitude: ${pos.longitude}");
     position.value = pos;
     loadingState.value = LoadingState.success;
   }
 
-  final count = 0.obs;
+  void setPositionToTrashHistory() {
+    pickupPointController.trashHistory.latitude = position.value.latitude;
+    pickupPointController.trashHistory.longitude = position.value.longitude;
+  }
+
+  void submit() async {
+    setPositionToTrashHistory();
+    try {
+      final DocumentReference trashHistory =
+          await trashHistoryRepository.add(pickupPointController.trashHistory);
+
+      final String id = trashHistory.id;
+      print(id);
+
+      pickupPointController.dispose();
+      Get.offNamedUntil(
+        Routes.KONFIRMASI_KURIR,
+        (route) {
+          return route.settings.name == Routes.SAMPAH;
+        },
+        arguments: id,
+      );
+    } catch (e) {
+      Get.snackbar('error found', e.toString());
+    }
+  }
+
   @override
   void onInit() {
     super.onInit();
     setPosition();
+    pickupPointController = Get.find<PickupPointController>();
   }
 
   @override
@@ -70,6 +100,4 @@ class ReviewPickupPointController extends GetxController {
   void onClose() {
     super.onClose();
   }
-
-  void increment() => count.value++;
 }

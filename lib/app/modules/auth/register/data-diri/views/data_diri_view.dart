@@ -76,6 +76,9 @@ class DataDiriView extends GetView<DataDiriController> {
                       validator: controller.dateValidator,
                     ),
                     EcoSanDropDown(
+                      title: "Asal Kota",
+                      hint: "Pilih asal kota",
+                      icon: Icons.location_city,
                       selectedValue: controller.cityValue.value,
                       onChanged: (value) {
                         controller.cityValue.value = value;
@@ -110,7 +113,14 @@ class EcoSanDropDown extends StatelessWidget {
     required this.onChanged,
     required this.validator,
     required this.options,
+    required this.title,
+    required this.hint,
+    required this.icon,
   });
+
+  final String title;
+  final String hint;
+  final IconData icon;
 
   final dynamic selectedValue;
   final ValueChanged onChanged;
@@ -119,28 +129,29 @@ class EcoSanDropDown extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Text(
-          'Asal Kota',
-          style: TextStyles.tiny.bold(),
-        ),
-        SizedBox(height: 4),
-        Obx(
-          () => DropdownButtonFormField(
+    return Container(
+      margin: EdgeInsets.only(bottom: 16),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            title,
+            style: TextStyles.tiny.bold(),
+          ),
+          SizedBox(height: 4),
+          DropdownButtonFormField(
             validator: validator,
             dropdownColor: Colors.white,
             value: selectedValue,
             onChanged: onChanged,
-            decoration: const InputDecoration(
+            decoration: InputDecoration(
               prefixIcon: Icon(
-                Icons.location_city,
+                icon,
                 size: 24,
               ),
             ),
             style: TextStyles.tiny.copyWith(color: Colors.black),
-            hint: const Text('Pilih Asal Kota'),
+            hint: Text(hint),
             items: options.map((e) {
               return DropdownMenuItem(
                 value: e,
@@ -148,8 +159,8 @@ class EcoSanDropDown extends StatelessWidget {
               );
             }).toList(),
           ),
-        ),
-      ],
+        ],
+      ),
     );
   }
 }

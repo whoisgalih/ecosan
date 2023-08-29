@@ -1,3 +1,4 @@
+import 'package:ecosan/app/repository/trash_history/trash_history_repository.dart';
 import 'package:ecosan/app/routes/app_pages.dart';
 import 'package:get/get.dart';
 
@@ -13,9 +14,21 @@ class KonfirmasiKurirController extends GetxController {
         count.value--;
       });
     }
-    await Get.offNamedUntil(Routes.PICKUP_HISTORY, (route) {
-      return route.settings.name == Routes.SAMPAH;
+
+    String id = Get.arguments;
+
+    await trashHistoryRepository.update(id, {
+      "status": "onTheWay",
     });
+
+    // SampahController.instance.getTrashHistories();
+    Get.offNamedUntil(
+      Routes.PICKUP_HISTORY,
+      (route) {
+        return route.settings.name == Routes.SAMPAH;
+      },
+      arguments: id,
+    );
   }
 
   @override

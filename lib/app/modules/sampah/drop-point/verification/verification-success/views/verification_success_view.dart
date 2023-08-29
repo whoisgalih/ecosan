@@ -31,14 +31,7 @@ class VerificationSuccessView extends GetView<VerificationSuccessController> {
         svgPath: "assets/svgs/verifikasi-operator.svg",
         buttonText: 'Klaim Poin',
         onTap: () {
-          Get.offNamedUntil(
-            Routes.RECEIVE_POINT,
-            (route) => route.settings.name == Routes.SAMPAH,
-            arguments: ReceivePointViewArguments(
-              point: 1000,
-              message: "Karena telah menggunakan layanan drop poin sampah",
-            ),
-          );
+          controller.submit();
         },
       ),
     );

@@ -1,3 +1,4 @@
+import 'package:ecosan/app/modules/auth/register/data-diri/views/data_diri_view.dart';
 import 'package:ecosan/app/modules/themes/fonts.dart';
 import 'package:ecosan/app/modules/widgets/button.dart';
 import 'package:ecosan/app/modules/widgets/form_input.dart';
@@ -54,6 +55,7 @@ class InputTrashView extends GetView<InputTrashController> {
                   hint: "Masukkan nama lengkap",
                   keyboardType: TextInputType.name,
                   controller: controller.nameController,
+                  validator: controller.nameValidator,
                 ),
                 FormInput(
                   icon: Icons.phone,
@@ -61,35 +63,38 @@ class InputTrashView extends GetView<InputTrashController> {
                   hint: "Masukkan nomor telepon",
                   keyboardType: TextInputType.phone,
                   controller: controller.phoneController,
+                  validator: controller.phoneValidator,
                 ),
-                FormInput(
-                  icon: Icons.location_on,
-                  label: "Alamat",
-                  hint: "Masukkan alamat",
-                  keyboardType: TextInputType.streetAddress,
-                  controller: controller.addressController,
-                ),
-                FormInput(
-                  icon: Icons.delete,
-                  label: "Jenis Sampah",
+                EcoSanDropDown(
+                  title: "Jenis Sampah",
                   hint: "Pilih jenis sampah",
-                  keyboardType: TextInputType.none,
-                  controller: controller.trashTypeController,
+                  icon: Icons.delete,
+                  selectedValue: controller.trashTypeValue.value,
+                  onChanged: (value) {
+                    controller.trashTypeValue.value = value;
+                  },
+                  validator: controller.trashTypeValidator,
+                  options: ["Organik", "Anorganik"],
                 ),
-                // berat kisaran
                 FormInput(
                   icon: Icons.scale,
                   label: "Berat Kisaran",
                   hint: "Masukkan berat kisaran",
                   keyboardType: TextInputType.number,
                   controller: controller.weightController,
+                  validator: controller.weightValidator,
                 ),
-                FormInput(
-                  icon: Icons.watch_later,
-                  label: "Waktu Pengambilan",
+                EcoSanDropDown(
+                  title: "Waktu Pengambilan",
                   hint: "Pilih waktu pengambilan",
-                  keyboardType: TextInputType.datetime,
-                  controller: controller.timeController,
+                  icon: Icons.watch_later,
+                  selectedValue: controller.timeValue.value,
+                  onChanged: (value) {
+                    controller.timeValue.value = value;
+                  },
+                  validator: controller.timeValidator,
+                  // genereate time from 8 am to 5 pm every 2 hours
+                  options: ["08.00", "10.00", "12.00", "14.00", "16.00"],
                 ),
                 FormInput(
                   icon: Icons.description,
@@ -98,12 +103,12 @@ class InputTrashView extends GetView<InputTrashController> {
                   keyboardType: TextInputType.text,
                   controller: controller.noteController,
                 ),
+                const SizedBox(
+                  height: 16,
+                ),
                 EcoSanButton(
                   onTap: () {
-                    Get.offNamedUntil(
-                      Routes.VERIFICATION,
-                      (route) => route.settings.name == Routes.SAMPAH,
-                    );
+                    controller.setDropPoint();
                   },
                   child: Text(
                     "Selanjutnya",
