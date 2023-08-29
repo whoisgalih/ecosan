@@ -11,7 +11,7 @@ class TrashHistory {
   final String? id;
   final String name;
   final String phone;
-  final String address;
+  final String? address;
 
   final String trashType;
   final double weight;
@@ -29,7 +29,7 @@ class TrashHistory {
     this.id,
     required this.name,
     required this.phone,
-    required this.address,
+    this.address,
     required this.trashType,
     required this.weight,
     required this.time,

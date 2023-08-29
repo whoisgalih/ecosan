@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:ecosan/app/models/dropPoint/drop_point_model.dart';
+import 'package:ecosan/app/modules/auth/controllers/auth_controller.dart';
 import 'package:get/get.dart';
 
 class DropPointController extends GetxController {
@@ -18,6 +19,7 @@ class DropPointController extends GetxController {
   @override
   void onInit() {
     super.onInit();
+    getDropPoint();
   }
 
   @override

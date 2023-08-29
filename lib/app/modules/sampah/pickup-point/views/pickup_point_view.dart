@@ -82,14 +82,6 @@ class PickupPointView extends GetView<PickupPointController> {
                   validator: controller.trashTypeValidator,
                   options: ["Organik", "Anorganik"],
                 ),
-                // FormInput(
-                //   icon: Icons.delete,
-                //   label: "Jenis Sampah",
-                //   hint: "Pilih jenis sampah",
-                //   keyboardType: TextInputType.none,
-                //   controller: controller.trashTypeController,
-                // ),
-                // berat kisaran
                 FormInput(
                   icon: Icons.scale,
                   label: "Berat Kisaran",

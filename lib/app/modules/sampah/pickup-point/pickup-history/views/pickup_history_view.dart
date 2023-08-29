@@ -105,7 +105,7 @@ class PickupHistoryView extends GetView<PickupHistoryController> {
                               height: 4,
                             ),
                             Text(
-                              controller.trashHistory.value!.address,
+                              controller.trashHistory.value!.address!,
                               style: TextStyles.tiny,
                               textAlign: TextAlign.start,
                             ),

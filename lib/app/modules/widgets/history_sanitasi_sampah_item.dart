@@ -29,6 +29,21 @@ class HistorySanitasiSampahItem extends StatelessWidget {
         Get.toNamed(Routes.KONFIRMASI_KURIR, arguments: trashHistory.id);
       }
     }
+
+    if (!trashHistory.isPickup()) {
+      if (trashHistory.status == TrashHistoryStatus.onTheWay) {
+        Get.toNamed(Routes.VERIFICATION, arguments: trashHistory.id);
+      }
+
+      if (trashHistory.status == TrashHistoryStatus.waitingToClaim) {
+        Get.toNamed(Routes.VERIFICATION_SUCCESS, arguments: trashHistory.id);
+      }
+
+      if (trashHistory.status == TrashHistoryStatus.completed) {
+        Get.snackbar(
+            "Sampah telah diambil", "Terima kasih telah berpartisipasi");
+      }
+    }
   }
 
   @override

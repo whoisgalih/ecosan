@@ -92,7 +92,7 @@ class PreviewDropPointView extends GetView<PreviewDropPointController> {
                 ),
                 child: EcoSanButton(
                   onTap: () {
-                    Get.toNamed(Routes.INPUT_TRASH);
+                    Get.toNamed(Routes.INPUT_TRASH, arguments: dropPoint.name);
                   },
                   child: Text(
                     "Antar Sekarang",

@@ -111,7 +111,7 @@ class ReviewPickupPointView extends GetView<ReviewPickupPointController> {
                       height: 4,
                     ),
                     Text(
-                      controller.pickupPointController.trashHistory.address,
+                      controller.pickupPointController.trashHistory.address!,
                       style: TextStyles.tiny,
                       textAlign: TextAlign.start,
                     ),

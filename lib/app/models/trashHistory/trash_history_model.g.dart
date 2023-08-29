@@ -10,7 +10,7 @@ TrashHistory _$TrashHistoryFromJson(Map<String, dynamic> json) => TrashHistory(
       id: json['id'] as String?,
       name: json['name'] as String,
       phone: json['phone'] as String,
-      address: json['address'] as String,
+      address: json['address'] as String?,
       trashType: json['trashType'] as String,
       weight: (json['weight'] as num).toDouble(),
       time: json['time'] as String,
@@ -40,6 +40,7 @@ const _$TrashHistoryFieldMap = <String, String>{
 
 Map<String, dynamic> _$TrashHistoryToJson(TrashHistory instance) =>
     <String, dynamic>{
+      'id': instance.id,
       'name': instance.name,
       'phone': instance.phone,
       'address': instance.address,
