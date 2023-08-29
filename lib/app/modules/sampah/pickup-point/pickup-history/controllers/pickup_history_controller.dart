@@ -1,6 +1,8 @@
 import 'package:ecosan/app/constants/loading_state.dart';
 import 'package:ecosan/app/models/trashHistory/trash_history_model.dart';
+import 'package:ecosan/app/modules/sampah/controllers/sampah_controller.dart';
 import 'package:ecosan/app/repository/trash_history/trash_history_repository.dart';
+import 'package:ecosan/app/routes/app_pages.dart';
 import 'package:get/get.dart';
 
 class PickupHistoryController extends GetxController {
@@ -21,6 +23,24 @@ class PickupHistoryController extends GetxController {
     }
   }
 
+  void changeTrashHistoryStatus() async {
+    String id = Get.arguments;
+    try {
+      await trashHistoryRepository.update(id, {'status': 'waitingToClaim'});
+
+      // SampahController.instance.getTrashHistories();
+      Get.offNamedUntil(
+        Routes.CLAIM,
+        (route) {
+          return route.settings.name == Routes.SAMPAH;
+        },
+        arguments: id,
+      );
+    } catch (e) {
+      print(e);
+    }
+  }
+
   final count = 0.obs;
   @override
   void onInit() {
@@ -31,6 +51,7 @@ class PickupHistoryController extends GetxController {
   @override
   void onReady() {
     super.onReady();
+    getTrashHistory();
   }
 
   @override

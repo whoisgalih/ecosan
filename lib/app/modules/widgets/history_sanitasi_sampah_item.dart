@@ -1,19 +1,44 @@
+import 'package:ecosan/app/constants/loading_state.dart';
+import 'package:ecosan/app/models/trashHistory/trash_history_model.dart';
 import 'package:ecosan/app/modules/themes/colors.dart';
 import 'package:ecosan/app/modules/themes/fonts.dart';
 import 'package:ecosan/app/modules/widgets/icon_container.dart';
+import 'package:ecosan/app/routes/app_pages.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class HistorySanitasiSampahItem extends StatelessWidget {
-  const HistorySanitasiSampahItem({super.key});
+  final TrashHistory trashHistory;
+
+  const HistorySanitasiSampahItem({super.key, required this.trashHistory});
+
+  void navigateToPage() {
+    if (trashHistory.isPickup()) {
+      if (trashHistory.status == TrashHistoryStatus.onTheWay) {
+        Get.toNamed(Routes.PICKUP_HISTORY, arguments: trashHistory.id);
+      }
+
+      if (trashHistory.status == TrashHistoryStatus.waitingToClaim) {
+        Get.toNamed(Routes.CLAIM, arguments: trashHistory.id);
+      }
+
+      if (trashHistory.status == TrashHistoryStatus.completed) {
+        Get.toNamed(Routes.PICKUP_HISTORY, arguments: trashHistory.id);
+      }
+
+      if (trashHistory.status == TrashHistoryStatus.order) {
+        Get.toNamed(Routes.KONFIRMASI_KURIR, arguments: trashHistory.id);
+      }
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
     return Container(
+      clipBehavior: Clip.antiAlias,
       width: double.infinity,
       margin: EdgeInsets.symmetric(horizontal: 16, vertical: 6),
-      padding: EdgeInsets.all(16),
       decoration: BoxDecoration(
-        color: Colors.white,
         borderRadius: BorderRadius.circular(10),
         boxShadow: [
           BoxShadow(
@@ -24,67 +49,85 @@ class HistorySanitasiSampahItem extends StatelessWidget {
           )
         ],
       ),
-      child: Column(
-        children: [
-          Row(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              IconContainer(icon: Icons.delivery_dining),
-              const SizedBox(
-                width: 16,
-              ),
-              Expanded(
-                child: Column(
+      child: Material(
+        color: Colors.white,
+        child: InkResponse(
+          onTap: () {
+            navigateToPage();
+          },
+          child: Padding(
+            padding: EdgeInsets.all(16),
+            child: Column(
+              children: [
+                Row(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text(
-                      "Perumahan Indah Permai",
-                      style: TextStyles.small.bold(),
+                    IconContainer(
+                      icon: trashHistory.isPickup()
+                          ? Icons.delivery_dining
+                          : Icons.pin_drop_rounded,
                     ),
                     const SizedBox(
-                      height: 4,
+                      width: 16,
                     ),
-                    Text(
-                      "#32324234",
-                      style: TextStyles.tiny.copyWith(
-                        color: EcoSanColors.systemGray[2],
-                        fontWeight: FontWeight.bold,
+                    Expanded(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            trashHistory.trashBankName,
+                            style: TextStyles.small.bold(),
+                          ),
+                          const SizedBox(
+                            height: 4,
+                          ),
+                          Text(
+                            trashHistory.id ?? "",
+                            style: TextStyles.tiny.copyWith(
+                              color: EcoSanColors.systemGray[2],
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                        ],
                       ),
                     ),
                   ],
                 ),
-              ),
-            ],
+                SizedBox(
+                  height: 12,
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    _histotyData("Dari:", trashHistory.name),
+                    SizedBox(
+                      width: 12,
+                    ),
+                    _histotyData(
+                      "Status:",
+                      trashHistory.isPickup() ? "Pickup Point" : "Drop Point",
+                    ),
+                  ],
+                ),
+                SizedBox(
+                  height: 8,
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    _histotyData("Menuju:", trashHistory.trashBankName),
+                    SizedBox(
+                      width: 12,
+                    ),
+                    _histotyData("Berat:", "${trashHistory.weight} kg"),
+                  ],
+                ),
+              ],
+            ),
           ),
-          SizedBox(
-            height: 12,
-          ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.start,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              _histotyData("Dari:", "Aditya Saputra"),
-              SizedBox(
-                width: 12,
-              ),
-              _histotyData("Status:", "Pickup Poin"),
-            ],
-          ),
-          SizedBox(
-            height: 8,
-          ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.start,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              _histotyData("Menuju:", "Pengepul Indah Permai"),
-              SizedBox(
-                width: 12,
-              ),
-              _histotyData("Berat:", "8 kg"),
-            ],
-          ),
-        ],
+        ),
       ),
     );
   }

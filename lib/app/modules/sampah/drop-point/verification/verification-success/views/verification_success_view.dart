@@ -1,3 +1,4 @@
+import 'package:ecosan/app/modules/sampah/controllers/sampah_controller.dart';
 import 'package:ecosan/app/modules/sampah/receive-point/views/receive_point_view.dart';
 import 'package:ecosan/app/modules/widgets/illustration_layout.dart';
 import 'package:ecosan/app/routes/app_pages.dart';
@@ -31,6 +32,7 @@ class VerificationSuccessView extends GetView<VerificationSuccessController> {
         svgPath: "assets/svgs/verifikasi-operator.svg",
         buttonText: 'Klaim Poin',
         onTap: () {
+          // SampahController.instance.getTrashHistories();
           Get.offNamedUntil(
             Routes.RECEIVE_POINT,
             (route) => route.settings.name == Routes.SAMPAH,

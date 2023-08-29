@@ -73,11 +73,15 @@ class SampahView extends GetView<SampahController> {
                 ),
               ),
             ),
-            Column(
-              children: [
-                HistorySanitasiSampahItem(),
-                HistorySanitasiSampahItem(),
-              ],
+            Obx(
+              () => Column(
+                children: List.generate(
+                  controller.trashHistories.value.length,
+                  (index) => HistorySanitasiSampahItem(
+                    trashHistory: controller.trashHistories.value[index],
+                  ),
+                ),
+              ),
             )
           ],
         ),

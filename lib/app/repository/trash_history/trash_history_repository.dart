@@ -31,9 +31,11 @@ class TrashHistoryRepository {
 
   Future<List<TrashHistory>> getAll() async {
     final querySnapshot = await trashHistoryCollection.get();
-    return querySnapshot.docs
-        .map((doc) => TrashHistory.fromJson(doc.data() as Map<String, dynamic>))
-        .toList();
+    return querySnapshot.docs.map((doc) {
+      Map<String, dynamic> data = doc.data() as Map<String, dynamic>;
+      data['id'] = doc.id;
+      return TrashHistory.fromJson(data);
+    }).toList();
   }
 }
 

@@ -1,7 +1,7 @@
 import 'package:ecosan/app/constants/loading_state.dart';
+import 'package:ecosan/app/models/trashHistory/trash_history_model.dart';
 import 'package:ecosan/app/modules/themes/fonts.dart';
 import 'package:ecosan/app/modules/widgets/button.dart';
-import 'package:ecosan/app/routes/app_pages.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_map/flutter_map.dart';
 
@@ -184,10 +184,10 @@ class PickupHistoryView extends GetView<PickupHistoryController> {
                         height: 32,
                       ),
                       EcoSanButton(
+                        isEnabled: controller.trashHistory.value!.status !=
+                            TrashHistoryStatus.completed,
                         onTap: () {
-                          Get.offNamedUntil(Routes.CLAIM, (route) {
-                            return route.settings.name == Routes.SAMPAH;
-                          });
+                          controller.changeTrashHistoryStatus();
                         },
                         child: Text("Serahkan ke Kurir",
                             style: TextStyles.normal.bold(color: Colors.white)),

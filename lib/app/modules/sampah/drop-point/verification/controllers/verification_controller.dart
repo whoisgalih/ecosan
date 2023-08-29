@@ -1,3 +1,4 @@
+import 'package:ecosan/app/modules/sampah/controllers/sampah_controller.dart';
 import 'package:ecosan/app/routes/app_pages.dart';
 import 'package:get/get.dart';
 
@@ -12,6 +13,8 @@ class VerificationController extends GetxController {
         count.value--;
       });
     }
+
+    // SampahController.instance.getTrashHistories();
     await Get.offNamedUntil(Routes.VERIFICATION_SUCCESS, (route) {
       return route.settings.name == Routes.SAMPAH;
     });

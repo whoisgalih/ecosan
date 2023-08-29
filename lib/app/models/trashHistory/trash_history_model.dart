@@ -45,4 +45,6 @@ class TrashHistory {
       _$TrashHistoryFromJson(json);
 
   Map<String, dynamic> toJson() => _$TrashHistoryToJson(this);
+
+  bool isPickup() => type == TrashHistoryType.pickup;
 }

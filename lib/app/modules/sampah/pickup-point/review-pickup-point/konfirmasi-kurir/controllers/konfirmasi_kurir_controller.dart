@@ -1,3 +1,4 @@
+import 'package:ecosan/app/modules/sampah/controllers/sampah_controller.dart';
 import 'package:ecosan/app/repository/trash_history/trash_history_repository.dart';
 import 'package:ecosan/app/routes/app_pages.dart';
 import 'package:get/get.dart';
@@ -21,6 +22,7 @@ class KonfirmasiKurirController extends GetxController {
       "status": "onTheWay",
     });
 
+    // SampahController.instance.getTrashHistories();
     Get.offNamedUntil(
       Routes.PICKUP_HISTORY,
       (route) {
