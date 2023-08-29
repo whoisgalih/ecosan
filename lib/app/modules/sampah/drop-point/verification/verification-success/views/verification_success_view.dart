@@ -1,6 +1,4 @@
-import 'package:ecosan/app/modules/sampah/receive-point/views/receive_point_view.dart';
 import 'package:ecosan/app/modules/widgets/illustration_layout.dart';
-import 'package:ecosan/app/routes/app_pages.dart';
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
