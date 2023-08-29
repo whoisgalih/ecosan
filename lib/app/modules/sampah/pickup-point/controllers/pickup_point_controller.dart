@@ -84,6 +84,8 @@ class PickupPointController extends GetxController {
         trashTypeValue.value != null &&
         timeValue.value != null) {
       pickupPointFormKey.currentState!.save();
+      print('note: ${noteController.text}');
+
       trashHistory = TrashHistory(
         name: nameController.text,
         phone: phoneController.text,

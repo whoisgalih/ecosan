@@ -22,8 +22,8 @@ class TrashHistory {
   final TrashHistoryType type; // pickup or dropoff
 
   final String trashBankName;
-  final double? latitude;
-  final double? longitude;
+  double? latitude;
+  double? longitude;
 
   TrashHistory({
     this.id,

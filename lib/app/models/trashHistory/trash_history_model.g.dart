@@ -40,7 +40,6 @@ const _$TrashHistoryFieldMap = <String, String>{
 
 Map<String, dynamic> _$TrashHistoryToJson(TrashHistory instance) =>
     <String, dynamic>{
-      'id': instance.id,
       'name': instance.name,
       'phone': instance.phone,
       'address': instance.address,

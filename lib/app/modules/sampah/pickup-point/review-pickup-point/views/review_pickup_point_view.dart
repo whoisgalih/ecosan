@@ -95,7 +95,7 @@ class ReviewPickupPointView extends GetView<ReviewPickupPointController> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      "Aditya Saputra",
+                      controller.pickupPointController.trashHistory.name,
                       style: TextStyles.small.bold(),
                       textAlign: TextAlign.start,
                     ),
@@ -103,7 +103,7 @@ class ReviewPickupPointView extends GetView<ReviewPickupPointController> {
                       height: 4,
                     ),
                     Text(
-                      "08877663633",
+                      controller.pickupPointController.trashHistory.phone,
                       style: TextStyles.tiny,
                       textAlign: TextAlign.start,
                     ),
@@ -111,7 +111,7 @@ class ReviewPickupPointView extends GetView<ReviewPickupPointController> {
                       height: 4,
                     ),
                     Text(
-                      "Perumahan Indah Permai No. 10, Jakarta",
+                      controller.pickupPointController.trashHistory.address,
                       style: TextStyles.tiny,
                       textAlign: TextAlign.start,
                     ),
@@ -137,7 +137,7 @@ class ReviewPickupPointView extends GetView<ReviewPickupPointController> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      "Non-organik",
+                      controller.pickupPointController.trashHistory.trashType,
                       style: TextStyles.small.bold(),
                       textAlign: TextAlign.start,
                     ),
@@ -145,7 +145,7 @@ class ReviewPickupPointView extends GetView<ReviewPickupPointController> {
                       height: 4,
                     ),
                     Text(
-                      "8 kg",
+                      "${controller.pickupPointController.trashHistory.weight} kg",
                       style: TextStyles.tiny,
                       textAlign: TextAlign.start,
                     ),
@@ -171,18 +171,22 @@ class ReviewPickupPointView extends GetView<ReviewPickupPointController> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      "10.00 WIB",
+                      "${controller.pickupPointController.trashHistory.time} WIB",
                       style: TextStyles.small.bold(),
                       textAlign: TextAlign.start,
                     ),
-                    const SizedBox(
-                      height: 4,
-                    ),
-                    Text(
-                      "Gunakan kendaraan dengan kapasitas yang luas untuk mengambil sampah",
-                      style: TextStyles.tiny,
-                      textAlign: TextAlign.start,
-                    ),
+                    controller.pickupPointController.trashHistory.note != ""
+                        ? const SizedBox(
+                            height: 4,
+                          )
+                        : SizedBox(),
+                    controller.pickupPointController.trashHistory.note != ""
+                        ? Text(
+                            controller.pickupPointController.trashHistory.note,
+                            style: TextStyles.tiny,
+                            textAlign: TextAlign.start,
+                          )
+                        : SizedBox(),
                   ],
                 ),
               ),
@@ -195,7 +199,9 @@ class ReviewPickupPointView extends GetView<ReviewPickupPointController> {
                     child: EcoSanButton(
                       color: Colors.white,
                       borderColor: EcoSanColors.primary,
-                      onTap: () {},
+                      onTap: () {
+                        Get.back();
+                      },
                       child: Text("Edit",
                           style: TextStyles.normal
                               .bold(color: EcoSanColors.primary)),
@@ -207,9 +213,7 @@ class ReviewPickupPointView extends GetView<ReviewPickupPointController> {
                   Expanded(
                     child: EcoSanButton(
                       onTap: () {
-                        Get.offNamedUntil(Routes.KONFIRMASI_KURIR, (route) {
-                          return route.settings.name == Routes.SAMPAH;
-                        });
+                        controller.submit();
                       },
                       child: Text("Jemput",
                           style: TextStyles.normal.bold(color: Colors.white)),
