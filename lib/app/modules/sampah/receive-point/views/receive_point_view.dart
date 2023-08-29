@@ -9,8 +9,24 @@ import 'package:sizer/sizer.dart';
 
 import '../controllers/receive_point_controller.dart';
 
+class ReceivePointViewArguments {
+  final int point;
+  final String message;
+
+  ReceivePointViewArguments({
+    required this.point,
+    required this.message,
+  });
+}
+
 class ReceivePointView extends GetView<ReceivePointController> {
-  const ReceivePointView({Key? key}) : super(key: key);
+  final ReceivePointViewArguments arguments;
+
+  const ReceivePointView({
+    Key? key,
+    required this.arguments,
+  }) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -74,14 +90,14 @@ class ReceivePointView extends GetView<ReceivePointController> {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Text(
-                                  "500 poin",
+                                  "${arguments.point} poin",
                                   style: TextStyles.normal.bold(),
                                 ),
                                 const SizedBox(
                                   height: 4,
                                 ),
                                 Text(
-                                  "Karena telah menggunakan layanan pickup poin sampah",
+                                  arguments.message,
                                   style: TextStyles.tiny,
                                 ),
                               ],

@@ -220,7 +220,9 @@ class AppPages {
         ),
         GetPage(
           name: _Paths.RECEIVE_POINT,
-          page: () => const ReceivePointView(),
+          page: () => ReceivePointView(
+            arguments: Get.arguments,
+          ),
           binding: ReceivePointBinding(),
         ),
         GetPage(

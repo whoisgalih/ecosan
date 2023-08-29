@@ -1,3 +1,4 @@
+import 'package:ecosan/app/modules/sampah/receive-point/views/receive_point_view.dart';
 import 'package:ecosan/app/modules/widgets/illustration_layout.dart';
 import 'package:ecosan/app/routes/app_pages.dart';
 import 'package:flutter/material.dart';
@@ -23,8 +24,14 @@ class ClaimView extends GetView<ClaimController> {
         svgPath: "assets/svgs/konfirmasi-kurir.svg",
         buttonText: "Klaim Poin",
         onTap: () {
-          Get.offNamedUntil(Routes.RECEIVE_POINT,
-              (route) => route.settings.name == Routes.SAMPAH);
+          Get.offNamedUntil(
+            Routes.RECEIVE_POINT,
+            (route) => route.settings.name == Routes.SAMPAH,
+            arguments: ReceivePointViewArguments(
+              point: 500,
+              message: "Karena telah menggunakan layanan pickup poin sampah",
+            ),
+          );
         },
       ),
     );
