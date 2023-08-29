@@ -25,13 +25,14 @@ class SampahController extends GetxController {
   void listenTrashHistory() {
     trashHistoryRepository.trashHistoryCollection.snapshots().listen(
       (event) async {
-        trashHistories.value = event.docs.map((e) {
-          Map<String, dynamic> data = e.data() as Map<String, dynamic>;
-          data['id'] = e.id;
-          return TrashHistory.fromJson(data);
-        })
-            // .toList()
-            // .reversed
+        trashHistories.value = event.docs
+            .map((e) {
+              Map<String, dynamic> data = e.data() as Map<String, dynamic>;
+              data['id'] = e.id;
+              return TrashHistory.fromJson(data);
+            })
+            .toList()
+            .reversed
             .toList();
       },
     );
