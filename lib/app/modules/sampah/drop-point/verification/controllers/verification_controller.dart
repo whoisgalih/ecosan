@@ -12,9 +12,9 @@ class VerificationController extends GetxController {
         count.value--;
       });
     }
-    // await Get.offNamedUntil(Routes.PICKUP_HISTORY, (route) {
-    //   return route.settings.name == Routes.SAMPAH;
-    // });
+    await Get.offNamedUntil(Routes.VERIFICATION_SUCCESS, (route) {
+      return route.settings.name == Routes.SAMPAH;
+    });
   }
 
   @override

@@ -49,6 +49,10 @@ abstract class Routes {
       _Paths.INPUT_TRASH;
   static const VERIFICATION =
       _Paths.SAMPAH + _Paths.DROP_POINT + _Paths.VERIFICATION;
+  static const VERIFICATION_SUCCESS = _Paths.SAMPAH +
+      _Paths.DROP_POINT +
+      _Paths.VERIFICATION +
+      _Paths.VERIFICATION_SUCCESS;
 }
 
 abstract class _Paths {
@@ -84,4 +88,5 @@ abstract class _Paths {
   static const PREVIEW_DROP_POINT = '/preview-drop-point';
   static const INPUT_TRASH = '/input-trash';
   static const VERIFICATION = '/verification';
+  static const VERIFICATION_SUCCESS = '/verification-success';
 }
