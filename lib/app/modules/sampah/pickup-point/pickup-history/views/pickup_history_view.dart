@@ -2,6 +2,7 @@ import 'package:ecosan/app/constants/loading_state.dart';
 import 'package:ecosan/app/models/trashHistory/trash_history_model.dart';
 import 'package:ecosan/app/modules/themes/fonts.dart';
 import 'package:ecosan/app/modules/widgets/button.dart';
+import 'package:ecosan/app/modules/widgets/eco_san_map.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_map/flutter_map.dart';
 
@@ -48,23 +49,10 @@ class PickupHistoryView extends GetView<PickupHistoryController> {
                         ),
                         width: double.infinity,
                         height: 200,
-                        child: FlutterMap(
-                          options: MapOptions(
-                            center: LatLng(
-                              controller.trashHistory.value!.latitude!,
-                              controller.trashHistory.value!.longitude!,
-                            ),
-                            zoom: 15.0,
-                            enableMultiFingerGestureRace: false,
-                            enableScrollWheel: false,
-                          ),
-                          children: [
-                            TileLayer(
-                              urlTemplate:
-                                  'https://tile.openstreetmap.org/{z}/{x}/{y}.png',
-                              userAgentPackageName: 'com.example.app',
-                            ),
-                          ],
+                        child: EcoSanMap(
+                          latitude: controller.trashHistory.value!.latitude!,
+                          longitude: controller.trashHistory.value!.longitude!,
+                          markerSize: 40,
                         ),
                       ),
                       SizedBox(
