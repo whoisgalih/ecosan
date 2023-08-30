@@ -1,6 +1,7 @@
 import 'package:ecosan/app/models/dropPoint/drop_point_model.dart';
 import 'package:ecosan/app/modules/themes/fonts.dart';
 import 'package:ecosan/app/modules/widgets/button.dart';
+import 'package:ecosan/app/modules/widgets/eco_san_map.dart';
 import 'package:ecosan/app/routes/app_pages.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_map/flutter_map.dart';
@@ -36,19 +37,10 @@ class PreviewDropPointView extends GetView<PreviewDropPointController> {
       body: Stack(
         alignment: Alignment.bottomCenter,
         children: [
-          FlutterMap(
-            options: MapOptions(
-              center: LatLng(dropPoint.latitude, dropPoint.longitude),
-              zoom: 15.0,
-              enableMultiFingerGestureRace: false,
-              enableScrollWheel: false,
-            ),
-            children: [
-              TileLayer(
-                urlTemplate: 'https://tile.openstreetmap.org/{z}/{x}/{y}.png',
-                userAgentPackageName: 'com.example.app',
-              ),
-            ],
+          EcoSanMap(
+            latitude: dropPoint.latitude,
+            longitude: dropPoint.longitude,
+            markerSize: 40,
           ),
           Wrap(
             children: [
