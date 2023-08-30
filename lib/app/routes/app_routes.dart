@@ -22,7 +22,7 @@ abstract class Routes {
   static const CONTACT = _Paths.HOME + _Paths.CONTACT;
   static const PEMBERSIHAN_FILTER = _Paths.AIR + _Paths.PEMBERSIHAN_FILTER;
   static const PEMASANGAN_ALAT = _Paths.AIR + _Paths.PEMASANGAN_ALAT;
-  static const METODE_PEMBAYARAN = _Paths.HOME + _Paths.METODE_PEMBAYARAN;
+  static const METODE_PEMBAYARAN = _Paths.AIR + _Paths.METODE_PEMBAYARAN;
   static const PICKUP_POINT = _Paths.SAMPAH + _Paths.PICKUP_POINT;
   static const REVIEW_PICKUP_POINT =
       _Paths.SAMPAH + _Paths.PICKUP_POINT + _Paths.REVIEW_PICKUP_POINT;
@@ -38,9 +38,8 @@ abstract class Routes {
       _Paths.CLAIM;
   static const RECEIVE_POINT = _Paths.SAMPAH + _Paths.RECEIVE_POINT;
   static const DROP_POINT = _Paths.SAMPAH + _Paths.DROP_POINT;
-  static const KODE_BAYAR =
-      _Paths.HOME + _Paths.METODE_PEMBAYARAN + _Paths.KODE_BAYAR;
-  static const TRANSACTION_SUCCESS = _Paths.HOME + _Paths.TRANSACTION_SUCCESS;
+  static const KODE_BAYAR = _Paths.AIR + _Paths.KODE_BAYAR;
+  static const TRANSACTION_SUCCESS = _Paths.AIR + _Paths.TRANSACTION_SUCCESS;
   static const PREVIEW_DROP_POINT =
       _Paths.SAMPAH + _Paths.DROP_POINT + _Paths.PREVIEW_DROP_POINT;
   static const INPUT_TRASH = _Paths.SAMPAH +

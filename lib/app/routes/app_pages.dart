@@ -25,16 +25,16 @@ import '../modules/home/edit/bindings/edit_binding.dart';
 import '../modules/home/edit/views/edit_view.dart';
 import '../modules/home/faq/bindings/faq_binding.dart';
 import '../modules/home/faq/views/faq_view.dart';
-import '../modules/home/kode_bayar/bindings/kode_bayar_binding.dart';
-import '../modules/home/kode_bayar/views/kode_bayar_view.dart';
-import '../modules/home/metode_pembayaran/bindings/metode_pembayaran_binding.dart';
-import '../modules/home/metode_pembayaran/views/metode_pembayaran_view.dart';
+import '../modules/air/kode_bayar/bindings/kode_bayar_binding.dart';
+import '../modules/air/kode_bayar/views/kode_bayar_view.dart';
+import '../modules/air/metode_pembayaran/bindings/metode_pembayaran_binding.dart';
+import '../modules/air/metode_pembayaran/views/metode_pembayaran_view.dart';
 import '../modules/home/poinku/bindings/poinku_binding.dart';
 import '../modules/home/poinku/views/poinku_view.dart';
 import '../modules/home/poinku/voucherexchange/bindings/voucherexchange_binding.dart';
 import '../modules/home/poinku/voucherexchange/views/voucherexchange_view.dart';
-import '../modules/home/transaction_success/bindings/transaction_success_binding.dart';
-import '../modules/home/transaction_success/views/transaction_success_view.dart';
+import '../modules/air/transaction_success/bindings/transaction_success_binding.dart';
+import '../modules/air/transaction_success/views/transaction_success_view.dart';
 import '../modules/home/views/home_view.dart';
 import '../modules/home/voucherku/bindings/voucherku_binding.dart';
 import '../modules/home/voucherku/views/voucherku_view.dart';
@@ -116,21 +116,6 @@ class AppPages {
           page: () => const ContactView(),
           binding: ContactBinding(),
         ),
-        GetPage(
-          name: _Paths.METODE_PEMBAYARAN,
-          page: () => const MetodePembayaranView(),
-          binding: MetodePembayaranBinding(),
-        ),
-        GetPage(
-          name: _Paths.KODE_BAYAR,
-          page: () => const KodeBayarView(),
-          binding: KodeBayarBinding(),
-        ),
-        GetPage(
-          name: _Paths.TRANSACTION_SUCCESS,
-          page: () => const TransactionSuccessView(),
-          binding: TransactionSuccessBinding(),
-        ),
       ],
     ),
     GetPage(
@@ -179,6 +164,21 @@ class AppPages {
             name: _Paths.PEMASANGAN_ALAT,
             page: () => const PemasanganAlatView(),
             binding: PemasanganAlatBinding(),
+          ),
+          GetPage(
+            name: _Paths.METODE_PEMBAYARAN,
+            page: () => const MetodePembayaranView(),
+            binding: MetodePembayaranBinding(),
+          ),
+          GetPage(
+            name: _Paths.KODE_BAYAR,
+            page: () => const KodeBayarView(),
+            binding: KodeBayarBinding(),
+          ),
+          GetPage(
+            name: _Paths.TRANSACTION_SUCCESS,
+            page: () => const TransactionSuccessView(),
+            binding: TransactionSuccessBinding(),
           ),
         ]),
     GetPage(
