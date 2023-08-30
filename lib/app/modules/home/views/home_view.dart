@@ -15,6 +15,7 @@ class HomeView extends GetView<HomeController> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        titleSpacing: 16,
         title: Image.asset("assets/images/ecosan-horizontal.png", height: 30),
         actions: [
           Container(

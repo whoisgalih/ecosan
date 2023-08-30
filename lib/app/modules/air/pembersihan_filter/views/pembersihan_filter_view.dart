@@ -94,7 +94,7 @@ class PembersihanFilterView extends GetView<PembersihanFilterController> {
                   EcoSanButton(
                     onTap: () {
                       if (controller.formKey.currentState!.validate()) {
-                        Get.toNamed('/home/metode-pembayaran', arguments: {
+                        Get.toNamed('/air/metode-pembayaran', arguments: {
                           'order_type': 'Pembersihan Filter',
                           'price': 500000,
                           'address': controller.addressController.text,

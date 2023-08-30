@@ -163,7 +163,7 @@ class MetodePembayaranView extends GetView<MetodePembayaranController> {
                 onTap: () {
                   if (controller.selectedPaymentIdx.value != null) {
                     Get.offNamedUntil('/home', (route) => false);
-                    Get.toNamed('home/kode-bayar', arguments: {
+                    Get.toNamed('air/kode-bayar', arguments: {
                       'payment_method': controller
                           .paymentMethod[controller.selectedPaymentIdx.value!],
                       'order_type': arguments['order_type'],

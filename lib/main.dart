@@ -3,18 +3,20 @@ import 'package:ecosan/app/modules/themes/fonts.dart';
 import 'package:ecosan/app/routes/app_pages.dart';
 import 'package:ecosan/app/modules/themes/colors.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:sizer/sizer.dart';
 import 'firebase_options.dart';
 
-void main() async {
+Future main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
   Get.put(AuthController());
+  dotenv.load(fileName: ".env");
   runApp(const MyApp());
 }
 
@@ -77,12 +79,14 @@ class MyApp extends StatelessWidget {
                 color: Colors.white,
               ),
               backgroundColor: EcoSanColors.primary,
+              foregroundColor: Colors.white,
               titleTextStyle: TextStyles.header3.copyWith(
                 color: Colors.white,
                 fontWeight: FontWeight.bold,
               ),
               centerTitle: false,
               elevation: 0,
+              titleSpacing: 0,
             ),
           ),
         );

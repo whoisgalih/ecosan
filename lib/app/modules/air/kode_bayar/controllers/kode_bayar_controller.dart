@@ -1,8 +1,6 @@
 import 'dart:async';
 import 'dart:math';
 
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:ecosan/app/constants/firebase_constants.dart';
 import 'package:ecosan/app/models/user/transaction_model.dart'
     as transaction_model;
 
@@ -61,7 +59,7 @@ class KodeBayarController extends GetxController {
       final authInstance = AuthController.authInstance;
       authInstance.user.value.transactions.add(transaction);
       await authInstance.updateFirestoreUser();
-      Get.offAndToNamed('/home/transaction-success', arguments: {
+      Get.offAndToNamed('/air/transaction-success', arguments: {
         'transaction': transaction,
       });
     } catch (e) {

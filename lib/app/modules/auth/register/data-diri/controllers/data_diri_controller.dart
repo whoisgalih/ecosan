@@ -58,8 +58,8 @@ class DataDiriController extends GetxController {
     return null;
   }
 
-  String? cityValidator(String? value) {
-    if (value == null || value.isEmpty) {
+  String? cityValidator(Object? value) {
+    if (value == null || value.toString().isEmpty) {
       return 'Kota tidak boleh kosong';
     }
     return null;

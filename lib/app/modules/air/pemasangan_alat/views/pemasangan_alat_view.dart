@@ -94,7 +94,7 @@ class PemasanganAlatView extends GetView<PemasanganAlatController> {
                   EcoSanButton(
                     onTap: () {
                       if (controller.formKey.currentState!.validate()) {
-                        Get.toNamed('/home/metode-pembayaran', arguments: {
+                        Get.toNamed('/air/metode-pembayaran', arguments: {
                           'order_type': 'Pemasangan Alat',
                           'price': 3500000,
                           'address': controller.addressController.text,
