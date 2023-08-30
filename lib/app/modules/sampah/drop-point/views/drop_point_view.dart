@@ -1,3 +1,4 @@
+import 'package:ecosan/app/models/dropPoint/drop_point_model.dart';
 import 'package:ecosan/app/modules/themes/fonts.dart';
 import 'package:ecosan/app/modules/widgets/drop_point_item.dart';
 import 'package:flutter/material.dart';
@@ -46,9 +47,17 @@ class DropPointView extends GetView<DropPointController> {
                 () => Column(
                   children: List.generate(
                     controller.dropPoints.value.length,
-                    (index) => DropPointItem(
-                      dropPoint: controller.dropPoints.value[index],
-                    ),
+                    (index) {
+                      final DropPoint dropPoint =
+                          controller.dropPoints.value[index];
+                      return DropPointItem(
+                        dropPoint: dropPoint,
+                        distance: dropPoint.getDistance(
+                          controller.position.value.latitude,
+                          controller.position.value.longitude,
+                        ),
+                      );
+                    },
                   ),
                 ),
               ),

@@ -7,10 +7,12 @@ import 'package:get/get.dart';
 
 class DropPointItem extends StatelessWidget {
   final DropPoint dropPoint;
+  final String distance;
 
   const DropPointItem({
     super.key,
     required this.dropPoint,
+    required this.distance,
   });
 
   String generateAcceptedTrashType(bool isOrganic, bool isAnorganic) {
@@ -78,7 +80,7 @@ class DropPointItem extends StatelessWidget {
             height: 4,
           ),
           Text(
-            "Jarak pengiriman: 1,0 km",
+            "Jarak pengiriman: $distance",
             style: TextStyles.tiny,
           ),
           Container(
