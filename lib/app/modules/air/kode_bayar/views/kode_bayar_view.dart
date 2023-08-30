@@ -1,5 +1,5 @@
 import 'package:ecosan/app/constants/utils.dart';
-import 'package:ecosan/app/modules/home/metode_pembayaran/controllers/metode_pembayaran_controller.dart';
+import 'package:ecosan/app/modules/air/metode_pembayaran/controllers/metode_pembayaran_controller.dart';
 import 'package:ecosan/app/modules/themes/fonts.dart';
 import 'package:ecosan/app/modules/widgets/button.dart';
 import 'package:flutter/material.dart';
