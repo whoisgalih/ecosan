@@ -76,10 +76,12 @@ class AirController extends GetxController {
     super.onReady();
     airIndex(0);
     ever(airIndex, (index) async {
-      if (index == 1) {
-        await controller!.resumePreview();
-      } else {
-        await controller!.pausePreview();
+      if (controller != null) {
+        if (index == 1) {
+          await controller!.resumePreview();
+        } else {
+          await controller!.pausePreview();
+        }
       }
     });
   }
@@ -88,7 +90,9 @@ class AirController extends GetxController {
   void onClose() {
     // TODO: implement onClose
     super.onClose();
-    controller!.dispose();
+    if (controller != null) {
+      controller!.dispose();
+    }
   }
 
   //generate random value for air quality 1-10

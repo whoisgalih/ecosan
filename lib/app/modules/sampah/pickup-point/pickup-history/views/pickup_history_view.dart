@@ -4,10 +4,8 @@ import 'package:ecosan/app/modules/themes/fonts.dart';
 import 'package:ecosan/app/modules/widgets/button.dart';
 import 'package:ecosan/app/modules/widgets/eco_san_map.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_map/flutter_map.dart';
 
 import 'package:get/get.dart';
-import 'package:latlong2/latlong.dart';
 
 import '../controllers/pickup_history_controller.dart';
 
