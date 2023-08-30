@@ -122,11 +122,17 @@ class ContactView extends GetView<ContactController> {
 }
 
 class ContactusListTile extends StatelessWidget {
-  ContactusListTile(
-      {super.key, required this.iconData, required this.value, this.ontap});
+  const ContactusListTile({
+    super.key,
+    required this.iconData,
+    required this.value,
+    this.ontap,
+  });
+
   final IconData iconData;
   final String value;
-  Function()? ontap;
+  final Function()? ontap;
+
   @override
   Widget build(BuildContext context) {
     return GestureDetector(

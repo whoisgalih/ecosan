@@ -54,6 +54,7 @@ class PoinkuView extends GetView<PoinkuController> {
 class VoucherListTile extends StatelessWidget {
   const VoucherListTile({super.key, required this.voucher});
   final Voucher voucher;
+  PoinkuController get controller => Get.find<PoinkuController>();
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -100,8 +101,21 @@ class VoucherListTile extends StatelessWidget {
                   minimumSize: const Size(0, 0),
                   padding:
                       EdgeInsets.symmetric(vertical: 1.h, horizontal: 2.5.h)),
-              onPressed: () => Get.toNamed('home/poinku/voucherexchange',
-                  arguments: {'voucher': voucher}),
+              onPressed: () async {
+                if (controller.user.value.poin >= voucher.price) {
+                  controller.user.value.poin -= voucher.price;
+                  voucher.purchasedDate = DateTime.now().toString();
+                  controller.user.value.vouchers.add(voucher);
+                  await controller.authController
+                      .updateFirestoreUser();
+                  Get.toNamed('home/poinku/voucherexchange',
+                      arguments: {'voucher': voucher});
+                } else {
+                  Get.snackbar('Poin tidak cukup',
+                      'Poin anda tidak cukup untuk menukar voucher ini',
+                      snackPosition: SnackPosition.BOTTOM);
+                }
+              },
               child: Text(
                 'Tukar',
                 style: TextStyles.tiny.copyWith(color: Colors.white),
@@ -116,7 +130,7 @@ class PoinkuBanner extends StatelessWidget {
   const PoinkuBanner({
     super.key,
   });
-
+  PoinkuController get controller => Get.find<PoinkuController>();
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -150,7 +164,7 @@ class PoinkuBanner extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: [
                       Text(
-                        '1200',
+                        controller.user.value.poin.toString(),
                         style: TextStyles.header1
                             .bold()
                             .copyWith(color: Colors.white),

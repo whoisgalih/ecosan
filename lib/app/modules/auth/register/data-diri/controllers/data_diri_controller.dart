@@ -58,8 +58,8 @@ class DataDiriController extends GetxController {
     return null;
   }
 
-  String? cityValidator(String? value) {
-    if (value == null || value.isEmpty) {
+  String? cityValidator(Object? value) {
+    if (value == null || value.toString().isEmpty) {
       return 'Kota tidak boleh kosong';
     }
     return null;
@@ -70,6 +70,7 @@ class DataDiriController extends GetxController {
       registerFormKey.currentState!.save();
       User user = User(
           name: nameEditingController.text,
+          poin: 0,
           uid: authController.firebaseUser.value!.uid,
           photoUrl: authController.firebaseUser.value!.photoURL,
           phone: phoneEditingController.text,

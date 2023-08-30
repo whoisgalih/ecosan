@@ -41,6 +41,28 @@ import '../modules/home/voucherku/views/voucherku_view.dart';
 import '../modules/profile/bindings/profile_binding.dart';
 import '../modules/profile/views/profile_view.dart';
 import '../modules/sampah/bindings/sampah_binding.dart';
+import '../modules/sampah/drop-point/bindings/drop_point_binding.dart';
+import '../modules/sampah/drop-point/preview-drop-point/bindings/preview_drop_point_binding.dart';
+import '../modules/sampah/drop-point/preview-drop-point/input-trash/bindings/input_trash_binding.dart';
+import '../modules/sampah/drop-point/preview-drop-point/input-trash/views/input_trash_view.dart';
+import '../modules/sampah/drop-point/preview-drop-point/views/preview_drop_point_view.dart';
+import '../modules/sampah/drop-point/verification/bindings/verification_binding.dart';
+import '../modules/sampah/drop-point/verification/verification-success/bindings/verification_success_binding.dart';
+import '../modules/sampah/drop-point/verification/verification-success/views/verification_success_view.dart';
+import '../modules/sampah/drop-point/verification/views/verification_view.dart';
+import '../modules/sampah/drop-point/views/drop_point_view.dart';
+import '../modules/sampah/pickup-point/bindings/pickup_point_binding.dart';
+import '../modules/sampah/pickup-point/pickup-history/bindings/pickup_history_binding.dart';
+import '../modules/sampah/pickup-point/pickup-history/claim/bindings/claim_binding.dart';
+import '../modules/sampah/pickup-point/pickup-history/claim/views/claim_view.dart';
+import '../modules/sampah/pickup-point/pickup-history/views/pickup_history_view.dart';
+import '../modules/sampah/pickup-point/review-pickup-point/bindings/review_pickup_point_binding.dart';
+import '../modules/sampah/pickup-point/review-pickup-point/konfirmasi-kurir/bindings/konfirmasi_kurir_binding.dart';
+import '../modules/sampah/pickup-point/review-pickup-point/konfirmasi-kurir/views/konfirmasi_kurir_view.dart';
+import '../modules/sampah/pickup-point/review-pickup-point/views/review_pickup_point_view.dart';
+import '../modules/sampah/pickup-point/views/pickup_point_view.dart';
+import '../modules/sampah/receive-point/bindings/receive_point_binding.dart';
+import '../modules/sampah/receive-point/views/receive_point_view.dart';
 import '../modules/sampah/views/sampah_view.dart';
 
 part 'app_routes.dart';
@@ -164,6 +186,79 @@ class AppPages {
       page: () => const SampahView(),
       binding: SampahBinding(),
       transition: Transition.noTransition,
+      children: [
+        GetPage(
+          name: _Paths.PICKUP_POINT,
+          page: () => const PickupPointView(),
+          binding: PickupPointBinding(),
+          children: [
+            GetPage(
+              name: _Paths.REVIEW_PICKUP_POINT,
+              page: () => const ReviewPickupPointView(),
+              binding: ReviewPickupPointBinding(),
+              children: [
+                GetPage(
+                  name: _Paths.KONFIRMASI_KURIR,
+                  page: () => const KonfirmasiKurirView(),
+                  binding: KonfirmasiKurirBinding(),
+                ),
+              ],
+            ),
+            GetPage(
+              name: _Paths.PICKUP_HISTORY,
+              page: () => const PickupHistoryView(),
+              binding: PickupHistoryBinding(),
+              children: [
+                GetPage(
+                  name: _Paths.CLAIM,
+                  page: () => const ClaimView(),
+                  binding: ClaimBinding(),
+                ),
+              ],
+            ),
+          ],
+        ),
+        GetPage(
+          name: _Paths.RECEIVE_POINT,
+          page: () => ReceivePointView(
+            arguments: Get.arguments,
+          ),
+          binding: ReceivePointBinding(),
+        ),
+        GetPage(
+          name: _Paths.DROP_POINT,
+          page: () => const DropPointView(),
+          binding: DropPointBinding(),
+          children: [
+            GetPage(
+              name: _Paths.PREVIEW_DROP_POINT,
+              page: () => PreviewDropPointView(
+                dropPoint: Get.arguments,
+              ),
+              binding: PreviewDropPointBinding(),
+              children: [
+                GetPage(
+                  name: _Paths.INPUT_TRASH,
+                  page: () => const InputTrashView(),
+                  binding: InputTrashBinding(),
+                ),
+              ],
+            ),
+            GetPage(
+              name: _Paths.VERIFICATION,
+              page: () => const VerificationView(),
+              binding: VerificationBinding(),
+              children: [
+                GetPage(
+                  name: _Paths.VERIFICATION_SUCCESS,
+                  page: () => const VerificationSuccessView(),
+                  binding: VerificationSuccessBinding(),
+                ),
+              ],
+            ),
+          ],
+        ),
+      ],
     ),
     GetPage(
       name: _Paths.PROFILE,

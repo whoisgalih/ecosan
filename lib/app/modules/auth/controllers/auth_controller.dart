@@ -6,7 +6,7 @@ import 'package:get/get.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 
 class AuthController extends GetxController {
-  static AuthController authInstance = Get.find();
+  static AuthController authInstance = Get.find<AuthController>();
   late Rx<User?> firebaseUser;
 
   late Rx<user_model.User> user;
@@ -150,6 +150,9 @@ class AuthController extends GetxController {
         "transactions": user.value.transactions
             .map((transaction) => transaction.toJson())
             .toList(),
+        "vouchers":
+            user.value.vouchers.map((voucher) => voucher.toJson()).toList(),
+        "poin": user.value.poin,
       });
       user.refresh();
       print('done updating');

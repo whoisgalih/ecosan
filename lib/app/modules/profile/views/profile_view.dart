@@ -125,49 +125,51 @@ class ProfileView extends GetView<ProfileController> {
               color: Colors.white,
               width: double.infinity,
               padding: EdgeInsets.symmetric(horizontal: 1.5.h, vertical: 2.5.h),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Flexible(
-                      flex: 1,
-                      child: ProfileCard(
-                        title: 'Poinku',
-                        color: EcoSanColors.secondary,
-                        value: 10000,
-                        buttonStr: 'Tukarkan',
-                        onTap: () => Get.toNamed('home/poinku'),
-                        leadingWidget: Container(
-                            width: 32 / 360 * 100.w,
-                            height: 32 / 360 * 100.w,
-                            decoration: const BoxDecoration(
-                                shape: BoxShape.circle, color: Colors.white),
-                            child: const Center(
-                              child: Icon(
-                                Icons.attach_money_rounded,
-                                color: EcoSanColors.secondary,
-                              ),
-                            )),
-                      )),
-                  SizedBox(
-                    width: 2.5.h,
-                  ),
-                  Flexible(
-                      flex: 1,
-                      child: ProfileCard(
-                        color: EcoSanColors.primary,
-                        title: 'Voucherku',
-                        value: 5,
-                        buttonStr: 'Detail',
-                        onTap: () => Get.toNamed('home/voucherku'),
-                        leadingWidget: SizedBox(
-                            width: 32 / 360 * 100.w,
-                            height: 32 / 360 * 100.w,
-                            child: SvgPicture.asset(
-                              'assets/svgs/voucher.svg',
-                              color: Colors.white,
-                            )),
-                      )),
-                ],
+              child: Obx(
+                () => Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Flexible(
+                        flex: 1,
+                        child: ProfileCard(
+                          title: 'Poinku',
+                          color: EcoSanColors.secondary,
+                          value: controller.user.poin,
+                          buttonStr: 'Tukarkan',
+                          onTap: () => Get.toNamed('home/poinku'),
+                          leadingWidget: Container(
+                              width: 32 / 360 * 100.w,
+                              height: 32 / 360 * 100.w,
+                              decoration: const BoxDecoration(
+                                  shape: BoxShape.circle, color: Colors.white),
+                              child: const Center(
+                                child: Icon(
+                                  Icons.attach_money_rounded,
+                                  color: EcoSanColors.secondary,
+                                ),
+                              )),
+                        )),
+                    SizedBox(
+                      width: 2.5.h,
+                    ),
+                    Flexible(
+                        flex: 1,
+                        child: ProfileCard(
+                          color: EcoSanColors.primary,
+                          title: 'Voucherku',
+                          value: controller.user.vouchers.length,
+                          buttonStr: 'Detail',
+                          onTap: () => Get.toNamed('home/voucherku'),
+                          leadingWidget: SizedBox(
+                              width: 32 / 360 * 100.w,
+                              height: 32 / 360 * 100.w,
+                              child: SvgPicture.asset(
+                                'assets/svgs/voucher.svg',
+                                color: Colors.white,
+                              )),
+                        )),
+                  ],
+                ),
               ),
             ),
             SizedBox(

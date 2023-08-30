@@ -47,7 +47,6 @@ class DataDiriView extends GetView<DataDiriController> {
                       keyboardType: TextInputType.name,
                       validator: controller.nameValidator,
                     ),
-                    const SizedBox(height: 16),
                     FormInput(
                       label: "Nomor Telepon",
                       hint: "Masukan nomor telepon",
@@ -56,7 +55,6 @@ class DataDiriView extends GetView<DataDiriController> {
                       icon: Icons.phone,
                       validator: controller.phoneValidator,
                     ),
-                    const SizedBox(height: 16),
                     FormInput(
                       label: "Tanggal Lahir",
                       controller: controller.dateEditingController,
@@ -77,41 +75,16 @@ class DataDiriView extends GetView<DataDiriController> {
                       icon: Icons.calendar_today,
                       validator: controller.dateValidator,
                     ),
-                    const SizedBox(height: 16),
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          'Asal Kota',
-                          style: TextStyles.tiny.bold(),
-                        ),
-                        const SizedBox(height: 4),
-                        Obx(
-                          () => DropdownButtonFormField(
-                            validator: controller.cityValidator,
-                            dropdownColor: Colors.white,
-                            value: controller.cityValue.value,
-                            onChanged: (value) {
-                              controller.cityValue = value.obs;
-                            },
-                            decoration: const InputDecoration(
-                              prefixIcon: Icon(
-                                Icons.location_city,
-                                size: 24,
-                              ),
-                            ),
-                            style:
-                                TextStyles.tiny.copyWith(color: Colors.black),
-                            hint: const Text('Pilih Asal Kota'),
-                            items: controller.regencies.map((e) {
-                              return DropdownMenuItem(
-                                value: e,
-                                child: Text(e),
-                              );
-                            }).toList(),
-                          ),
-                        ),
-                      ],
+                    EcoSanDropDown(
+                      title: "Asal Kota",
+                      hint: "Pilih asal kota",
+                      icon: Icons.location_city,
+                      selectedValue: controller.cityValue.value,
+                      onChanged: (value) {
+                        controller.cityValue.value = value;
+                      },
+                      validator: controller.cityValidator,
+                      options: controller.regencies,
                     ),
                     const SizedBox(height: 88),
                     EcoSanButton(
@@ -128,6 +101,65 @@ class DataDiriView extends GetView<DataDiriController> {
             ),
           ],
         ),
+      ),
+    );
+  }
+}
+
+class EcoSanDropDown extends StatelessWidget {
+  const EcoSanDropDown({
+    super.key,
+    required this.selectedValue,
+    required this.onChanged,
+    required this.validator,
+    required this.options,
+    required this.title,
+    required this.hint,
+    required this.icon,
+  });
+
+  final String title;
+  final String hint;
+  final IconData icon;
+
+  final dynamic selectedValue;
+  final ValueChanged onChanged;
+  final FormFieldValidator validator;
+  final List<dynamic> options;
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      margin: EdgeInsets.only(bottom: 16),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            title,
+            style: TextStyles.tiny.bold(),
+          ),
+          SizedBox(height: 4),
+          DropdownButtonFormField(
+            validator: validator,
+            dropdownColor: Colors.white,
+            value: selectedValue,
+            onChanged: onChanged,
+            decoration: InputDecoration(
+              prefixIcon: Icon(
+                icon,
+                size: 24,
+              ),
+            ),
+            style: TextStyles.tiny.copyWith(color: Colors.black),
+            hint: Text(hint),
+            items: options.map((e) {
+              return DropdownMenuItem(
+                value: e,
+                child: Text(e),
+              );
+            }).toList(),
+          ),
+        ],
       ),
     );
   }
