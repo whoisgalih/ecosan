@@ -47,9 +47,6 @@ class PembersihanFilterView extends GetView<PembersihanFilterController> {
                       hint: 'Pembersihan Filter',
                       keyboardType: TextInputType.text,
                       controller: controller.pengaduanController),
-                  SizedBox(
-                    height: 1.h,
-                  ),
                   Text(
                     'Data Pelanggan',
                     style: TextStyles.tiny.copyWith(color: Color(0xFF1E1E1E)),
@@ -63,18 +60,12 @@ class PembersihanFilterView extends GetView<PembersihanFilterController> {
                       hint: 'John Doe',
                       keyboardType: TextInputType.name,
                       controller: controller.nameController),
-                  SizedBox(
-                    height: 1.5.h,
-                  ),
                   FormInput(
                       label: 'No. Handphone',
                       validator: (p0) => controller.validateNumber(p0),
                       hint: '+628123456789',
                       keyboardType: TextInputType.text,
                       controller: controller.numberController),
-                  SizedBox(
-                    height: 1.h,
-                  ),
                   Text(
                     'Lokasi Pembersihan FIlter',
                     style: TextStyles.tiny.copyWith(color: const Color(0xFF1E1E1E)),
