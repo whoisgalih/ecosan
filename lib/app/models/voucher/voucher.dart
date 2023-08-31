@@ -26,7 +26,6 @@ class Voucher extends Equatable {
         'price': price,
         'usedDate': usedDate,
         'purchasedDate': purchasedDate,
-        'id': id ?? '',
       };
 
   bool get isUsed => usedDate != null;
