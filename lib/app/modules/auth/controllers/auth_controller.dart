@@ -36,6 +36,7 @@ class AuthController extends GetxController {
 
       if (userData.exists) {
         this.user = user_model.User.fromJson(userData.data()!).obs;
+        
         print(this.user);
         Get.offAllNamed("/home");
       } else {

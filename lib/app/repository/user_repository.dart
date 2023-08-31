@@ -26,6 +26,7 @@ class UserRepository {
     User userObj = User.fromJson(user.data() as Map<String, dynamic>);
     int currentPoint = userObj.poin;
     await update({"poin": currentPoint + point});
+
   }
 }
 
