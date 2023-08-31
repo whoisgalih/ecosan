@@ -1,3 +1,4 @@
+import 'package:ecosan/app/models/article/article_model.dart';
 import 'package:ecosan/app/modules/themes/colors.dart';
 import 'package:ecosan/app/modules/themes/fonts.dart';
 import 'package:ecosan/app/modules/widgets/bottom_bar.dart';
@@ -90,21 +91,19 @@ class HomeView extends GetView<HomeController> {
                 ),
               ],
             ),
-            sectionTitle(title: "Yuk baca artikel!", onTap: () {}),
-            SingleChildScrollView(
-              scrollDirection: Axis.horizontal,
-              child: Row(
-                children: [
-                  const SizedBox(width: 16),
-                  artikelCard(),
-                  const SizedBox(width: 16),
-                  artikelCard(),
-                  const SizedBox(width: 16),
-                  artikelCard(),
-                  const SizedBox(width: 16),
-                  artikelCard(),
-                  const SizedBox(width: 16),
-                ],
+            sectionTitle(
+                title: "Yuk baca artikel!",
+                onTap: () => Get.toNamed(Routes.ARTICLE_LIST)),
+            SizedBox(
+              height: 160,
+              child: Obx(
+                () => ListView.builder(
+                  scrollDirection: Axis.horizontal,
+                  itemBuilder: (context, index) {
+                    return artikelCard(controller.articles.value[index]);
+                  },
+                  itemCount: controller.articles.value.length,
+                ),
               ),
             ),
             sectionTitle(title: "Cara penggunaan fitur sanitasi"),
@@ -186,54 +185,60 @@ class HomeView extends GetView<HomeController> {
     );
   }
 
-  Container artikelCard() {
-    return Container(
-      clipBehavior: Clip.antiAlias,
-      width: 175,
-      decoration: BoxDecoration(
-        border: Border.all(
-          width: 1,
-          color: Colors.black.withOpacity(0.10000000149011612),
+  InkWell artikelCard(ArticleModel article) {
+    return InkWell(
+      onTap: () => Get.toNamed(Routes.ARTICLE, arguments: article),
+      child: Container(
+        clipBehavior: Clip.antiAlias,
+        margin: const EdgeInsets.symmetric(horizontal: 8),
+        width: 175,
+        decoration: BoxDecoration(
+          border: Border.all(
+            width: 1,
+            color: Colors.black.withOpacity(0.10000000149011612),
+          ),
+          color: Colors.white,
+          borderRadius: const BorderRadius.all(Radius.circular(10)),
         ),
-        color: Colors.white,
-        borderRadius: const BorderRadius.all(Radius.circular(10)),
-      ),
-      child: Column(
-        children: [
-          Image.asset(
-            "assets/images/0ee68eaade524d04e566a137274b3fc3.png",
-            height: 75,
-            width: double.infinity,
-            fit: BoxFit.cover,
-          ),
-          Padding(
-            padding: const EdgeInsets.all(8),
-            child: Column(
-              children: [
-                Text(
-                  "Ini 8 ciri-ciri air tercemar, Sudah amankah airmu?",
-                  style: TextStyles.tiny,
-                  textAlign: TextAlign.left,
-                ),
-                const SizedBox(height: 8),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.end,
-                  children: [
-                    Text(
-                      "2 disukai",
-                      style: TextStyles.tiny2,
-                    ),
-                    const SizedBox(width: 12),
-                    Text(
-                      "2 komentar",
-                      style: TextStyles.tiny2,
-                    ),
-                  ],
-                )
-              ],
+        child: Column(
+          children: [
+            Image.network(
+              article.image,
+              height: 75,
+              width: double.infinity,
+              fit: BoxFit.cover,
             ),
-          ),
-        ],
+            Padding(
+              padding: const EdgeInsets.all(8),
+              child: Column(
+                children: [
+                  Text(
+                    article.title,
+                    style: TextStyles.tiny,
+                    textAlign: TextAlign.left,
+                    maxLines: 2,
+                    overflow: TextOverflow.ellipsis,
+                  ),
+                  const SizedBox(height: 8),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    children: [
+                      Text(
+                        "${article.like} disukai",
+                        style: TextStyles.tiny2,
+                      ),
+                      const SizedBox(width: 12),
+                      Text(
+                        "${article.comment} komentar",
+                        style: TextStyles.tiny2,
+                      ),
+                    ],
+                  )
+                ],
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }

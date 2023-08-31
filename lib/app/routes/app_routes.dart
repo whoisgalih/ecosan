@@ -52,6 +52,8 @@ abstract class Routes {
       _Paths.DROP_POINT +
       _Paths.VERIFICATION +
       _Paths.VERIFICATION_SUCCESS;
+  static const ARTICLE = _Paths.HOME + _Paths.ARTICLE;
+  static const ARTICLE_LIST = _Paths.HOME + _Paths.ARTICLE_LIST;
 }
 
 abstract class _Paths {
@@ -88,4 +90,6 @@ abstract class _Paths {
   static const INPUT_TRASH = '/input-trash';
   static const VERIFICATION = '/verification';
   static const VERIFICATION_SUCCESS = '/verification-success';
+  static const ARTICLE = '/article';
+  static const ARTICLE_LIST = '/article-list';
 }
