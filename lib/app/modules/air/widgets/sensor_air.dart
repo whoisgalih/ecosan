@@ -31,61 +31,67 @@ class SensorAir extends StatelessWidget {
               SizedBox(
                 height: 21 / 800 * 100.h,
               ),
-              AirQuality(
-                airQuality: controller.airData.value?.value,
+              Obx(
+                () => AirQuality(
+                  airQuality: controller.airData.value?.value,
+                ),
               ),
             ],
           ),
         ),
-        controller.airData.value != null
-            ? Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    'Rincian Kualitas Air',
-                    style: TextStyles.small.semibold(),
-                  ),
-                  SizedBox(
-                    height: 1.5.h,
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      Flexible(
-                          flex: 1,
-                          child: WaterQualityContainer(
-                            indicator: 'pH',
-                            value:
-                                controller.airData.value!.pH.toStringAsFixed(1),
-                            unit: '',
-                          )),
-                      SizedBox(
-                        width: 33 / 360 * 100.w,
-                      ),
-                      Flexible(
-                          flex: 1,
-                          child: WaterQualityContainer(
-                            indicator: 'ORP',
-                            value: controller.airData.value!.orp.toStringAsFixed(0),
-                            unit: 'mV',
-                          )),
-                      SizedBox(
-                        width: 33 / 360 * 100.w,
-                      ),
-                      Flexible(
-                          flex: 1,
-                          child: WaterQualityContainer(
-                            indicator: 'TDS',
-                            value: controller.airData.value!.tds.toStringAsFixed(0),
-                            unit: 'ppm',
-                          )),
-                    ],
-                  )
-                ],
-              )
-            : const Text(
-                'Status air tidak dapat diketahui karena kamu belum memasang Sensor Air. Pasang Sensor Air sekarang!'),
+        Obx(
+          () => controller.airData.value != null
+              ? Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      'Rincian Kualitas Air',
+                      style: TextStyles.small.semibold(),
+                    ),
+                    SizedBox(
+                      height: 1.5.h,
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        Flexible(
+                            flex: 1,
+                            child: WaterQualityContainer(
+                              indicator: 'pH',
+                              value: controller.airData.value!.pH
+                                  .toStringAsFixed(1),
+                              unit: '',
+                            )),
+                        SizedBox(
+                          width: 33 / 360 * 100.w,
+                        ),
+                        Flexible(
+                            flex: 1,
+                            child: WaterQualityContainer(
+                              indicator: 'ORP',
+                              value: controller.airData.value!.orp
+                                  .toStringAsFixed(0),
+                              unit: 'mV',
+                            )),
+                        SizedBox(
+                          width: 33 / 360 * 100.w,
+                        ),
+                        Flexible(
+                            flex: 1,
+                            child: WaterQualityContainer(
+                              indicator: 'TDS',
+                              value: controller.airData.value!.tds
+                                  .toStringAsFixed(0),
+                              unit: 'ppm',
+                            )),
+                      ],
+                    ),
+                  ],
+                )
+              : const Text(
+                  'Status air tidak dapat diketahui karena kamu belum memasang Sensor Air. Pasang Sensor Air sekarang!'),
+        ),
         SizedBox(
           height: 2.5.h,
         ),

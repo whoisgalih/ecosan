@@ -47,12 +47,14 @@ class ProfileView extends GetView<ProfileController> {
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.end,
                       children: [
-                        CircleAvatar(
-                          backgroundImage: controller.user.photoUrl != null
-                              ? NetworkImage(controller.user.photoUrl!)
-                              : null,
-                          radius: 45 / 360 * 100.w,
-                          backgroundColor: Colors.white,
+                        Obx(
+                          () => CircleAvatar(
+                            backgroundImage: controller.user.photoUrl != null
+                                ? NetworkImage(controller.user.photoUrl!)
+                                : null,
+                            radius: 45 / 360 * 100.w,
+                            backgroundColor: Colors.white,
+                          ),
                         ),
                         SizedBox(
                           width: 1.h,

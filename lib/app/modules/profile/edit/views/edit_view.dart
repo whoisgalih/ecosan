@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:ecosan/app/modules/themes/colors.dart';
 import 'package:ecosan/app/modules/themes/fonts.dart';
 import 'package:ecosan/app/modules/widgets/button.dart';
@@ -53,12 +55,10 @@ class EditView extends GetView<EditController> {
                     ),
                     child: Obx(
                       () => CircleAvatar(
-                        backgroundImage: controller
-                                    .homeController.user.value.photoUrl !=
-                                null
-                            ? NetworkImage(
-                                controller.homeController.user.value.photoUrl!)
-                            : null,
+                        backgroundImage: controller.result.value != null
+                            ? FileImage(controller.getFile) as ImageProvider
+                            : NetworkImage(
+                                controller.homeController.user.value.photoUrl!),
                         radius: 90 / 2 / 360 * 100.w,
                       ),
                     ),
@@ -67,7 +67,7 @@ class EditView extends GetView<EditController> {
                     bottom: 0,
                     right: 0,
                     child: InkWell(
-                      onTap: () => controller.updateImage(),
+                      onTap: () => controller.pickImage(),
                       child: Container(
                         padding: EdgeInsets.all(4.sp),
                         decoration: const BoxDecoration(
