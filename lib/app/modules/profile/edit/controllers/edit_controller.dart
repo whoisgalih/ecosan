@@ -15,7 +15,10 @@ class EditController extends GetxController {
   final emailEditingController = TextEditingController();
   final passwordEditingController = TextEditingController();
   final userRepo = UserRepository();
-  FilePickerResult? result;
+  Rxn<FilePickerResult> result = Rxn<FilePickerResult>();
+  final isLoading = false.obs;
+
+  File get getFile => File(result.value!.files.single.path!);
   @override
   void onInit() {
     super.onInit();
@@ -38,22 +41,9 @@ class EditController extends GetxController {
 
   Future<void> edit() async {
     print('updating');
-    homeController.user.value.name = nameEditingController.text;
-    homeController.user.value.phone = telpEditingController.text;
-    homeController.user.value.city = addressEditingController.text;
-    try {
-      await userRepo.updateProfile();
-      Get.back();
-    } catch (e) {
-      print(e);
-    }
-  }
-
-  Future<void> updateImage() async {
-    result = await FilePicker.platform.pickFiles(type: FileType.image);
-
-    if (result != null) {
-      File file = File(result!.files.single.path!);
+    if (result.value != null) {
+      isLoading.value = true;
+      File file = File(result.value!.files.single.path!);
       final imageRef = storage.ref(
           'images/${homeController.authController.firebaseUser.value!.uid}.${getFileExtensionFromPath(file.path)}');
 
@@ -63,13 +53,26 @@ class EditController extends GetxController {
         final imageUrl = await imageRef.getDownloadURL();
         print('success: ' + imageUrl);
         homeController.user.value.photoUrl = imageUrl;
-        print('updating firestore user');
-        await userRepo.updateProfile();
-        Get.back();
       } catch (e) {
         print("Error uploading image: $e");
       }
     }
+    homeController.user.value.name = nameEditingController.text;
+    homeController.user.value.phone = telpEditingController.text;
+    homeController.user.value.city = addressEditingController.text;
+    try {
+      await userRepo.updateProfile();
+      isLoading(false);
+      Get.back();
+      Get.snackbar('Berhasil', 'Berhasil mengubah profil', snackPosition: SnackPosition.BOTTOM);
+    } catch (e) {
+      print(e);
+      isLoading(false);
+    }
+  }
+
+  Future<void> pickImage() async {
+    result.value = await FilePicker.platform.pickFiles(type: FileType.image);
   }
 
   String getFileExtensionFromPath(String filePath) {
