@@ -29,4 +29,21 @@ class PoinkuController extends GetxController {
   }
 
   Rx<User> get user => authController.user;
+
+  Future<void> useVoucher(Voucher voucher) async {
+    if (user.value.poin >= voucher.price) {
+      user.value.poin -= voucher.price;
+      voucher.purchasedDate = DateTime.now().toString();
+      final reference = await profileController.voucherRepository.add(voucher);
+      voucher.id = reference.id;
+      profileController.vouchers.value.add(voucher);
+      await profileController.userRepository.reducePoint(voucher.price);
+      Get.toNamed('profile/poinku/voucherexchange',
+          arguments: {'voucher': voucher});
+    } else {
+      Get.snackbar(
+          'Poin tidak cukup', 'Poin anda tidak cukup untuk menukar voucher ini',
+          snackPosition: SnackPosition.BOTTOM);
+    }
+  }
 }
