@@ -5,7 +5,6 @@ import 'package:ecosan/app/models/transaction/transaction_model.dart' as model;
 
 class TransactionRepository {
   User? user = auth.currentUser;
-
   CollectionReference get transactionCollection =>
       firestore.collection('users').doc(user!.uid).collection('transactions');
 

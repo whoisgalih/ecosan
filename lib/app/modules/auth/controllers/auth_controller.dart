@@ -36,7 +36,7 @@ class AuthController extends GetxController {
 
       if (userData.exists) {
         this.user = user_model.User.fromJson(userData.data()!).obs;
-        
+
         print(this.user);
         Get.offAllNamed("/home");
       } else {
@@ -148,11 +148,6 @@ class AuthController extends GetxController {
         "city": user.value.city,
         "photoUrl": user.value.photoUrl,
         "birthdate": user.value.birthdate,
-        "transactions": user.value.transactions
-            .map((transaction) => transaction.toJson())
-            .toList(),
-        "vouchers":
-            user.value.vouchers.map((voucher) => voucher.toJson()).toList(),
         "poin": user.value.poin,
       });
       user.refresh();
