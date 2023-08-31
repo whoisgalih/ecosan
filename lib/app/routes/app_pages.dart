@@ -1,24 +1,16 @@
-import 'package:ecosan/app/modules/profile/contact/bindings/contact_binding.dart';
-import 'package:ecosan/app/modules/profile/contact/views/contact_view.dart';
-import 'package:ecosan/app/modules/profile/daftar_riwayat/bindings/daftar_riwayat_binding.dart';
-import 'package:ecosan/app/modules/profile/daftar_riwayat/views/daftar_riwayat_view.dart';
-import 'package:ecosan/app/modules/profile/edit/bindings/edit_binding.dart';
-import 'package:ecosan/app/modules/profile/edit/views/edit_view.dart';
-import 'package:ecosan/app/modules/profile/faq/bindings/faq_binding.dart';
-import 'package:ecosan/app/modules/profile/faq/views/faq_view.dart';
-import 'package:ecosan/app/modules/profile/poinku/bindings/poinku_binding.dart';
-import 'package:ecosan/app/modules/profile/poinku/views/poinku_view.dart';
-import 'package:ecosan/app/modules/profile/poinku/voucherexchange/bindings/voucherexchange_binding.dart';
-import 'package:ecosan/app/modules/profile/poinku/voucherexchange/views/voucherexchange_view.dart';
-import 'package:ecosan/app/modules/profile/voucherku/bindings/voucherku_binding.dart';
-import 'package:ecosan/app/modules/profile/voucherku/views/voucherku_view.dart';
 import 'package:get/get.dart';
 
 import '../modules/air/bindings/air_binding.dart';
+import '../modules/air/kode_bayar/bindings/kode_bayar_binding.dart';
+import '../modules/air/kode_bayar/views/kode_bayar_view.dart';
+import '../modules/air/metode_pembayaran/bindings/metode_pembayaran_binding.dart';
+import '../modules/air/metode_pembayaran/views/metode_pembayaran_view.dart';
 import '../modules/air/pemasangan_alat/bindings/pemasangan_alat_binding.dart';
 import '../modules/air/pemasangan_alat/views/pemasangan_alat_view.dart';
 import '../modules/air/pembersihan_filter/bindings/pembersihan_filter_binding.dart';
 import '../modules/air/pembersihan_filter/views/pembersihan_filter_view.dart';
+import '../modules/air/transaction_success/bindings/transaction_success_binding.dart';
+import '../modules/air/transaction_success/views/transaction_success_view.dart';
 import '../modules/air/views/air_view.dart';
 import '../modules/auth/bindings/auth_binding.dart';
 import '../modules/auth/login/bindings/login_binding.dart';
@@ -30,16 +22,28 @@ import '../modules/auth/register/views/register_view.dart';
 import '../modules/auth/register/welcome/bindings/welcome_binding.dart';
 import '../modules/auth/register/welcome/views/welcome_view.dart';
 import '../modules/auth/views/auth_view.dart';
+import '../modules/home/article-list/bindings/article_list_binding.dart';
+import '../modules/home/article-list/views/article_list_view.dart';
+import '../modules/home/article/bindings/article_binding.dart';
+import '../modules/home/article/views/article_view.dart';
 import '../modules/home/bindings/home_binding.dart';
-import '../modules/air/kode_bayar/bindings/kode_bayar_binding.dart';
-import '../modules/air/kode_bayar/views/kode_bayar_view.dart';
-import '../modules/air/metode_pembayaran/bindings/metode_pembayaran_binding.dart';
-import '../modules/air/metode_pembayaran/views/metode_pembayaran_view.dart';
-import '../modules/air/transaction_success/bindings/transaction_success_binding.dart';
-import '../modules/air/transaction_success/views/transaction_success_view.dart';
 import '../modules/home/views/home_view.dart';
 import '../modules/profile/bindings/profile_binding.dart';
+import '../modules/profile/contact/bindings/contact_binding.dart';
+import '../modules/profile/contact/views/contact_view.dart';
+import '../modules/profile/daftar_riwayat/bindings/daftar_riwayat_binding.dart';
+import '../modules/profile/daftar_riwayat/views/daftar_riwayat_view.dart';
+import '../modules/profile/edit/bindings/edit_binding.dart';
+import '../modules/profile/edit/views/edit_view.dart';
+import '../modules/profile/faq/bindings/faq_binding.dart';
+import '../modules/profile/faq/views/faq_view.dart';
+import '../modules/profile/poinku/bindings/poinku_binding.dart';
+import '../modules/profile/poinku/views/poinku_view.dart';
+import '../modules/profile/poinku/voucherexchange/bindings/voucherexchange_binding.dart';
+import '../modules/profile/poinku/voucherexchange/views/voucherexchange_view.dart';
 import '../modules/profile/views/profile_view.dart';
+import '../modules/profile/voucherku/bindings/voucherku_binding.dart';
+import '../modules/profile/voucherku/views/voucherku_view.dart';
 import '../modules/sampah/bindings/sampah_binding.dart';
 import '../modules/sampah/drop-point/bindings/drop_point_binding.dart';
 import '../modules/sampah/drop-point/preview-drop-point/bindings/preview_drop_point_binding.dart';
@@ -78,6 +82,18 @@ class AppPages {
       page: () => const HomeView(),
       binding: HomeBinding(),
       transition: Transition.noTransition,
+      children: [
+        GetPage(
+          name: _Paths.ARTICLE,
+          page: () => const ArticleView(),
+          binding: ArticleBinding(),
+        ),
+        GetPage(
+          name: _Paths.ARTICLE_LIST,
+          page: () => const ArticleListView(),
+          binding: ArticleListBinding(),
+        ),
+      ],
     ),
     GetPage(
       name: _Paths.AUTH,
