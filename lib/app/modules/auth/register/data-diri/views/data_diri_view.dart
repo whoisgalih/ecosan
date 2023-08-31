@@ -13,93 +13,97 @@ class DataDiriView extends GetView<DataDiriController> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: SafeArea(
-        child: Column(
-          children: [
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 24),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    "Data Diri",
-                    style: TextStyles.header2.bold(),
-                  ),
-                  const SizedBox(height: 8),
-                  Text(
-                    "Isilah data diri dibawah ini dengan benar dan lengkap.",
-                    style: TextStyles.normal,
-                  )
-                ],
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 16),
-              child: Form(
-                key: controller.registerFormKey,
+        child: SingleChildScrollView(
+          child: Column(
+            children: [
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 24),
                 child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.end,
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    FormInput(
-                      hint: "Masukan nama lengkap",
-                      controller: controller.nameEditingController,
-                      icon: Icons.person,
-                      label: "Nama Lengkap",
-                      keyboardType: TextInputType.name,
-                      validator: controller.nameValidator,
+                    Text(
+                      "Data Diri",
+                      style: TextStyles.header2.bold(),
                     ),
-                    FormInput(
-                      label: "Nomor Telepon",
-                      hint: "Masukan nomor telepon",
-                      controller: controller.phoneEditingController,
-                      keyboardType: TextInputType.phone,
-                      icon: Icons.phone,
-                      validator: controller.phoneValidator,
-                    ),
-                    FormInput(
-                      label: "Tanggal Lahir",
-                      controller: controller.dateEditingController,
-                      hint: "Pilih tanggal lahir",
-                      readOnly: true,
-                      keyboardType: TextInputType.datetime,
-                      onTap: () async {
-                        final pickedDate = await showDatePicker(
-                            context: context,
-                            initialDate: DateTime(2000),
-                            firstDate: DateTime(1945),
-                            lastDate: DateTime(2020));
-                        if (pickedDate != null) {
-                          controller.dateEditingController.text =
-                              "${pickedDate.day.toString().padLeft(2, '0')}/${pickedDate.month.toString().padLeft(2, '0')}/${pickedDate.year}";
-                        }
-                      },
-                      icon: Icons.calendar_today,
-                      validator: controller.dateValidator,
-                    ),
-                    EcoSanDropDown(
-                      title: "Asal Kota",
-                      hint: "Pilih asal kota",
-                      icon: Icons.location_city,
-                      selectedValue: controller.cityValue.value,
-                      onChanged: (value) {
-                        controller.cityValue.value = value;
-                      },
-                      validator: controller.cityValidator,
-                      options: controller.regencies,
-                    ),
-                    const SizedBox(height: 88),
-                    EcoSanButton(
-                      onTap: controller.register,
-                      child: Text(
-                        "Simpan",
-                        style: TextStyles.normal.bold(color: Colors.white),
-                      ),
-                    ),
-                    const SizedBox(height: 40),
+                    const SizedBox(height: 8),
+                    Text(
+                      "Isilah data diri dibawah ini dengan benar dan lengkap.",
+                      style: TextStyles.normal,
+                    )
                   ],
                 ),
               ),
-            ),
-          ],
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 16),
+                child: Form(
+                  key: controller.registerFormKey,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.end,
+                    children: [
+                      FormInput(
+                        hint: "Masukan nama lengkap",
+                        controller: controller.nameEditingController,
+                        icon: Icons.person,
+                        label: "Nama Lengkap",
+                        keyboardType: TextInputType.name,
+                        validator: controller.nameValidator,
+                      ),
+                      FormInput(
+                        label: "Nomor Telepon",
+                        hint: "Masukan nomor telepon",
+                        controller: controller.phoneEditingController,
+                        keyboardType: TextInputType.phone,
+                        icon: Icons.phone,
+                        validator: controller.phoneValidator,
+                      ),
+                      FormInput(
+                        label: "Tanggal Lahir",
+                        controller: controller.dateEditingController,
+                        hint: "Pilih tanggal lahir",
+                        readOnly: true,
+                        keyboardType: TextInputType.datetime,
+                        onTap: () async {
+                          final pickedDate = await showDatePicker(
+                              context: context,
+                              initialDate: DateTime(2000),
+                              firstDate: DateTime(1945),
+                              lastDate: DateTime(2020));
+                          if (pickedDate != null) {
+                            controller.dateEditingController.text =
+                                "${pickedDate.day.toString().padLeft(2, '0')}/${pickedDate.month.toString().padLeft(2, '0')}/${pickedDate.year}";
+                          }
+                        },
+                        icon: Icons.calendar_today,
+                        validator: controller.dateValidator,
+                      ),
+                      Obx(
+                        () => EcoSanDropDown(
+                          title: "Asal Kota",
+                          hint: "Pilih asal kota",
+                          icon: Icons.location_city,
+                          selectedValue: controller.cityValue.value,
+                          onChanged: (value) {
+                            controller.cityValue(value);
+                          },
+                          validator: controller.cityValidator,
+                          options: controller.regencies.value,
+                        ),
+                      ),
+                      const SizedBox(height: 88),
+                      EcoSanButton(
+                        onTap: controller.register,
+                        child: Text(
+                          "Simpan",
+                          style: TextStyles.normal.bold(color: Colors.white),
+                        ),
+                      ),
+                      const SizedBox(height: 40),
+                    ],
+                  ),
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );
@@ -130,6 +134,7 @@ class EcoSanDropDown extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
+      width: double.infinity,
       margin: EdgeInsets.only(bottom: 16),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,

@@ -159,6 +159,7 @@ class AuthController extends GetxController {
 
   Future<void> addUserToFirestore(user_model.User user) async {
     try {
+
       final currentUserId = auth.currentUser!.uid;
       await firestore.collection('users').doc(currentUserId).set(user.toJson());
       Get.snackbar(
