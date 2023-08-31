@@ -36,7 +36,9 @@ dependencies:
 dev_dependencies:
   build_runner: ^2.4.6
   cloud_firestore_odm_generator: ^1.0.0-dev.58
+  flutter_launcher_icons: ^0.13.1
   flutter_lints: ^2.0.0
+  flutter_native_splash: ^2.3.2
   flutter_test:
     sdk: flutter
   json_serializable: ^6.7.1
@@ -49,3 +51,21 @@ flutter:
     - assets/json/
     - assets/svgs/
   uses-material-design: true
+
+flutter_native_splash:
+  color: '#ffffff'
+  image: assets/images/Logo Samping.png
+
+flutter_launcher_icons:
+  android: 'launcher_icon'
+  ios: true
+  image_path: 'assets/images/App Icon.png'
+  web:
+    generate: true
+    image_path: 'assets/images/App Icon.png'
+  windows:
+    generate: true
+    image_path: 'assets/images/App Icon.png'
+  macos:
+    generate: true
+    image_path: 'assets/images/App Icon.png'
