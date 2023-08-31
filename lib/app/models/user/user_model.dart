@@ -1,5 +1,3 @@
-import 'package:ecosan/app/models/user/transaction_model.dart';
-import 'package:ecosan/app/models/user/voucher.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 part 'user_model.g.dart';
@@ -21,10 +19,6 @@ class User {
   String birthdate;
   String uid;
   String? photoUrl;
-  List<Transaction> transactions = [];
-  List<Voucher> vouchers = [];
   int poin;
   Map<String, Object?> toJson() => _$UserToJson(this);
-
-  bool get isNewUser => transactions.isEmpty;
 }
