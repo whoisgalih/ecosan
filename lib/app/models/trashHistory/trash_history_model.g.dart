@@ -7,7 +7,7 @@ part of 'trash_history_model.dart';
 // **************************************************************************
 
 TrashHistory _$TrashHistoryFromJson(Map<String, dynamic> json) => TrashHistory(
-      id: json['id'] as String?,
+      id: json['id'] as String,
       name: json['name'] as String,
       phone: json['phone'] as String,
       address: json['address'] as String?,
@@ -40,7 +40,6 @@ const _$TrashHistoryFieldMap = <String, String>{
 
 Map<String, dynamic> _$TrashHistoryToJson(TrashHistory instance) =>
     <String, dynamic>{
-      'id': instance.id,
       'name': instance.name,
       'phone': instance.phone,
       'address': instance.address,

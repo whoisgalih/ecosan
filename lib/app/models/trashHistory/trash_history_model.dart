@@ -1,3 +1,4 @@
+import 'package:cloud_firestore_odm/cloud_firestore_odm.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 part 'trash_history_model.g.dart';
@@ -8,7 +9,9 @@ enum TrashHistoryType { pickup, dropoff }
 
 @JsonSerializable()
 class TrashHistory {
+  @Id()
   final String? id;
+
   final String name;
   final String phone;
   final String? address;

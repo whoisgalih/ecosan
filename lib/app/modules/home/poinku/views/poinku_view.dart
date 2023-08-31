@@ -1,4 +1,4 @@
-import 'package:ecosan/app/models/user/voucher.dart';
+import 'package:ecosan/app/models/voucher/voucher.dart';
 import 'package:ecosan/app/modules/themes/colors.dart';
 import 'package:ecosan/app/modules/themes/fonts.dart';
 import 'package:flutter/material.dart';
@@ -106,8 +106,7 @@ class VoucherListTile extends StatelessWidget {
                   controller.user.value.poin -= voucher.price;
                   voucher.purchasedDate = DateTime.now().toString();
                   controller.user.value.vouchers.add(voucher);
-                  await controller.authController
-                      .updateFirestoreUser();
+                  await controller.authController.updateFirestoreUser();
                   Get.toNamed('home/poinku/voucherexchange',
                       arguments: {'voucher': voucher});
                 } else {

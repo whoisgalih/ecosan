@@ -33,7 +33,6 @@ const _$DropPointFieldMap = <String, String>{
 };
 
 Map<String, dynamic> _$DropPointToJson(DropPoint instance) => <String, dynamic>{
-      'id': instance.id,
       'name': instance.name,
       'address': instance.address,
       'phone': instance.phone,

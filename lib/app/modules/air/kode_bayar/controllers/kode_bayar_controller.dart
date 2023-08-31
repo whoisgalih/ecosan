@@ -1,12 +1,13 @@
 import 'dart:async';
 import 'dart:math';
 
-import 'package:ecosan/app/models/user/transaction_model.dart'
+import 'package:ecosan/app/models/transaction/transaction_model.dart'
     as transaction_model;
 
 import 'package:ecosan/app/modules/auth/controllers/auth_controller.dart';
 import 'package:ecosan/app/modules/themes/colors.dart';
 import 'package:ecosan/app/modules/themes/fonts.dart';
+import 'package:ecosan/app/repository/transaction_repository.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -44,20 +45,21 @@ class KodeBayarController extends GetxController {
 
   Future<void> pay() async {
     transaction_model.Transaction transaction = transaction_model.Transaction(
-        status: 'Sedang diproses',
-        transactionCode: kodeBayar,
-        price: Get.arguments['price'],
-        orderDate: Get.arguments['order_date'],
-        paymentDate: DateTime.now().toString(),
-        paymentMethod: paymentTitle,
-        orderType: Get.arguments['order_type'],
-        name: Get.arguments['name'],
-        address: Get.arguments['address'],
-        phone: Get.arguments['phone']);
+      status: 'Sedang diproses',
+      transactionCode: kodeBayar,
+      price: Get.arguments['price'],
+      orderDate: Get.arguments['order_date'],
+      paymentDate: DateTime.now().toString(),
+      paymentMethod: paymentTitle,
+      orderType: Get.arguments['order_type'],
+      name: Get.arguments['name'],
+      address: Get.arguments['address'],
+      phone: Get.arguments['phone'],
+    );
     try {
       print('sending to databases');
       final authInstance = AuthController.authInstance;
-      authInstance.user.value.transactions.add(transaction);
+      transactionRepository.add(transaction);
       await authInstance.updateFirestoreUser();
       Get.offAndToNamed('/air/transaction-success', arguments: {
         'transaction': transaction,

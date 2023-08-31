@@ -3,6 +3,7 @@ import 'dart:math';
 import 'package:camera/camera.dart';
 import 'package:ecosan/app/modules/air/widgets/air_history.dart';
 import 'package:ecosan/app/modules/home/controllers/home_controller.dart';
+import 'package:ecosan/app/repository/transaction_repository.dart';
 import 'package:get/get.dart';
 
 class AirController extends GetxController {
@@ -18,20 +19,25 @@ class AirController extends GetxController {
   late List<SanitasiAirData> dataKualitasAir;
   late List<int> listBulan;
   final indexBulan = 0.obs;
+
   @override
   void onInit() async {
     super.onInit();
     listBulan = [];
-    if (!HomeController.i.user.value.isNewUser) {
+
+    final bool isTransactionExist = await transactionRepository.isExist();
+
+    if (!isTransactionExist) {
       Random random = Random();
       airData = SanitasiAirData(
-          DateTime.now().day,
-          DateTime.now().month,
-          5.0 + random.nextDouble() * 2.5,
-          200.0 + random.nextDouble() * 100.0,
-          30.0 + random.nextDouble() * 20.0,
-          1 + random.nextInt(100),
-          DateTime.now().year);
+        DateTime.now().day,
+        DateTime.now().month,
+        5.0 + random.nextDouble() * 2.5,
+        200.0 + random.nextDouble() * 100.0,
+        30.0 + random.nextDouble() * 20.0,
+        1 + random.nextInt(100),
+        DateTime.now().year,
+      );
       dataKualitasAir = [];
 
       DateTime today = DateTime.now();

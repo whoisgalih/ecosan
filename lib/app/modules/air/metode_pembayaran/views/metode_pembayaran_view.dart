@@ -3,7 +3,9 @@ import 'package:ecosan/app/constants/utils.dart';
 import 'package:ecosan/app/modules/themes/colors.dart';
 import 'package:ecosan/app/modules/themes/fonts.dart';
 import 'package:ecosan/app/modules/widgets/button.dart';
+import 'package:ecosan/app/routes/app_pages.dart';
 import 'package:flutter/material.dart';
+import 'package:ecosan/app/models/transaction/transaction_model.dart' as model;
 
 import 'package:get/get.dart';
 import 'package:sizer/sizer.dart';
@@ -163,16 +165,28 @@ class MetodePembayaranView extends GetView<MetodePembayaranController> {
                 onTap: () {
                   if (controller.selectedPaymentIdx.value != null) {
                     Get.offNamedUntil('/home', (route) => false);
-                    Get.toNamed('air/kode-bayar', arguments: {
-                      'payment_method': controller
-                          .paymentMethod[controller.selectedPaymentIdx.value!],
-                      'order_type': arguments['order_type'],
-                      'price': arguments['price'],
-                      'address': arguments['address'],
-                      'name': arguments['name'],
-                      'phone': arguments['phone'],
-                      'order_date': DateTime.now().toString(),
-                    });
+                    Get.toNamed(Routes.KODE_BAYAR,
+                        arguments: model.Transaction(
+                          paymentMethod: controller.paymentMethod[
+                              controller.selectedPaymentIdx.value!],
+                          orderType: arguments['order_type'],
+                          price: arguments['price'],
+                          address: arguments['address'],
+                          name: arguments['name'],
+                          phone: arguments['phone'],
+                          orderDate: DateTime.now().toString(),
+                        )
+                        // arguments: {
+                        //   'payment_method': controller.paymentMethod[
+                        //       controller.selectedPaymentIdx.value!],
+                        //   'order_type': arguments['order_type'],
+                        //   'price': arguments['price'],
+                        //   'address': arguments['address'],
+                        //   'name': arguments['name'],
+                        //   'phone': arguments['phone'],
+                        //   'order_date': DateTime.now().toString(),
+                        // },
+                        );
                   }
                 },
                 child: Text(
