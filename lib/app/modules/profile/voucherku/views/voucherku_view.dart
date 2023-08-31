@@ -222,6 +222,10 @@ class VoucherkuView extends GetView<VoucherkuController> {
                     } else {
                       await controller.profileController.voucherRepository
                           .useVoucher(voucher.id!);
+                      controller.profileController.vouchers.value
+                          .firstWhere((e) => e.id == voucher.id)
+                          .usedDate = DateTime.now().toIso8601String();
+                      controller.profileController.vouchers.refresh();
                       Get.snackbar('Voucher berhasil digunakan',
                           'Voucher ini berhasil digunakan',
                           snackPosition: SnackPosition.BOTTOM);
