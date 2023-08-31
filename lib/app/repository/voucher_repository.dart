@@ -24,10 +24,9 @@ class VoucherRepository {
     }).toList();
   }
 
-  // is exist
-  Future<bool> isExist() async {
-    final querySnapshot = await transactionCollection.get();
-    print(querySnapshot.docs.isNotEmpty);
-    return querySnapshot.docs.isNotEmpty;
+  Future<void> useVoucher(String id) async {
+    await transactionCollection
+        .doc(id)
+        .update({'usedDate': DateTime.now().toIso8601String()});
   }
 }
