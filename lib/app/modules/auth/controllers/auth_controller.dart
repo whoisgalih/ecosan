@@ -140,26 +140,8 @@ class AuthController extends GetxController {
     }
   }
 
-  Future<void> updateFirestoreUser() async {
-    try {
-      await firestore.collection("users").doc(auth.currentUser!.uid).update({
-        "name": user.value.name,
-        "phone": user.value.phone,
-        "city": user.value.city,
-        "photoUrl": user.value.photoUrl,
-        "birthdate": user.value.birthdate,
-        "poin": user.value.poin,
-      });
-      user.refresh();
-      print('done updating');
-    } catch (e) {
-      Get.snackbar('error found', e.toString());
-    }
-  }
-
   Future<void> addUserToFirestore(user_model.User user) async {
     try {
-
       final currentUserId = auth.currentUser!.uid;
       await firestore.collection('users').doc(currentUserId).set(user.toJson());
       Get.snackbar(

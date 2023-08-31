@@ -100,7 +100,7 @@ class ProfileView extends GetView<ProfileController> {
                                 SizedBox(
                                   width: 132 / 360 * 100.w,
                                   child: EcoSanButton(
-                                      onTap: () => Get.toNamed('home/edit'),
+                                      onTap: () => Get.toNamed('profile/edit'),
                                       child: Text(
                                         'Edit Profile',
                                         style: TextStyles.normal

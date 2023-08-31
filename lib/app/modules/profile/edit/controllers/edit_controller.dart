@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:ecosan/app/constants/firebase_constants.dart';
 import 'package:ecosan/app/modules/home/controllers/home_controller.dart';
+import 'package:ecosan/app/repository/user_repository.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -13,6 +14,7 @@ class EditController extends GetxController {
   final addressEditingController = TextEditingController();
   final emailEditingController = TextEditingController();
   final passwordEditingController = TextEditingController();
+  final userRepo = UserRepository();
   FilePickerResult? result;
   @override
   void onInit() {
@@ -40,7 +42,7 @@ class EditController extends GetxController {
     homeController.user.value.phone = telpEditingController.text;
     homeController.user.value.city = addressEditingController.text;
     try {
-      await homeController.authController.updateFirestoreUser();
+      await userRepo.updateProfile();
       Get.back();
     } catch (e) {
       print(e);
@@ -56,25 +58,16 @@ class EditController extends GetxController {
           'images/${homeController.authController.firebaseUser.value!.uid}.${getFileExtensionFromPath(file.path)}');
 
       try {
-        // Reference to Firebase Storage location
-
-        // Upload the selected image to Firebase Storage
         print('uploading image');
         await imageRef.putFile(file);
-
-        // Get the download URL of the uploaded image
         final imageUrl = await imageRef.getDownloadURL();
         print('success: ' + imageUrl);
-        // Update the user's image URL in Firestore
         homeController.user.value.photoUrl = imageUrl;
         print('updating firestore user');
-        await homeController.authController.updateFirestoreUser();
-        // Close the FilePicker dialog
+        await userRepo.updateProfile();
         Get.back();
       } catch (e) {
-        // Handle any errors that occur during image upload or updating Firestore
         print("Error uploading image: $e");
-        // You might want to show an error message to the user using Get.snackbar or other methods
       }
     }
   }

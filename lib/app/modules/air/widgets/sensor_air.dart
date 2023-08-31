@@ -32,12 +32,12 @@ class SensorAir extends StatelessWidget {
                 height: 21 / 800 * 100.h,
               ),
               AirQuality(
-                airQuality: controller.airData?.value,
+                airQuality: controller.airData.value?.value,
               ),
             ],
           ),
         ),
-        controller.airData != null
+        controller.airData.value != null
             ? Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -56,7 +56,8 @@ class SensorAir extends StatelessWidget {
                           flex: 1,
                           child: WaterQualityContainer(
                             indicator: 'pH',
-                            value: controller.airData!.pH.toStringAsFixed(1),
+                            value:
+                                controller.airData.value!.pH.toStringAsFixed(1),
                             unit: '',
                           )),
                       SizedBox(
@@ -66,7 +67,7 @@ class SensorAir extends StatelessWidget {
                           flex: 1,
                           child: WaterQualityContainer(
                             indicator: 'ORP',
-                            value: controller.airData!.orp.toStringAsFixed(0),
+                            value: controller.airData.value!.orp.toStringAsFixed(0),
                             unit: 'mV',
                           )),
                       SizedBox(
@@ -76,7 +77,7 @@ class SensorAir extends StatelessWidget {
                           flex: 1,
                           child: WaterQualityContainer(
                             indicator: 'TDS',
-                            value: controller.airData!.tds.toStringAsFixed(0),
+                            value: controller.airData.value!.tds.toStringAsFixed(0),
                             unit: 'ppm',
                           )),
                     ],

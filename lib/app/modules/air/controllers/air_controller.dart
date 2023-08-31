@@ -12,52 +12,17 @@ class AirController extends GetxController {
   final random = Random();
   final image = Rxn<XFile?>();
   late final RxInt airIndex = 0.obs;
-  SanitasiAirData? airData;
+  Rxn<SanitasiAirData> airData = Rxn<SanitasiAirData>();
   final isFlashOn = false.obs;
   final isProcessing = false.obs;
-  late List<SanitasiAirData> dataKualitasAir;
-  late List<int> listBulan;
+  Rx<List<SanitasiAirData>> dataKualitasAir = Rx<List<SanitasiAirData>>([]);
+  Rx<List<int>> listBulan = Rx<List<int>>([]);
   final indexBulan = 0.obs;
   final transactionRepository = TransactionRepository();
   @override
   void onInit() async {
+    checkAndSeed();
     super.onInit();
-    listBulan = [];
-    bool isTransactionExist = await transactionRepository.isExist();
-    if (isTransactionExist) {
-      Random random = Random();
-      airData = SanitasiAirData(
-          DateTime.now().day,
-          DateTime.now().month,
-          5.0 + random.nextDouble() * 2.5,
-          200.0 + random.nextDouble() * 100.0,
-          30.0 + random.nextDouble() * 20.0,
-          1 + random.nextInt(100),
-          DateTime.now().year);
-      dataKualitasAir = [];
-
-      DateTime today = DateTime.now();
-      DateTime twoMonthsAgo =
-          today.subtract(const Duration(days: 60)); // 2 months ago
-
-      for (DateTime date = today.subtract(const Duration(days: 1));
-          date.isAfter(twoMonthsAgo);
-          date = date.subtract(const Duration(days: 1))) {
-        dataKualitasAir.add(
-          SanitasiAirData(
-            date.day,
-            date.month,
-            5.0 + random.nextDouble() * 2.5,
-            200.0 + random.nextDouble() * 100.0,
-            30.0 + random.nextDouble() * 20.0,
-            1 + random.nextInt(100),
-            date.year,
-          ),
-        );
-      }
-      dataKualitasAir = dataKualitasAir.reversed.toList();
-      listBulan = dataKualitasAir.map((e) => e.month).toSet().toList();
-    }
     cameras = await availableCameras();
     if (cameras != null) {
       try {
@@ -74,7 +39,6 @@ class AirController extends GetxController {
 
   @override
   void onReady() {
-    // TODO: implement onReady
     super.onReady();
     airIndex(0);
     ever(airIndex, (index) async {
@@ -88,12 +52,9 @@ class AirController extends GetxController {
 
   @override
   void onClose() {
-    // TODO: implement onClose
     super.onClose();
     controller!.dispose();
   }
-
-  //generate random value for air quality 1-10
 
   Future<void> flashToggle() async {
     if (isFlashOn.value) {
@@ -116,6 +77,43 @@ class AirController extends GetxController {
       print('resume');
       image.value = null;
       controller!.resumePreview();
+    }
+  }
+
+  Future<void> checkAndSeed() async {
+    bool isTransactionExist = await transactionRepository.isExist();
+    if (isTransactionExist) {
+      Random random = Random();
+      airData.value = SanitasiAirData(
+          DateTime.now().day,
+          DateTime.now().month,
+          5.0 + random.nextDouble() * 2.5,
+          200.0 + random.nextDouble() * 100.0,
+          30.0 + random.nextDouble() * 20.0,
+          1 + random.nextInt(100),
+          DateTime.now().year);
+      DateTime today = DateTime.now();
+      DateTime twoMonthsAgo =
+          today.subtract(const Duration(days: 60)); // 2 months ago
+
+      for (DateTime date = today.subtract(const Duration(days: 1));
+          date.isAfter(twoMonthsAgo);
+          date = date.subtract(const Duration(days: 1))) {
+        dataKualitasAir.value.add(
+          SanitasiAirData(
+            date.day,
+            date.month,
+            5.0 + random.nextDouble() * 2.5,
+            200.0 + random.nextDouble() * 100.0,
+            30.0 + random.nextDouble() * 20.0,
+            1 + random.nextInt(100),
+            date.year,
+          ),
+        );
+      }
+      dataKualitasAir.value = dataKualitasAir.value.reversed.toList();
+      listBulan.value =
+          dataKualitasAir.value.map((e) => e.month).toSet().toList();
     }
   }
 }

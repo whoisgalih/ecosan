@@ -19,7 +19,7 @@ class AirHistory extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return sanitationController.listBulan.isNotEmpty
+    return sanitationController.listBulan.value.isNotEmpty
         ? Obx(
             () =>
                 Column(mainAxisAlignment: MainAxisAlignment.center, children: [
@@ -33,11 +33,11 @@ class AirHistory extends StatelessWidget {
                             ? sanitationController.indexBulan.value--
                             : null,
                         icon: Icon(Icons.arrow_left)),
-                    Text(Utils.getMonthFromInt(sanitationController.listBulan
+                    Text(Utils.getMonthFromInt(sanitationController.listBulan.value
                         .elementAt(sanitationController.indexBulan.value))),
                     IconButton(
                         onPressed: () => sanitationController.indexBulan <
-                                sanitationController.listBulan.length - 1
+                                sanitationController.listBulan.value.length - 1
                             ? sanitationController.indexBulan.value++
                             : null,
                         icon: Icon(Icons.arrow_right)),
@@ -53,10 +53,10 @@ class AirHistory extends StatelessWidget {
                   series: <LineSeries<SanitasiAirData, String>>[
                     LineSeries<SanitasiAirData, String>(
                         name: 'Kualitas Air',
-                        dataSource: sanitationController.dataKualitasAir
+                        dataSource: sanitationController.dataKualitasAir.value
                             .where((element) =>
                                 element.month ==
-                                sanitationController.listBulan.elementAt(
+                                sanitationController.listBulan.value.elementAt(
                                     sanitationController.indexBulan.value))
                             .toList(),
                         xValueMapper: (SanitasiAirData sales, _) =>
@@ -65,10 +65,10 @@ class AirHistory extends StatelessWidget {
                         yValueMapper: (SanitasiAirData sales, _) => sales.value,
                         markerSettings: MarkerSettings(isVisible: true),
                         onPointTap: (pointInteractionDetails) {
-                          final airData = sanitationController.dataKualitasAir
+                          final airData = sanitationController.dataKualitasAir.value
                               .where((element) =>
                                   element.month ==
-                                  sanitationController.listBulan.elementAt(
+                                  sanitationController.listBulan.value.elementAt(
                                       sanitationController.indexBulan.value))
                               .toList()
                               .elementAt(pointInteractionDetails.pointIndex!);
