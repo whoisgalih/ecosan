@@ -2,6 +2,7 @@ import 'package:ecosan/app/modules/themes/colors.dart';
 import 'package:ecosan/app/modules/themes/fonts.dart';
 import 'package:ecosan/app/modules/widgets/bottom_bar.dart';
 import 'package:ecosan/app/modules/widgets/button_text.dart';
+import 'package:ecosan/app/routes/app_pages.dart';
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
@@ -60,9 +61,11 @@ class HomeView extends GetView<HomeController> {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text(
-                        "Hi, User!",
-                        style: TextStyles.header2.semibold(),
+                      Obx(
+                        () => Text(
+                          "Hi, ${controller.user.value.name.split(" ").first}!",
+                          style: TextStyles.header2.semibold(),
+                        ),
                       ),
                       const SizedBox(height: 8),
                       Row(
@@ -71,14 +74,14 @@ class HomeView extends GetView<HomeController> {
                             color: EcoSanColors.primary,
                             title: "Ayo lihat status air mu!",
                             image: "assets/images/water.png",
-                            onTap: () {},
+                            onTap: () => Get.offNamed(Routes.AIR),
                           ),
                           const SizedBox(width: 16),
                           sanAction(
                             color: EcoSanColors.secondary,
                             title: "Sudah buang sampah hari ini?",
                             image: "assets/images/trash.png",
-                            onTap: () {},
+                            onTap: () => Get.offNamed(Routes.SAMPAH),
                           ),
                         ],
                       )
