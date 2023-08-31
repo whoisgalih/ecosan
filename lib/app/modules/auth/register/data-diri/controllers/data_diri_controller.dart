@@ -13,7 +13,7 @@ class DataDiriController extends GetxController {
   final phoneEditingController = TextEditingController();
   final dateEditingController = TextEditingController();
   RxList<String> regencies = <String>[].obs;
-  Rx<String?> cityValue = null.obs;
+  final cityValue = Rxn<String>();
 
   @override
   void onInit() {
@@ -65,7 +65,7 @@ class DataDiriController extends GetxController {
     return null;
   }
 
-  void register() {
+  void register() async {
     if (registerFormKey.currentState!.validate() && cityValue.value != null) {
       registerFormKey.currentState!.save();
       User user = User(
@@ -76,7 +76,7 @@ class DataDiriController extends GetxController {
           phone: phoneEditingController.text,
           birthdate: dateEditingController.text,
           city: cityValue.value!);
-      authController.addUserToFirestore(user);
+      await authController.addUserToFirestore(user);
     }
   }
 }

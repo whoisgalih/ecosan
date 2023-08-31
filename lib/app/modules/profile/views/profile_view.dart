@@ -18,7 +18,7 @@ class ProfileView extends GetView<ProfileController> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('ProfileView'),
+        title: const Text('Profile'),
         centerTitle: true,
       ),
       body: Container(
@@ -100,7 +100,7 @@ class ProfileView extends GetView<ProfileController> {
                                 SizedBox(
                                   width: 132 / 360 * 100.w,
                                   child: EcoSanButton(
-                                      onTap: () => Get.toNamed('home/edit'),
+                                      onTap: () => Get.toNamed('profile/edit'),
                                       child: Text(
                                         'Edit Profile',
                                         style: TextStyles.normal
@@ -136,7 +136,7 @@ class ProfileView extends GetView<ProfileController> {
                           color: EcoSanColors.secondary,
                           value: controller.user.poin,
                           buttonStr: 'Tukarkan',
-                          onTap: () => Get.toNamed('home/poinku'),
+                          onTap: () => Get.toNamed('profile/poinku'),
                           leadingWidget: Container(
                               width: 32 / 360 * 100.w,
                               height: 32 / 360 * 100.w,
@@ -152,22 +152,24 @@ class ProfileView extends GetView<ProfileController> {
                     SizedBox(
                       width: 2.5.h,
                     ),
-                    Flexible(
-                        flex: 1,
-                        child: ProfileCard(
-                          color: EcoSanColors.primary,
-                          title: 'Voucherku',
-                          value: controller.user.vouchers.length,
-                          buttonStr: 'Detail',
-                          onTap: () => Get.toNamed('home/voucherku'),
-                          leadingWidget: SizedBox(
-                              width: 32 / 360 * 100.w,
-                              height: 32 / 360 * 100.w,
-                              child: SvgPicture.asset(
-                                'assets/svgs/voucher.svg',
-                                color: Colors.white,
-                              )),
-                        )),
+                    Obx(
+                      () => Flexible(
+                          flex: 1,
+                          child: ProfileCard(
+                            color: EcoSanColors.primary,
+                            title: 'Voucherku',
+                            value: controller.vouchers.value.length,
+                            buttonStr: 'Detail',
+                            onTap: () => Get.toNamed('profile/voucherku'),
+                            leadingWidget: SizedBox(
+                                width: 32 / 360 * 100.w,
+                                height: 32 / 360 * 100.w,
+                                child: SvgPicture.asset(
+                                  'assets/svgs/voucher.svg',
+                                  color: Colors.white,
+                                )),
+                          )),
+                    ),
                   ],
                 ),
               ),
@@ -185,19 +187,19 @@ class ProfileView extends GetView<ProfileController> {
                       color: EcoSanColors.primary,
                     ),
                     title: 'Daftar Riwayat',
-                    ontap: () => Get.toNamed('home/daftar-riwayat'),
+                    ontap: () => Get.toNamed('profile/daftar-riwayat'),
                   ),
                   ProfileListTile(
                     leading: SvgPicture.asset('assets/svgs/faq.svg',
                         color: EcoSanColors.primary),
                     title: 'FAQ',
-                    ontap: () => Get.toNamed('home/faq'),
+                    ontap: () => Get.toNamed('profile/faq'),
                   ),
                   ProfileListTile(
                     leading: SvgPicture.asset('assets/svgs/question.svg',
                         color: EcoSanColors.primary),
                     title: 'Hubungi Kami',
-                    ontap: () => Get.toNamed('home/contact'),
+                    ontap: () => Get.toNamed('profile/contact'),
                   ),
                   ProfileListTile(
                       leading:

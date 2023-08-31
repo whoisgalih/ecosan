@@ -1,6 +1,6 @@
 import 'package:ecosan/app/modules/sampah/receive-point/views/receive_point_view.dart';
-import 'package:ecosan/app/repository/trash_history/trash_history_repository.dart';
-import 'package:ecosan/app/repository/user/user_repository.dart';
+import 'package:ecosan/app/repository/trash_history_repository.dart';
+import 'package:ecosan/app/repository/user_repository.dart';
 import 'package:ecosan/app/routes/app_pages.dart';
 import 'package:get/get.dart';
 

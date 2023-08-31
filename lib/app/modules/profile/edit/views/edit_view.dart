@@ -6,7 +6,6 @@ import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
 import 'package:sizer/sizer.dart';
-import 'package:syncfusion_flutter_charts/charts.dart';
 
 import '../controllers/edit_controller.dart';
 
@@ -94,45 +93,30 @@ class EditView extends GetView<EditController> {
                   hint: '',
                   keyboardType: TextInputType.name,
                   controller: controller.nameEditingController),
-              SizedBox(
-                height: 2.h,
-              ),
               FormInput(
                   label: 'Nomor Telepon',
                   icon: Icons.phone,
                   hint: '',
                   keyboardType: TextInputType.number,
                   controller: controller.telpEditingController),
-              SizedBox(
-                height: 2.h,
-              ),
               FormInput(
                   label: 'Alamat',
                   icon: Icons.home,
                   hint: '',
                   keyboardType: TextInputType.streetAddress,
                   controller: controller.addressEditingController),
-              SizedBox(
-                height: 2.h,
-              ),
               FormInput(
                   label: 'Email',
                   icon: Icons.email,
                   hint: '',
                   keyboardType: TextInputType.emailAddress,
                   controller: controller.emailEditingController),
-              SizedBox(
-                height: 2.h,
-              ),
               FormInput(
                   label: 'Password',
                   hint: '',
                   icon: Icons.lock,
                   keyboardType: TextInputType.visiblePassword,
                   controller: controller.passwordEditingController),
-              SizedBox(
-                height: 2.h,
-              ),
               EcoSanButton(
                   onTap: () => controller.edit(),
                   child: Text(

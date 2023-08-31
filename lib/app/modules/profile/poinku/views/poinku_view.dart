@@ -1,4 +1,4 @@
-import 'package:ecosan/app/models/user/voucher.dart';
+import 'package:ecosan/app/models/voucher/voucher.dart';
 import 'package:ecosan/app/modules/themes/colors.dart';
 import 'package:ecosan/app/modules/themes/fonts.dart';
 import 'package:flutter/material.dart';
@@ -101,21 +101,7 @@ class VoucherListTile extends StatelessWidget {
                   minimumSize: const Size(0, 0),
                   padding:
                       EdgeInsets.symmetric(vertical: 1.h, horizontal: 2.5.h)),
-              onPressed: () async {
-                if (controller.user.value.poin >= voucher.price) {
-                  controller.user.value.poin -= voucher.price;
-                  voucher.purchasedDate = DateTime.now().toString();
-                  controller.user.value.vouchers.add(voucher);
-                  await controller.authController
-                      .updateFirestoreUser();
-                  Get.toNamed('home/poinku/voucherexchange',
-                      arguments: {'voucher': voucher});
-                } else {
-                  Get.snackbar('Poin tidak cukup',
-                      'Poin anda tidak cukup untuk menukar voucher ini',
-                      snackPosition: SnackPosition.BOTTOM);
-                }
-              },
+              onPressed: () => controller.useVoucher(voucher),
               child: Text(
                 'Tukar',
                 style: TextStyles.tiny.copyWith(color: Colors.white),
@@ -163,11 +149,13 @@ class PoinkuBanner extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: [
-                      Text(
-                        controller.user.value.poin.toString(),
-                        style: TextStyles.header1
-                            .bold()
-                            .copyWith(color: Colors.white),
+                      Obx(
+                        () => Text(
+                          controller.user.value.poin.toString(),
+                          style: TextStyles.header1
+                              .bold()
+                              .copyWith(color: Colors.white),
+                        ),
                       ),
                       Text(
                         'Poin',

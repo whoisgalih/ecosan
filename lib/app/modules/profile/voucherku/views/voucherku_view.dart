@@ -1,6 +1,5 @@
 import 'package:ecosan/app/constants/utils.dart';
-import 'package:ecosan/app/models/user/voucher.dart';
-import 'package:ecosan/app/modules/auth/controllers/auth_controller.dart';
+import 'package:ecosan/app/models/voucher/voucher.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
@@ -59,10 +58,12 @@ class VoucherkuView extends GetView<VoucherkuController> {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            Text(
-                              controller.user.value.vouchers.length.toString(),
-                              style:
-                                  TextStyles.header1.bold(color: Colors.white),
+                            Obx(
+                              () => Text(
+                                controller.vouchers.value.length.toString(),
+                                style: TextStyles.header1
+                                    .bold(color: Colors.white),
+                              ),
                             ),
                             Text(
                               'Voucher',
@@ -120,8 +121,7 @@ class VoucherkuView extends GetView<VoucherkuController> {
                         child: controller.index.value == 0
                             ? ListView.separated(
                                 itemBuilder: (context, index) {
-                                  var validVouchers = controller
-                                      .user.value.vouchers
+                                  var validVouchers = controller.vouchers.value
                                       .where((e) => !e.isUsed)
                                       .toList();
                                   return voucherListTile(validVouchers[index]);
@@ -129,14 +129,13 @@ class VoucherkuView extends GetView<VoucherkuController> {
                                 separatorBuilder: (context, index) => SizedBox(
                                   height: 1.h,
                                 ),
-                                itemCount: controller.user.value.vouchers
+                                itemCount: controller.vouchers.value
                                     .where((e) => !e.isUsed)
                                     .length,
                               )
                             : ListView.separated(
                                 itemBuilder: (context, index) {
-                                  var validVouchers = controller
-                                      .user.value.vouchers
+                                  var validVouchers = controller.vouchers.value
                                       .where((e) => e.isUsed)
                                       .toList();
                                   return voucherListTile(validVouchers[index]);
@@ -144,7 +143,7 @@ class VoucherkuView extends GetView<VoucherkuController> {
                                 separatorBuilder: (context, index) => SizedBox(
                                   height: 1.h,
                                 ),
-                                itemCount: controller.user.value.vouchers
+                                itemCount: controller.vouchers.value
                                     .where((e) => e.isUsed)
                                     .length,
                               ),
@@ -221,11 +220,12 @@ class VoucherkuView extends GetView<VoucherkuController> {
                           colorText: Colors.white,
                           snackPosition: SnackPosition.BOTTOM);
                     } else {
-                      int targetIdx = controller.user.value.vouchers
-                          .indexWhere((e) => e == voucher);
-                      controller.user.value.vouchers[targetIdx].usedDate =
-                          now.toString();
-                      await AuthController.authInstance.updateFirestoreUser();
+                      await controller.profileController.voucherRepository
+                          .useVoucher(voucher.id!);
+                      controller.profileController.vouchers.value
+                          .firstWhere((e) => e.id == voucher.id)
+                          .usedDate = DateTime.now().toIso8601String();
+                      controller.profileController.vouchers.refresh();
                       Get.snackbar('Voucher berhasil digunakan',
                           'Voucher ini berhasil digunakan',
                           snackPosition: SnackPosition.BOTTOM);

@@ -1,12 +1,13 @@
 import 'dart:async';
 import 'dart:math';
 
-import 'package:ecosan/app/models/user/transaction_model.dart'
+import 'package:ecosan/app/models/transaction/transaction_model.dart'
     as transaction_model;
 
 import 'package:ecosan/app/modules/auth/controllers/auth_controller.dart';
 import 'package:ecosan/app/modules/themes/colors.dart';
 import 'package:ecosan/app/modules/themes/fonts.dart';
+import 'package:ecosan/app/repository/transaction_repository.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -15,6 +16,7 @@ class KodeBayarController extends GetxController {
   late Timer _timer;
   late String kodeBayar;
   String paymentTitle = Get.arguments['payment_method'].title;
+  TransactionRepository transactionRepository = TransactionRepository();
   void _startCountdown() {
     _timer = Timer.periodic(Duration(seconds: 1), (_) {
       if (countdown.value > 0) {
@@ -55,10 +57,7 @@ class KodeBayarController extends GetxController {
         address: Get.arguments['address'],
         phone: Get.arguments['phone']);
     try {
-      print('sending to databases');
-      final authInstance = AuthController.authInstance;
-      authInstance.user.value.transactions.add(transaction);
-      await authInstance.updateFirestoreUser();
+      await transactionRepository.add(transaction);
       Get.offAndToNamed('/air/transaction-success', arguments: {
         'transaction': transaction,
       });

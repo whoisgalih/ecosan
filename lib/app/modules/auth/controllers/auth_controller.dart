@@ -36,6 +36,7 @@ class AuthController extends GetxController {
 
       if (userData.exists) {
         this.user = user_model.User.fromJson(userData.data()!).obs;
+
         print(this.user);
         Get.offAllNamed("/home");
       } else {
@@ -136,28 +137,6 @@ class AuthController extends GetxController {
       );
     } catch (e) {
       print(e.toString());
-    }
-  }
-
-  Future<void> updateFirestoreUser() async {
-    try {
-      await firestore.collection("users").doc(auth.currentUser!.uid).update({
-        "name": user.value.name,
-        "phone": user.value.phone,
-        "city": user.value.city,
-        "photoUrl": user.value.photoUrl,
-        "birthdate": user.value.birthdate,
-        "transactions": user.value.transactions
-            .map((transaction) => transaction.toJson())
-            .toList(),
-        "vouchers":
-            user.value.vouchers.map((voucher) => voucher.toJson()).toList(),
-        "poin": user.value.poin,
-      });
-      user.refresh();
-      print('done updating');
-    } catch (e) {
-      Get.snackbar('error found', e.toString());
     }
   }
 
