@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:ecosan/app/constants/firebase_constants.dart';
 import 'package:ecosan/app/models/user/user_model.dart' as user_model;
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:get/get.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 
@@ -38,14 +39,15 @@ class AuthController extends GetxController {
         this.user = user_model.User.fromJson(userData.data()!).obs;
 
         print(this.user);
-        Get.offAllNamed("/home");
+        await Get.offAllNamed("/home");
       } else {
-        Get.offAllNamed("/auth/register/data-diri");
+        await Get.offAllNamed("/auth/register/data-diri");
       }
     } else {
       // user is null as in user is not available or not logged in
-      Get.offAllNamed("/auth/login");
+      await Get.offAllNamed("/auth/login");
     }
+    FlutterNativeSplash.remove();
   }
 
   void register(String email, String password) async {
