@@ -1,3 +1,17 @@
+import 'package:ecosan/app/modules/profile/contact/bindings/contact_binding.dart';
+import 'package:ecosan/app/modules/profile/contact/views/contact_view.dart';
+import 'package:ecosan/app/modules/profile/daftar_riwayat/bindings/daftar_riwayat_binding.dart';
+import 'package:ecosan/app/modules/profile/daftar_riwayat/views/daftar_riwayat_view.dart';
+import 'package:ecosan/app/modules/profile/edit/bindings/edit_binding.dart';
+import 'package:ecosan/app/modules/profile/edit/views/edit_view.dart';
+import 'package:ecosan/app/modules/profile/faq/bindings/faq_binding.dart';
+import 'package:ecosan/app/modules/profile/faq/views/faq_view.dart';
+import 'package:ecosan/app/modules/profile/poinku/bindings/poinku_binding.dart';
+import 'package:ecosan/app/modules/profile/poinku/views/poinku_view.dart';
+import 'package:ecosan/app/modules/profile/poinku/voucherexchange/bindings/voucherexchange_binding.dart';
+import 'package:ecosan/app/modules/profile/poinku/voucherexchange/views/voucherexchange_view.dart';
+import 'package:ecosan/app/modules/profile/voucherku/bindings/voucherku_binding.dart';
+import 'package:ecosan/app/modules/profile/voucherku/views/voucherku_view.dart';
 import 'package:get/get.dart';
 
 import '../modules/air/bindings/air_binding.dart';
@@ -17,27 +31,13 @@ import '../modules/auth/register/welcome/bindings/welcome_binding.dart';
 import '../modules/auth/register/welcome/views/welcome_view.dart';
 import '../modules/auth/views/auth_view.dart';
 import '../modules/home/bindings/home_binding.dart';
-import '../modules/home/contact/bindings/contact_binding.dart';
-import '../modules/home/contact/views/contact_view.dart';
-import '../modules/home/daftar_riwayat/bindings/daftar_riwayat_binding.dart';
-import '../modules/home/daftar_riwayat/views/daftar_riwayat_view.dart';
-import '../modules/home/edit/bindings/edit_binding.dart';
-import '../modules/home/edit/views/edit_view.dart';
-import '../modules/home/faq/bindings/faq_binding.dart';
-import '../modules/home/faq/views/faq_view.dart';
 import '../modules/air/kode_bayar/bindings/kode_bayar_binding.dart';
 import '../modules/air/kode_bayar/views/kode_bayar_view.dart';
 import '../modules/air/metode_pembayaran/bindings/metode_pembayaran_binding.dart';
 import '../modules/air/metode_pembayaran/views/metode_pembayaran_view.dart';
-import '../modules/home/poinku/bindings/poinku_binding.dart';
-import '../modules/home/poinku/views/poinku_view.dart';
-import '../modules/home/poinku/voucherexchange/bindings/voucherexchange_binding.dart';
-import '../modules/home/poinku/voucherexchange/views/voucherexchange_view.dart';
 import '../modules/air/transaction_success/bindings/transaction_success_binding.dart';
 import '../modules/air/transaction_success/views/transaction_success_view.dart';
 import '../modules/home/views/home_view.dart';
-import '../modules/home/voucherku/bindings/voucherku_binding.dart';
-import '../modules/home/voucherku/views/voucherku_view.dart';
 import '../modules/profile/bindings/profile_binding.dart';
 import '../modules/profile/views/profile_view.dart';
 import '../modules/sampah/bindings/sampah_binding.dart';
@@ -78,45 +78,6 @@ class AppPages {
       page: () => const HomeView(),
       binding: HomeBinding(),
       transition: Transition.noTransition,
-      children: [
-        GetPage(
-          name: _Paths.DAFTAR_RIWAYAT,
-          page: () => const DaftarRiwayatView(),
-          binding: DaftarRiwayatBinding(),
-        ),
-        GetPage(
-          name: _Paths.POINKU,
-          page: () => const PoinkuView(),
-          binding: PoinkuBinding(),
-          children: [
-            GetPage(
-              name: _Paths.VOUCHEREXCHANGE,
-              page: () => VoucherexchangeView(),
-              binding: VoucherexchangeBinding(),
-            ),
-          ],
-        ),
-        GetPage(
-          name: _Paths.VOUCHERKU,
-          page: () => const VoucherkuView(),
-          binding: VoucherkuBinding(),
-        ),
-        GetPage(
-          name: _Paths.EDIT,
-          page: () => const EditView(),
-          binding: EditBinding(),
-        ),
-        GetPage(
-          name: _Paths.FAQ,
-          page: () => const FaqView(),
-          binding: FaqBinding(),
-        ),
-        GetPage(
-          name: _Paths.CONTACT,
-          page: () => const ContactView(),
-          binding: ContactBinding(),
-        ),
-      ],
     ),
     GetPage(
       name: _Paths.AUTH,
@@ -261,10 +222,48 @@ class AppPages {
       ],
     ),
     GetPage(
-      name: _Paths.PROFILE,
-      page: () => const ProfileView(),
-      binding: ProfileBinding(),
-      transition: Transition.noTransition,
-    ),
+        name: _Paths.PROFILE,
+        page: () => const ProfileView(),
+        binding: ProfileBinding(),
+        transition: Transition.noTransition,
+        children: [
+          GetPage(
+            name: _Paths.DAFTAR_RIWAYAT,
+            page: () => const DaftarRiwayatView(),
+            binding: DaftarRiwayatBinding(),
+          ),
+          GetPage(
+            name: _Paths.POINKU,
+            page: () => const PoinkuView(),
+            binding: PoinkuBinding(),
+            children: [
+              GetPage(
+                name: _Paths.VOUCHEREXCHANGE,
+                page: () => VoucherexchangeView(),
+                binding: VoucherexchangeBinding(),
+              ),
+            ],
+          ),
+          GetPage(
+            name: _Paths.VOUCHERKU,
+            page: () => const VoucherkuView(),
+            binding: VoucherkuBinding(),
+          ),
+          GetPage(
+            name: _Paths.EDIT,
+            page: () => const EditView(),
+            binding: EditBinding(),
+          ),
+          GetPage(
+            name: _Paths.FAQ,
+            page: () => const FaqView(),
+            binding: FaqBinding(),
+          ),
+          GetPage(
+            name: _Paths.CONTACT,
+            page: () => const ContactView(),
+            binding: ContactBinding(),
+          ),
+        ]),
   ];
 }
