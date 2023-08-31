@@ -1,15 +1,17 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:ecosan/app/constants/firebase_constants.dart' as constants;
 import 'package:ecosan/app/models/user/user_model.dart';
-import 'package:firebase_auth/firebase_auth.dart' as auth;
+import 'package:ecosan/app/modules/auth/controllers/auth_controller.dart';
+import 'package:get/get.dart';
 
 class UserRepository {
   static CollectionReference get userCollection =>
       constants.firestore.collection('users');
 
-  static auth.User? get currentUser => constants.auth.currentUser;
+  // get current user
+  Rx<User> currentUser = AuthController.authInstance.user;
 
-  get _id => currentUser!.uid;
+  get _id => currentUser.value.uid;
 
   // get user
   Future<DocumentSnapshot> get() async {
@@ -22,11 +24,16 @@ class UserRepository {
 
   // add point
   Future<void> addPoint(int point) async {
-    DocumentSnapshot user = await get();
-    User userObj = User.fromJson(user.data() as Map<String, dynamic>);
-    int currentPoint = userObj.poin;
-    await update({"poin": currentPoint + point});
+    await update({"poin": currentUser.value.poin + point});
+    currentUser.value.poin += point;
+    currentUser.refresh();
+  }
 
+  // reduce point
+  Future<void> reducePoint(int point) async {
+    await update({"poin": currentUser.value.poin - point});
+    currentUser.value.poin -= point;
+    currentUser.refresh();
   }
 }
 
