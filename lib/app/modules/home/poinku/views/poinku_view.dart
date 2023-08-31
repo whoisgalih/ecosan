@@ -1,4 +1,4 @@
-import 'package:ecosan/app/models/user/voucher.dart';
+import 'package:ecosan/app/models/voucher/voucher.dart';
 import 'package:ecosan/app/modules/themes/colors.dart';
 import 'package:ecosan/app/modules/themes/fonts.dart';
 import 'package:flutter/material.dart';

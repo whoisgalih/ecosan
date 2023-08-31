@@ -1,5 +1,5 @@
 import 'package:ecosan/app/constants/utils.dart';
-import 'package:ecosan/app/models/user/voucher.dart';
+import 'package:ecosan/app/models/voucher/voucher.dart';
 import 'package:ecosan/app/modules/home/poinku/views/poinku_view.dart';
 import 'package:ecosan/app/modules/themes/colors.dart';
 import 'package:ecosan/app/modules/themes/fonts.dart';

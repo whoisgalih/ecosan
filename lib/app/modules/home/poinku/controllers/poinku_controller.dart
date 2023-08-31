@@ -1,5 +1,5 @@
 import 'package:ecosan/app/models/user/user_model.dart';
-import 'package:ecosan/app/models/user/voucher.dart';
+import 'package:ecosan/app/models/voucher/voucher.dart';
 import 'package:ecosan/app/modules/auth/controllers/auth_controller.dart';
 import 'package:get/get.dart';
 

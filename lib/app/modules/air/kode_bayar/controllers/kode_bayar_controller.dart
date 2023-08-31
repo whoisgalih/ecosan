@@ -1,7 +1,7 @@
 import 'dart:async';
 import 'dart:math';
 
-import 'package:ecosan/app/models/user/transaction_model.dart'
+import 'package:ecosan/app/models/transaction/transaction_model.dart'
     as transaction_model;
 
 import 'package:ecosan/app/modules/auth/controllers/auth_controller.dart';

@@ -1,5 +1,5 @@
 import 'package:ecosan/app/constants/utils.dart';
-import 'package:ecosan/app/models/user/transaction_model.dart';
+import 'package:ecosan/app/models/transaction/transaction_model.dart';
 import 'package:ecosan/app/modules/home/controllers/home_controller.dart';
 import 'package:ecosan/app/modules/themes/colors.dart';
 import 'package:ecosan/app/modules/themes/fonts.dart';
