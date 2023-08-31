@@ -105,9 +105,7 @@ class VoucherListTile extends StatelessWidget {
                 if (controller.user.value.poin >= voucher.price) {
                   controller.user.value.poin -= voucher.price;
                   voucher.purchasedDate = DateTime.now().toString();
-                  controller.user.value.vouchers.add(voucher);
-                  await controller.authController
-                      .updateFirestoreUser();
+                  controller.profileController.voucherRepository.add(voucher);
                   Get.toNamed('home/poinku/voucherexchange',
                       arguments: {'voucher': voucher});
                 } else {

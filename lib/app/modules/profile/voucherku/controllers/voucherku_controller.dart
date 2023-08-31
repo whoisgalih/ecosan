@@ -1,13 +1,15 @@
-import 'package:ecosan/app/models/user/user_model.dart';
-import 'package:ecosan/app/modules/auth/controllers/auth_controller.dart';
+import 'package:ecosan/app/models/voucher/voucher.dart';
+import 'package:ecosan/app/modules/profile/controllers/profile_controller.dart';
 import 'package:get/get.dart';
 
 class VoucherkuController extends GetxController {
   final index = 0.obs;
-  final AuthController authController = AuthController.authInstance;
+  ProfileController profileController = ProfileController.i;
+  late Rx<List<Voucher>> vouchers;
   @override
-  void onInit() {
+  void onInit() async {
     super.onInit();
+    vouchers = profileController.vouchers;
   }
 
   @override
@@ -19,5 +21,9 @@ class VoucherkuController extends GetxController {
   void onClose() {
     super.onClose();
   }
-  Rx<User> get user => authController.user;
+
+  Future<List<Voucher>> getVouchers() async {
+    final result = await profileController.voucherRepository.get();
+    return result;
+  }
 }

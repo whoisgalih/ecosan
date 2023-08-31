@@ -152,22 +152,24 @@ class ProfileView extends GetView<ProfileController> {
                     SizedBox(
                       width: 2.5.h,
                     ),
-                    Flexible(
-                        flex: 1,
-                        child: ProfileCard(
-                          color: EcoSanColors.primary,
-                          title: 'Voucherku',
-                          value: controller.user.vouchers.length,
-                          buttonStr: 'Detail',
-                          onTap: () => Get.toNamed('home/voucherku'),
-                          leadingWidget: SizedBox(
-                              width: 32 / 360 * 100.w,
-                              height: 32 / 360 * 100.w,
-                              child: SvgPicture.asset(
-                                'assets/svgs/voucher.svg',
-                                color: Colors.white,
-                              )),
-                        )),
+                    Obx(
+                      () => Flexible(
+                          flex: 1,
+                          child: ProfileCard(
+                            color: EcoSanColors.primary,
+                            title: 'Voucherku',
+                            value: controller.vouchers.value.length,
+                            buttonStr: 'Detail',
+                            onTap: () => Get.toNamed('profile/voucherku'),
+                            leadingWidget: SizedBox(
+                                width: 32 / 360 * 100.w,
+                                height: 32 / 360 * 100.w,
+                                child: SvgPicture.asset(
+                                  'assets/svgs/voucher.svg',
+                                  color: Colors.white,
+                                )),
+                          )),
+                    ),
                   ],
                 ),
               ),
