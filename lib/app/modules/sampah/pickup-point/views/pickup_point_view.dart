@@ -18,7 +18,7 @@ class PickupPointView extends GetView<PickupPointController> {
           onTap: () {
             Get.back();
           },
-          child: Icon(
+          child: const Icon(
             Icons.arrow_back,
           ),
         ),
@@ -26,7 +26,7 @@ class PickupPointView extends GetView<PickupPointController> {
       ),
       body: SingleChildScrollView(
         child: Container(
-          margin: EdgeInsets.symmetric(horizontal: 16, vertical: 24),
+          margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 24),
           child: Form(
             key: controller.pickupPointFormKey,
             child: Column(
@@ -80,7 +80,7 @@ class PickupPointView extends GetView<PickupPointController> {
                     controller.trashTypeValue.value = value;
                   },
                   validator: controller.trashTypeValidator,
-                  options: ["Organik", "Anorganik"],
+                  options: const ["Organik", "Anorganik"],
                 ),
                 FormInput(
                   icon: Icons.scale,
@@ -100,7 +100,7 @@ class PickupPointView extends GetView<PickupPointController> {
                   },
                   validator: controller.timeValidator,
                   // genereate time from 8 am to 5 pm every 2 hours
-                  options: ["08.00", "10.00", "12.00", "14.00", "16.00"],
+                  options: const ["08.00", "10.00", "12.00", "14.00", "16.00"],
                 ),
                 FormInput(
                   icon: Icons.description,

@@ -17,7 +17,7 @@ class ClaimView extends GetView<ClaimController> {
           onTap: () {
             Get.back();
           },
-          child: Icon(
+          child: const Icon(
             Icons.arrow_back,
           ),
         ),

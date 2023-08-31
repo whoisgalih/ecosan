@@ -18,7 +18,6 @@ class HomeController extends GetxController {
     firestore.collection('artikel').get().then(
       (value) {
         articles.value = value.docs.map((e) {
-          print(e.data());
           return ArticleModel.fromJson(e.data());
         }).toList();
       },
@@ -29,16 +28,6 @@ class HomeController extends GetxController {
   void onInit() {
     super.onInit();
     fetchArticles();
-  }
-
-  @override
-  void onReady() {
-    super.onReady();
-  }
-
-  @override
-  void onClose() {
-    super.onClose();
   }
 
   void signOut() {

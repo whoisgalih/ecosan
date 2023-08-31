@@ -18,14 +18,14 @@ class DropPointView extends GetView<DropPointController> {
           onTap: () {
             Get.back();
           },
-          child: Icon(
+          child: const Icon(
             Icons.arrow_back,
           ),
         ),
       ),
       body: SingleChildScrollView(
         child: Container(
-          margin: EdgeInsets.symmetric(horizontal: 16, vertical: 24),
+          margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 24),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [

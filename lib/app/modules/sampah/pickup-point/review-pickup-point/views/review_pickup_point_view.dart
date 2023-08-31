@@ -20,14 +20,14 @@ class ReviewPickupPointView extends GetView<ReviewPickupPointController> {
           onTap: () {
             Get.back();
           },
-          child: Icon(
+          child: const Icon(
             Icons.arrow_back,
           ),
         ),
       ),
       body: SingleChildScrollView(
         child: Container(
-          margin: EdgeInsets.symmetric(horizontal: 16, vertical: 24),
+          margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 24),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -35,7 +35,7 @@ class ReviewPickupPointView extends GetView<ReviewPickupPointController> {
                 "Review Pickup Poin",
                 style: TextStyles.normal.bold(),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 16,
               ),
               Obx(
@@ -49,7 +49,7 @@ class ReviewPickupPointView extends GetView<ReviewPickupPointController> {
                     child: controller.loadingState.value ==
                                 LoadingState.loading ||
                             controller.loadingState.value == LoadingState.error
-                        ? Center(
+                        ? const Center(
                             child: CircularProgressIndicator(),
                           )
                         : EcoSanMap(
@@ -59,16 +59,16 @@ class ReviewPickupPointView extends GetView<ReviewPickupPointController> {
                             zoom: 15,
                           )),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 16,
               ),
               Container(
                 width: double.infinity,
-                padding: EdgeInsets.all(16),
+                padding: const EdgeInsets.all(16),
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(10),
                   color: Colors.white,
-                  boxShadow: [
+                  boxShadow: const [
                     BoxShadow(
                       color: Color(0x14832AA0),
                       blurRadius: 15,
@@ -106,11 +106,11 @@ class ReviewPickupPointView extends GetView<ReviewPickupPointController> {
               ),
               Container(
                 width: double.infinity,
-                padding: EdgeInsets.all(16),
+                padding: const EdgeInsets.all(16),
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(10),
                   color: Colors.white,
-                  boxShadow: [
+                  boxShadow: const [
                     BoxShadow(
                       color: Color(0x14832AA0),
                       blurRadius: 15,
@@ -140,11 +140,11 @@ class ReviewPickupPointView extends GetView<ReviewPickupPointController> {
               ),
               Container(
                 width: double.infinity,
-                padding: EdgeInsets.all(16),
+                padding: const EdgeInsets.all(16),
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(10),
                   color: Colors.white,
-                  boxShadow: [
+                  boxShadow: const [
                     BoxShadow(
                       color: Color(0x14832AA0),
                       blurRadius: 15,
@@ -165,18 +165,18 @@ class ReviewPickupPointView extends GetView<ReviewPickupPointController> {
                         ? const SizedBox(
                             height: 4,
                           )
-                        : SizedBox(),
+                        : const SizedBox(),
                     controller.pickupPointController.trashHistory.note != ""
                         ? Text(
                             controller.pickupPointController.trashHistory.note,
                             style: TextStyles.tiny,
                             textAlign: TextAlign.start,
                           )
-                        : SizedBox(),
+                        : const SizedBox(),
                   ],
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 32,
               ),
               Row(
@@ -193,7 +193,7 @@ class ReviewPickupPointView extends GetView<ReviewPickupPointController> {
                               .bold(color: EcoSanColors.primary)),
                     ),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     width: 16,
                   ),
                   Expanded(

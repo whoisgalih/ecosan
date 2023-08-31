@@ -14,7 +14,7 @@ class WelcomeView extends GetView<WelcomeController> {
     return Scaffold(
       body: SafeArea(
         child: Container(
-          margin: EdgeInsets.symmetric(horizontal: 18, vertical: 24),
+          margin: const EdgeInsets.symmetric(horizontal: 18, vertical: 24),
           width: double.infinity,
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,

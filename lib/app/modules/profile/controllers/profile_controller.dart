@@ -17,16 +17,6 @@ class ProfileController extends GetxController {
     getVouchers();
   }
 
-  @override
-  void onReady() {
-    super.onReady();
-  }
-
-  @override
-  void onClose() {
-    super.onClose();
-  }
-
   void signOut() {
     authController.signOut();
   }

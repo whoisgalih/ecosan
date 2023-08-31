@@ -11,21 +11,6 @@ class RegisterController extends GetxController {
   final TextEditingController confirmPasswordController =
       TextEditingController();
 
-  @override
-  void onInit() {
-    super.onInit();
-  }
-
-  @override
-  void onReady() {
-    super.onReady();
-  }
-
-  @override
-  void onClose() {
-    super.onClose();
-  }
-
   // email validator
   String? emailValidator(String? value) {
     if (value == null || value.isEmpty) {

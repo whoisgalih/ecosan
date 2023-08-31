@@ -46,7 +46,6 @@ class UserRepository {
         "birthdate": currentUser.value.birthdate,
       });
       currentUser.refresh();
-      print('done updating');
     } catch (e) {
       Get.snackbar('error found', e.toString());
     }

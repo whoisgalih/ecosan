@@ -85,11 +85,11 @@ class VoucherListTile extends StatelessWidget {
             children: [
               Text(
                 voucher.title,
-                style: TextStyles.small.bold(color: Color(0xFF838383)),
+                style: TextStyles.small.bold(color: const Color(0xFF838383)),
               ),
               Text(
                 '\$ ${voucher.price}',
-                style: TextStyles.tiny.copyWith(color: Color(0xFF838383)),
+                style: TextStyles.tiny.copyWith(color: const Color(0xFF838383)),
               ),
             ],
           ),

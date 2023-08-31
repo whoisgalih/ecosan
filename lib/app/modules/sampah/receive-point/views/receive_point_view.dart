@@ -65,7 +65,7 @@ class ReceivePointView extends GetView<ReceivePointController> {
                     ),
                     Container(
                       width: double.infinity,
-                      padding: EdgeInsets.all(16),
+                      padding: const EdgeInsets.all(16),
                       decoration: BoxDecoration(
                         color: Colors.white,
                         borderRadius: BorderRadius.circular(10),

@@ -17,7 +17,8 @@ class DataDiriView extends GetView<DataDiriController> {
           child: Column(
             children: [
               Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 24),
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 16, vertical: 24),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
@@ -135,7 +136,7 @@ class EcoSanDropDown extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       width: double.infinity,
-      margin: EdgeInsets.only(bottom: 16),
+      margin: const EdgeInsets.only(bottom: 16),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -143,7 +144,7 @@ class EcoSanDropDown extends StatelessWidget {
             title,
             style: TextStyles.tiny.bold(),
           ),
-          SizedBox(height: 4),
+          const SizedBox(height: 4),
           DropdownButtonFormField(
             validator: validator,
             dropdownColor: Colors.white,

@@ -79,7 +79,6 @@ class InputTrashController extends GetxController {
         trashTypeValue.value != null &&
         timeValue.value != null) {
       dropPointFormKey.currentState!.save();
-      print('note: ${noteController.text}');
 
       trashHistory = TrashHistory(
         name: nameController.text,
@@ -117,16 +116,6 @@ class InputTrashController extends GetxController {
   void onInit() {
     super.onInit();
     setUserData();
-  }
-
-  @override
-  void onReady() {
-    super.onReady();
-  }
-
-  @override
-  void onClose() {
-    super.onClose();
   }
 
   void increment() => count.value++;

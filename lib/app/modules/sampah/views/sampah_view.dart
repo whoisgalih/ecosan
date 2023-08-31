@@ -26,13 +26,13 @@ class SampahView extends GetView<SampahController> {
               alignment: Alignment.bottomCenter,
               children: [
                 Container(
-                  margin: EdgeInsets.only(bottom: 24),
+                  margin: const EdgeInsets.only(bottom: 24),
                   width: double.infinity,
                   color: EcoSanColors.primary,
                   height: 100,
                 ),
                 Container(
-                  margin: EdgeInsets.symmetric(horizontal: 24),
+                  margin: const EdgeInsets.symmetric(horizontal: 24),
                   child: Row(
                     children: [
                       _buttonSampah(
@@ -59,7 +59,7 @@ class SampahView extends GetView<SampahController> {
               height: 16,
             ),
             Container(
-              margin: EdgeInsets.all(16),
+              margin: const EdgeInsets.all(16),
               width: double.infinity,
               child: SingleChildScrollView(
                 scrollDirection: Axis.horizontal,
@@ -93,7 +93,7 @@ class SampahView extends GetView<SampahController> {
   Container _filterItem(
       {required String title, required GestureTapCallback onTap}) {
     return Container(
-      margin: EdgeInsets.only(left: 8),
+      margin: const EdgeInsets.only(left: 8),
       clipBehavior: Clip.antiAlias,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(20),
@@ -103,7 +103,7 @@ class SampahView extends GetView<SampahController> {
         child: InkWell(
           onTap: onTap,
           child: Padding(
-            padding: EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+            padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
             child: Text(
               title,
               style: TextStyles.tiny.copyWith(
@@ -127,7 +127,7 @@ class SampahView extends GetView<SampahController> {
         clipBehavior: Clip.antiAlias,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(10),
-          boxShadow: [
+          boxShadow: const [
             BoxShadow(
               color: Color(0x26000000),
               blurRadius: 15,
@@ -141,7 +141,7 @@ class SampahView extends GetView<SampahController> {
           child: InkWell(
             onTap: onTap,
             child: Padding(
-              padding: EdgeInsets.all(16),
+              padding: const EdgeInsets.all(16),
               child: Column(
                 children: [
                   IconContainer(icon: icon),

@@ -31,8 +31,8 @@ class DropPointItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       width: double.infinity,
-      margin: EdgeInsets.only(bottom: 16),
-      padding: EdgeInsets.all(16),
+      margin: const EdgeInsets.only(bottom: 16),
+      padding: const EdgeInsets.all(16),
       decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.circular(10),
@@ -85,7 +85,7 @@ class DropPointItem extends StatelessWidget {
           ),
           Container(
             width: double.infinity,
-            margin: EdgeInsets.only(top: 12),
+            margin: const EdgeInsets.only(top: 12),
             alignment: Alignment.centerRight,
             child: Container(
               clipBehavior: Clip.antiAlias,

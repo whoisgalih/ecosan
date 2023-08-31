@@ -22,22 +22,6 @@ TrashHistory _$TrashHistoryFromJson(Map<String, dynamic> json) => TrashHistory(
       longitude: (json['longitude'] as num?)?.toDouble(),
     );
 
-const _$TrashHistoryFieldMap = <String, String>{
-  'id': 'id',
-  'name': 'name',
-  'phone': 'phone',
-  'address': 'address',
-  'trashType': 'trashType',
-  'weight': 'weight',
-  'time': 'time',
-  'note': 'note',
-  'status': 'status',
-  'type': 'type',
-  'trashBankName': 'trashBankName',
-  'latitude': 'latitude',
-  'longitude': 'longitude',
-};
-
 Map<String, dynamic> _$TrashHistoryToJson(TrashHistory instance) =>
     <String, dynamic>{
       'id': instance.id,

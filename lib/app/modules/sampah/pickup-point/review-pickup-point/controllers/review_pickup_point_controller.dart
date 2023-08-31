@@ -69,7 +69,6 @@ class ReviewPickupPointController extends GetxController {
           await trashHistoryRepository.add(pickupPointController.trashHistory);
 
       final String id = trashHistory.id;
-      print(id);
 
       pickupPointController.dispose();
       Get.offNamedUntil(
@@ -89,15 +88,5 @@ class ReviewPickupPointController extends GetxController {
     super.onInit();
     setPosition();
     pickupPointController = Get.find<PickupPointController>();
-  }
-
-  @override
-  void onReady() {
-    super.onReady();
-  }
-
-  @override
-  void onClose() {
-    super.onClose();
   }
 }

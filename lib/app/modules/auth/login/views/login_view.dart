@@ -59,7 +59,7 @@ class LoginView extends GetView<LoginController> {
                       bottomMargin: 4,
                     ),
                     ButtonText(text: "Lupa password?", onTap: () {}),
-                    SizedBox(height: 88),
+                    const SizedBox(height: 88),
                     EcoSanButton(
                       isEnabled: true,
                       onTap: () {
@@ -76,7 +76,7 @@ class LoginView extends GetView<LoginController> {
             ),
             const SizedBox(height: 40),
             Padding(
-              padding: EdgeInsets.symmetric(horizontal: 16),
+              padding: const EdgeInsets.symmetric(horizontal: 16),
               child: Column(
                 children: [
                   Divider(

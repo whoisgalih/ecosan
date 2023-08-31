@@ -14,7 +14,7 @@ class VoucherexchangeView extends GetView<VoucherexchangeController> {
   VoucherexchangeView({Key? key}) : super(key: key);
   final Voucher voucher = Get.arguments['voucher'];
   final dateTime = DateTime.now();
-  final newDate = DateTime.now().add(Duration(days: 2));
+  final newDate = DateTime.now().add(const Duration(days: 2));
 
   String tanggalFormatter() {
     String formattedDate =
@@ -77,7 +77,7 @@ class VoucherexchangeView extends GetView<VoucherexchangeController> {
                             Text(
                               voucher.title,
                               style: TextStyles.header2
-                                  .extraBold(color: Color(0xFF838383)),
+                                  .extraBold(color: const Color(0xFF838383)),
                             ),
                             SizedBox(height: 3.5.h),
                             Padding(

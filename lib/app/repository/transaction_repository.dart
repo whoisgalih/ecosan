@@ -26,7 +26,6 @@ class TransactionRepository {
   // is exist
   Future<bool> isExist() async {
     final querySnapshot = await transactionCollection.get();
-    print(querySnapshot.docs.isNotEmpty);
     return querySnapshot.docs.isNotEmpty;
   }
 }

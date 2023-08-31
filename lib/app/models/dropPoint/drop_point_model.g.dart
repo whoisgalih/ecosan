@@ -19,19 +19,6 @@ DropPoint _$DropPointFromJson(Map<String, dynamic> json) => DropPoint(
       longitude: (json['longitude'] as num).toDouble(),
     );
 
-const _$DropPointFieldMap = <String, String>{
-  'id': 'id',
-  'name': 'name',
-  'address': 'address',
-  'phone': 'phone',
-  'open': 'open',
-  'close': 'close',
-  'isOrganic': 'isOrganic',
-  'isAnorganic': 'isAnorganic',
-  'latitude': 'latitude',
-  'longitude': 'longitude',
-};
-
 Map<String, dynamic> _$DropPointToJson(DropPoint instance) => <String, dynamic>{
       'id': instance.id,
       'name': instance.name,

@@ -17,7 +17,7 @@ class VerificationSuccessView extends GetView<VerificationSuccessController> {
           onTap: () {
             Get.back();
           },
-          child: Icon(
+          child: const Icon(
             Icons.arrow_back,
           ),
         ),

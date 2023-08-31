@@ -107,11 +107,11 @@ class ContactView extends GetView<ContactController> {
                   }
                 },
               ),
-              ContactusListTile(
+              const ContactusListTile(
                 iconData: Icons.home,
                 value: 'Jl. Graha Amerta No. 09 Jakarta Pusat',
               ),
-              ContactusListTile(
+              const ContactusListTile(
                 iconData: Icons.access_time,
                 value: '08.00 AM - 05.00 PM',
               )

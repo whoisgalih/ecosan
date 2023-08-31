@@ -12,16 +12,6 @@ class VoucherkuController extends GetxController {
     vouchers = profileController.vouchers;
   }
 
-  @override
-  void onReady() {
-    super.onReady();
-  }
-
-  @override
-  void onClose() {
-    super.onClose();
-  }
-
   Future<List<Voucher>> getVouchers() async {
     final result = await profileController.voucherRepository.get();
     return result;

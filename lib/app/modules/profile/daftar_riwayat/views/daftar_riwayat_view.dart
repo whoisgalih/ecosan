@@ -80,8 +80,8 @@ class DaftarRiwayatView extends GetView<DaftarRiwayatController> {
                   separatorBuilder: (context, index) => SizedBox(
                     height: 1.5.h,
                   ),
-                  itemBuilder: (context, index) =>
-                      riwayatCard(controller.transactions.value.elementAt(index)),
+                  itemBuilder: (context, index) => riwayatCard(
+                      controller.transactions.value.elementAt(index)),
                 )),
               )
             ],
@@ -206,8 +206,9 @@ class DaftarRiwayatView extends GetView<DaftarRiwayatController> {
                     EdgeInsets.symmetric(horizontal: 1.5.h, vertical: 0.5.h),
                 decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(6),
-                    color: Color(0xFF14AE5C),
-                    border: Border.all(color: Color(0xFF14AE5C), width: 1)),
+                    color: const Color(0xFF14AE5C),
+                    border:
+                        Border.all(color: const Color(0xFF14AE5C), width: 1)),
                 child: Text(
                   'Pesan Lagi',
                   style:
@@ -256,9 +257,7 @@ class RiwayatDropdown extends StatelessWidget {
                       ),
                     ))
                 .toList(),
-            onChanged: (value) {
-              print(value);
-            }),
+            onChanged: (value) {}),
       ),
     );
   }

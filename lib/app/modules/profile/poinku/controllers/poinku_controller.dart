@@ -13,20 +13,6 @@ class PoinkuController extends GetxController {
     Voucher(title: 'Beras', price: 50),
     Voucher(title: 'Sensor EcoSan', price: 50),
   ];
-  @override
-  void onInit() {
-    super.onInit();
-  }
-
-  @override
-  void onReady() {
-    super.onReady();
-  }
-
-  @override
-  void onClose() {
-    super.onClose();
-  }
 
   Rx<User> get user => authController.user;
 

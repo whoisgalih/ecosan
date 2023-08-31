@@ -35,7 +35,7 @@ class RegisterView extends GetView<RegisterController> {
               ),
             ),
             Padding(
-              padding: EdgeInsets.symmetric(horizontal: 16),
+              padding: const EdgeInsets.symmetric(horizontal: 16),
               child: Form(
                 key: controller.registerFormKey,
                 child: Column(
@@ -82,7 +82,7 @@ class RegisterView extends GetView<RegisterController> {
             ),
             const SizedBox(height: 40),
             Padding(
-              padding: EdgeInsets.symmetric(horizontal: 16),
+              padding: const EdgeInsets.symmetric(horizontal: 16),
               child: Column(
                 children: [
                   Divider(

@@ -9,23 +9,15 @@ class PemasanganAlatController extends GetxController {
   final nameController = TextEditingController();
   final numberController = TextEditingController();
   final addressController = TextEditingController();
-  User get user =>AuthController.authInstance.user.value;
-  @override
-  void onInit() {
-    super.onInit();
-  }
+  User get user => AuthController.authInstance.user.value;
 
   @override
   void onReady() {
     super.onReady();
     pengaduanController.text = 'Sensor Air';
     nameController.text = user.name;
-    numberController.text = user.phone.replaceFirst('0', '+').replaceFirst('8', '62');
-  }
-
-  @override
-  void onClose() {
-    super.onClose();
+    numberController.text =
+        user.phone.replaceFirst('0', '+').replaceFirst('8', '62');
   }
 
   String? validateName(String? value) {

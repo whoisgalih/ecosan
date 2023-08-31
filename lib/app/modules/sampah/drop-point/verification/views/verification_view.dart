@@ -17,7 +17,7 @@ class VerificationView extends GetView<VerificationController> {
           onTap: () {
             Get.back();
           },
-          child: Icon(
+          child: const Icon(
             Icons.arrow_back,
           ),
         ),

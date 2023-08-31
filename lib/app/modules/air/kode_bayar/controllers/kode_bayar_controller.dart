@@ -4,7 +4,6 @@ import 'dart:math';
 import 'package:ecosan/app/models/transaction/transaction_model.dart'
     as transaction_model;
 
-import 'package:ecosan/app/modules/auth/controllers/auth_controller.dart';
 import 'package:ecosan/app/modules/themes/colors.dart';
 import 'package:ecosan/app/modules/themes/fonts.dart';
 import 'package:ecosan/app/repository/transaction_repository.dart';
@@ -18,7 +17,7 @@ class KodeBayarController extends GetxController {
   String paymentTitle = Get.arguments['payment_method'].title;
   TransactionRepository transactionRepository = TransactionRepository();
   void _startCountdown() {
-    _timer = Timer.periodic(Duration(seconds: 1), (_) {
+    _timer = Timer.periodic(const Duration(seconds: 1), (_) {
       if (countdown.value > 0) {
         countdown.value--;
       }
@@ -113,15 +112,5 @@ class KodeBayarController extends GetxController {
         style: TextStyles.small,
       ),
     ];
-  }
-
-  @override
-  void onReady() {
-    super.onReady();
-  }
-
-  @override
-  void onClose() {
-    super.onClose();
   }
 }

@@ -32,15 +32,16 @@ class AirHistory extends StatelessWidget {
                         onPressed: () => sanitationController.indexBulan > 0
                             ? sanitationController.indexBulan.value--
                             : null,
-                        icon: Icon(Icons.arrow_left)),
-                    Text(Utils.getMonthFromInt(sanitationController.listBulan.value
+                        icon: const Icon(Icons.arrow_left)),
+                    Text(Utils.getMonthFromInt(sanitationController
+                        .listBulan.value
                         .elementAt(sanitationController.indexBulan.value))),
                     IconButton(
                         onPressed: () => sanitationController.indexBulan <
                                 sanitationController.listBulan.value.length - 1
                             ? sanitationController.indexBulan.value++
                             : null,
-                        icon: Icon(Icons.arrow_right)),
+                        icon: const Icon(Icons.arrow_right)),
                   ],
                 ),
               ),
@@ -49,7 +50,7 @@ class AirHistory extends StatelessWidget {
                   // Chart title
                   title: ChartTitle(text: 'Grafik Kualitas Air'),
                   // Enable legend
-                  legend: Legend(isVisible: false),
+                  legend: const Legend(isVisible: false),
                   series: <LineSeries<SanitasiAirData, String>>[
                     LineSeries<SanitasiAirData, String>(
                         name: 'Kualitas Air',
@@ -63,13 +64,15 @@ class AirHistory extends StatelessWidget {
                             sales.date.toString(),
                         xAxisName: 'tanggal',
                         yValueMapper: (SanitasiAirData sales, _) => sales.value,
-                        markerSettings: MarkerSettings(isVisible: true),
+                        markerSettings: const MarkerSettings(isVisible: true),
                         onPointTap: (pointInteractionDetails) {
-                          final airData = sanitationController.dataKualitasAir.value
+                          final airData = sanitationController
+                              .dataKualitasAir.value
                               .where((element) =>
                                   element.month ==
-                                  sanitationController.listBulan.value.elementAt(
-                                      sanitationController.indexBulan.value))
+                                  sanitationController.listBulan.value
+                                      .elementAt(sanitationController
+                                          .indexBulan.value))
                               .toList()
                               .elementAt(pointInteractionDetails.pointIndex!);
                           Get.bottomSheet(Container(

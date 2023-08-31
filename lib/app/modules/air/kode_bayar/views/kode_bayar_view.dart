@@ -15,7 +15,7 @@ class KodeBayarView extends GetView<KodeBayarController> {
   const KodeBayarView({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
-    String _formatDuration(Duration duration) {
+    String formatDuration(Duration duration) {
       final hours = duration.inHours.toString().padLeft(2, '0');
       final minutes = (duration.inMinutes % 60).toString().padLeft(2, '0');
       final seconds = (duration.inSeconds % 60).toString().padLeft(2, '0');
@@ -101,7 +101,7 @@ class KodeBayarView extends GetView<KodeBayarController> {
                       ),
                       Obx(
                         () => Text(
-                            _formatDuration(
+                            formatDuration(
                                 Duration(seconds: controller.countdown.value)),
                             style: TextStyles.tiny),
                       )

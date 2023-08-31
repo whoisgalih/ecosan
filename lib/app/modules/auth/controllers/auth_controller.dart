@@ -13,21 +13,11 @@ class AuthController extends GetxController {
   late Rx<user_model.User> user;
 
   @override
-  void onInit() {
-    super.onInit();
-  }
-
-  @override
   void onReady() {
     super.onReady();
     firebaseUser = Rx<User?>(auth.currentUser);
     firebaseUser.bindStream(auth.userChanges());
     ever(firebaseUser, _setInitialScreen);
-  }
-
-  @override
-  void onClose() {
-    super.onClose();
   }
 
   _setInitialScreen(User? user) async {
@@ -38,7 +28,6 @@ class AuthController extends GetxController {
       if (userData.exists) {
         this.user = user_model.User.fromJson(userData.data()!).obs;
 
-        print(this.user);
         await Get.offAllNamed("/home");
       } else {
         await Get.offAllNamed("/auth/register/data-diri");
@@ -69,7 +58,6 @@ class AuthController extends GetxController {
     } on FirebaseAuthException catch (e) {
       // this is solely for the Firebase Auth Exception
       // for example : password did not match
-      print(e);
       // Get.snackbar("Error", e.message!);
       Get.snackbar(
         "Error",
@@ -79,7 +67,6 @@ class AuthController extends GetxController {
     } catch (e) {
       // this is temporary. you can handle different kinds of activities
       //such as dialogue to indicate what's wrong
-      print(e.toString());
     }
   }
 
@@ -94,14 +81,11 @@ class AuthController extends GetxController {
     } on FirebaseAuthException catch (e) {
       // this is solely for the Firebase Auth Exception
       // for example : password did not match
-      print(e.message);
       Get.snackbar(
         "Error",
         e.message!,
         snackPosition: SnackPosition.BOTTOM,
       );
-    } catch (e) {
-      print(e.toString());
     }
   }
 
@@ -131,14 +115,11 @@ class AuthController extends GetxController {
     } on FirebaseAuthException catch (e) {
       // this is solely for the Firebase Auth Exception
       // for example : password did not match
-      print(e.message);
       Get.snackbar(
         "Error",
         e.message!,
         snackPosition: SnackPosition.BOTTOM,
       );
-    } catch (e) {
-      print(e.toString());
     }
   }
 
@@ -154,14 +135,11 @@ class AuthController extends GetxController {
       Get.offAllNamed("/home");
       this.user = user.obs;
     } on FirebaseAuthException catch (e) {
-      print(e.message);
       Get.snackbar(
         "Error",
         e.message!,
         snackPosition: SnackPosition.BOTTOM,
       );
-    } catch (e) {
-      print(e.toString());
     }
   }
 
@@ -169,8 +147,6 @@ class AuthController extends GetxController {
     try {
       GoogleSignIn().signOut();
       auth.signOut();
-    } catch (e) {
-      print(e.toString());
-    }
+    } catch (e) {}
   }
 }

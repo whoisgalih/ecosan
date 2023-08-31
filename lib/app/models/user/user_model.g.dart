@@ -16,16 +16,6 @@ User _$UserFromJson(Map<String, dynamic> json) => User(
       birthdate: json['birthdate'] as String,
     );
 
-const _$UserFieldMap = <String, String>{
-  'name': 'name',
-  'phone': 'phone',
-  'city': 'city',
-  'birthdate': 'birthdate',
-  'uid': 'uid',
-  'photoUrl': 'photoUrl',
-  'poin': 'poin',
-};
-
 Map<String, dynamic> _$UserToJson(User instance) => <String, dynamic>{
       'name': instance.name,
       'phone': instance.phone,

@@ -49,7 +49,8 @@ class PembersihanFilterView extends GetView<PembersihanFilterController> {
                       controller: controller.pengaduanController),
                   Text(
                     'Data Pelanggan',
-                    style: TextStyles.tiny.copyWith(color: Color(0xFF1E1E1E)),
+                    style: TextStyles.tiny
+                        .copyWith(color: const Color(0xFF1E1E1E)),
                   ),
                   SizedBox(
                     height: 1.5.h,
@@ -68,7 +69,8 @@ class PembersihanFilterView extends GetView<PembersihanFilterController> {
                       controller: controller.numberController),
                   Text(
                     'Lokasi Pembersihan FIlter',
-                    style: TextStyles.tiny.copyWith(color: const Color(0xFF1E1E1E)),
+                    style: TextStyles.tiny
+                        .copyWith(color: const Color(0xFF1E1E1E)),
                   ),
                   SizedBox(
                     height: 1.5.h,

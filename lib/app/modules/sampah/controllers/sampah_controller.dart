@@ -44,14 +44,4 @@ class SampahController extends GetxController {
     // getTrashHistories();
     listenTrashHistory();
   }
-
-  @override
-  void onReady() {
-    super.onReady();
-  }
-
-  @override
-  void onClose() {
-    super.onClose();
-  }
 }

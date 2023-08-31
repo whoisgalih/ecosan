@@ -15,10 +15,8 @@ class PickupHistoryController extends GetxController {
         trashHistory.value = value;
       });
       loadingState.value = LoadingState.success;
-      print(trashHistory.value?.latitude);
     } catch (e) {
       loadingState.value = LoadingState.error;
-      print(e);
     }
   }
 
@@ -35,9 +33,7 @@ class PickupHistoryController extends GetxController {
         },
         arguments: id,
       );
-    } catch (e) {
-      print(e);
-    }
+    } catch (e) {}
   }
 
   final count = 0.obs;
@@ -51,11 +47,6 @@ class PickupHistoryController extends GetxController {
   void onReady() {
     super.onReady();
     getTrashHistory();
-  }
-
-  @override
-  void onClose() {
-    super.onClose();
   }
 
   void increment() => count.value++;

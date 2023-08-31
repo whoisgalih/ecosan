@@ -7,10 +7,8 @@ class KonfirmasiKurirController extends GetxController {
   final Rx<int> count = 3.obs;
 
   void _counter() async {
-    print("counter started");
     while (count.value > 0) {
       await Future.delayed(const Duration(seconds: 1), () {
-        print(count.value);
         count.value--;
       });
     }
@@ -34,17 +32,6 @@ class KonfirmasiKurirController extends GetxController {
   @override
   void onInit() {
     super.onInit();
-    print("on init");
     _counter();
-  }
-
-  @override
-  void onReady() {
-    super.onReady();
-  }
-
-  @override
-  void onClose() {
-    super.onClose();
   }
 }

@@ -71,10 +71,8 @@ class AirController extends GetxController {
       controller!.setFlashMode(FlashMode.off);
       final xfile = await controller!.takePicture();
       image.value = xfile;
-      print(image.value!.path);
       controller!.pausePreview();
     } else {
-      print('resume');
       image.value = null;
       controller!.resumePreview();
     }

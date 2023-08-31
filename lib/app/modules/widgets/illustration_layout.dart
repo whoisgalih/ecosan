@@ -49,11 +49,11 @@ class IllustrationLayout extends StatelessWidget {
           child: SingleChildScrollView(
             child: Container(
               width: double.infinity,
-              margin: EdgeInsets.symmetric(horizontal: 16, vertical: 64),
+              margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 64),
               child: Column(
                 children: [
                   SvgPicture.asset(svgPath, width: 80.w),
-                  SizedBox(
+                  const SizedBox(
                     height: 40,
                   ),
                   Text(

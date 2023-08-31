@@ -19,10 +19,6 @@ class EditController extends GetxController {
   final isLoading = false.obs;
 
   File get getFile => File(result.value!.files.single.path!);
-  @override
-  void onInit() {
-    super.onInit();
-  }
 
   @override
   void onReady() {
@@ -34,13 +30,7 @@ class EditController extends GetxController {
         homeController.authController.firebaseUser.value!.email!;
   }
 
-  @override
-  void onClose() {
-    super.onClose();
-  }
-
   Future<void> edit() async {
-    print('updating');
     if (result.value != null) {
       isLoading.value = true;
       File file = File(result.value!.files.single.path!);
@@ -48,14 +38,10 @@ class EditController extends GetxController {
           'images/${homeController.authController.firebaseUser.value!.uid}.${getFileExtensionFromPath(file.path)}');
 
       try {
-        print('uploading image');
         await imageRef.putFile(file);
         final imageUrl = await imageRef.getDownloadURL();
-        print('success: ' + imageUrl);
         homeController.user.value.photoUrl = imageUrl;
-      } catch (e) {
-        print("Error uploading image: $e");
-      }
+      } catch (e) {}
     }
     homeController.user.value.name = nameEditingController.text;
     homeController.user.value.phone = telpEditingController.text;
@@ -64,9 +50,9 @@ class EditController extends GetxController {
       await userRepo.updateProfile();
       isLoading(false);
       Get.back();
-      Get.snackbar('Berhasil', 'Berhasil mengubah profil', snackPosition: SnackPosition.BOTTOM);
+      Get.snackbar('Berhasil', 'Berhasil mengubah profil',
+          snackPosition: SnackPosition.BOTTOM);
     } catch (e) {
-      print(e);
       isLoading(false);
     }
   }

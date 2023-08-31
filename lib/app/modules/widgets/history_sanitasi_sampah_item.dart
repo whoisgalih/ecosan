@@ -51,10 +51,10 @@ class HistorySanitasiSampahItem extends StatelessWidget {
     return Container(
       clipBehavior: Clip.antiAlias,
       width: double.infinity,
-      margin: EdgeInsets.symmetric(horizontal: 16, vertical: 6),
+      margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 6),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(10),
-        boxShadow: [
+        boxShadow: const [
           BoxShadow(
             color: Color(0x26000000),
             blurRadius: 15,
@@ -70,7 +70,7 @@ class HistorySanitasiSampahItem extends StatelessWidget {
             navigateToPage();
           },
           child: Padding(
-            padding: EdgeInsets.all(16),
+            padding: const EdgeInsets.all(16),
             child: Column(
               children: [
                 Row(
@@ -107,7 +107,7 @@ class HistorySanitasiSampahItem extends StatelessWidget {
                     ),
                   ],
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 12,
                 ),
                 Row(
@@ -115,7 +115,7 @@ class HistorySanitasiSampahItem extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     _histotyData("Dari:", trashHistory.name),
-                    SizedBox(
+                    const SizedBox(
                       width: 12,
                     ),
                     _histotyData(
@@ -124,7 +124,7 @@ class HistorySanitasiSampahItem extends StatelessWidget {
                     ),
                   ],
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 8,
                 ),
                 Row(
@@ -132,7 +132,7 @@ class HistorySanitasiSampahItem extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     _histotyData("Menuju:", trashHistory.trashBankName),
-                    SizedBox(
+                    const SizedBox(
                       width: 12,
                     ),
                     _histotyData("Berat:", "${trashHistory.weight} kg"),

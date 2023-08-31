@@ -4,10 +4,8 @@ import 'package:ecosan/app/modules/themes/fonts.dart';
 import 'package:ecosan/app/modules/widgets/button.dart';
 import 'package:ecosan/app/modules/widgets/eco_san_map.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_map/flutter_map.dart';
 
 import 'package:get/get.dart';
-import 'package:latlong2/latlong.dart';
 
 import '../controllers/pickup_history_controller.dart';
 
@@ -23,7 +21,7 @@ class PickupHistoryView extends GetView<PickupHistoryController> {
             onTap: () {
               Get.back();
             },
-            child: Icon(
+            child: const Icon(
               Icons.arrow_back,
             ),
           ),
@@ -31,7 +29,8 @@ class PickupHistoryView extends GetView<PickupHistoryController> {
         body: Obx(() => controller.loadingState.value == LoadingState.success
             ? SingleChildScrollView(
                 child: Container(
-                  margin: EdgeInsets.symmetric(horizontal: 16, vertical: 24),
+                  margin:
+                      const EdgeInsets.symmetric(horizontal: 16, vertical: 24),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
@@ -39,7 +38,7 @@ class PickupHistoryView extends GetView<PickupHistoryController> {
                         "Riwayat Pickup Poin",
                         style: TextStyles.normal.bold(),
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 16,
                       ),
                       Container(
@@ -55,16 +54,16 @@ class PickupHistoryView extends GetView<PickupHistoryController> {
                           markerSize: 40,
                         ),
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 16,
                       ),
                       Container(
                         width: double.infinity,
-                        padding: EdgeInsets.all(16),
+                        padding: const EdgeInsets.all(16),
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(10),
                           color: Colors.white,
-                          boxShadow: [
+                          boxShadow: const [
                             BoxShadow(
                               color: Color(0x14832AA0),
                               blurRadius: 15,
@@ -102,11 +101,11 @@ class PickupHistoryView extends GetView<PickupHistoryController> {
                       ),
                       Container(
                         width: double.infinity,
-                        padding: EdgeInsets.all(16),
+                        padding: const EdgeInsets.all(16),
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(10),
                           color: Colors.white,
-                          boxShadow: [
+                          boxShadow: const [
                             BoxShadow(
                               color: Color(0x14832AA0),
                               blurRadius: 15,
@@ -136,11 +135,11 @@ class PickupHistoryView extends GetView<PickupHistoryController> {
                       ),
                       Container(
                         width: double.infinity,
-                        padding: EdgeInsets.all(16),
+                        padding: const EdgeInsets.all(16),
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(10),
                           color: Colors.white,
-                          boxShadow: [
+                          boxShadow: const [
                             BoxShadow(
                               color: Color(0x14832AA0),
                               blurRadius: 15,
@@ -168,7 +167,7 @@ class PickupHistoryView extends GetView<PickupHistoryController> {
                           ],
                         ),
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 32,
                       ),
                       EcoSanButton(
@@ -185,10 +184,10 @@ class PickupHistoryView extends GetView<PickupHistoryController> {
                 ),
               )
             : controller.loadingState.value == LoadingState.loading
-                ? Center(
+                ? const Center(
                     child: CircularProgressIndicator(),
                   )
-                : Center(
+                : const Center(
                     child: Text("Terjadi kesalahan"),
                   )));
   }

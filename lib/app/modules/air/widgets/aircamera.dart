@@ -85,11 +85,9 @@ class AirCamera extends StatelessWidget {
                                   borderRadius: BorderRadius.circular(10)),
                             ),
                             onPressed: () async {
-                              print('mulai');
                               sanitationController.isProcessing.value = true;
                               await Future.delayed(const Duration(seconds: 2));
                               Get.bottomSheet(ScanAirBottomSheet());
-                              print('tutup');
                               sanitationController.isProcessing.value = false;
                             },
                             child: Text('Cek Kualitas Air',

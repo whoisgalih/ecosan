@@ -21,16 +21,6 @@ class DataDiriController extends GetxController {
     loadRegencies();
   }
 
-  @override
-  void onReady() {
-    super.onReady();
-  }
-
-  @override
-  void onClose() {
-    super.onClose();
-  }
-
   void loadRegencies() async {
     String? data = await rootBundle.loadString('assets/json/regencies.json');
     final kon = json.decode(data) as List<dynamic>;

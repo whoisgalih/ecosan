@@ -14,16 +14,6 @@ class DaftarRiwayatController extends GetxController {
     getTransactions();
   }
 
-  @override
-  void onReady() {
-    super.onReady();
-  }
-
-  @override
-  void onClose() {
-    super.onClose();
-  }
-
   Future<void> getTransactions() async {
     final result = await transactionRepository.get();
     transactions.value = result;

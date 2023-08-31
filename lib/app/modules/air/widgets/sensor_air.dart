@@ -100,13 +100,13 @@ class SensorAir extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              controller.airData != null
+              controller.airData.value != null
                   ? Text(
                       'Layanan Sanitasi Air',
                       style: TextStyles.small.semibold(),
                     )
                   : const SizedBox(),
-              controller.airData != null
+              controller.airData.value != null
                   ? SizedBox(
                       height: 1.5.h,
                     )
@@ -114,7 +114,7 @@ class SensorAir extends StatelessWidget {
               LayananSanitasiListTile(
                 layananName: 'Pembersihan Filter',
                 onTap: () {
-                  if (controller.airData != null) {
+                  if (controller.airData.value != null) {
                     Get.toNamed('/air/pembersihan-filter');
                   } else {
                     Get.snackbar('Peringatan', 'Sensor air belum terpasang',
@@ -128,7 +128,7 @@ class SensorAir extends StatelessWidget {
               LayananSanitasiListTile(
                   layananName: 'Pemasangan Alat',
                   onTap: () {
-                    if (controller.airData == null) {
+                    if (controller.airData.value == null) {
                       Get.toNamed('/air/pemasangan-alat');
                     } else {
                       Get.snackbar('Peringatan',
