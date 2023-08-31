@@ -1,6 +1,5 @@
 import 'package:ecosan/app/constants/utils.dart';
 import 'package:ecosan/app/models/transaction/transaction_model.dart';
-import 'package:ecosan/app/modules/home/controllers/home_controller.dart';
 import 'package:ecosan/app/modules/themes/colors.dart';
 import 'package:ecosan/app/modules/themes/fonts.dart';
 import 'package:flutter/material.dart';
@@ -77,13 +76,12 @@ class DaftarRiwayatView extends GetView<DaftarRiwayatController> {
               Obx(
                 () => Expanded(
                     child: ListView.separated(
-                  itemCount: HomeController.i.user.value.transactions.length,
+                  itemCount: controller.transactions.value.length,
                   separatorBuilder: (context, index) => SizedBox(
                     height: 1.5.h,
                   ),
-                  itemBuilder: (context, index) => riwayatCard(HomeController
-                      .i.user.value.transactions
-                      .elementAt(index)),
+                  itemBuilder: (context, index) =>
+                      riwayatCard(controller.transactions.value.elementAt(index)),
                 )),
               )
             ],

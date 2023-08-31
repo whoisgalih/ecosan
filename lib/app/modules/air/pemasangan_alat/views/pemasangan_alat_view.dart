@@ -47,7 +47,7 @@ class PemasanganAlatView extends GetView<PemasanganAlatController> {
                       keyboardType: TextInputType.text,
                       controller: controller.pengaduanController),
                   SizedBox(
-                    height: 3.h,
+                    height: 1.h,
                   ),
                   Text(
                     'Data Pelanggan',
@@ -72,7 +72,7 @@ class PemasanganAlatView extends GetView<PemasanganAlatController> {
                       keyboardType: TextInputType.text,
                       controller: controller.numberController),
                   SizedBox(
-                    height: 3.h,
+                    height: 1.h,
                   ),
                   Text(
                     'Lokasi Pembersihan FIlter',

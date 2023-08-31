@@ -48,7 +48,7 @@ class PembersihanFilterView extends GetView<PembersihanFilterController> {
                       keyboardType: TextInputType.text,
                       controller: controller.pengaduanController),
                   SizedBox(
-                    height: 3.h,
+                    height: 1.h,
                   ),
                   Text(
                     'Data Pelanggan',
@@ -73,7 +73,7 @@ class PembersihanFilterView extends GetView<PembersihanFilterController> {
                       keyboardType: TextInputType.text,
                       controller: controller.numberController),
                   SizedBox(
-                    height: 3.h,
+                    height: 1.h,
                   ),
                   Text(
                     'Lokasi Pembersihan FIlter',
